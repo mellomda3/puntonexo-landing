@@ -563,6 +563,38 @@ ul { list-style: none; }
 .btn-white-outline:hover { border-color: #fff; background: rgba(255,255,255,.08); }
 
 /* ═══════════════════════════════════════════════
+   CONTACT
+═══════════════════════════════════════════════ */
+.contact-section { background: #f8fafb; padding: 96px 0; }
+.contact-section .section-tag { color: var(--green-dark); }
+.contact-section .section-h2 { color: var(--ink); }
+.contact-section .section-sub { color: var(--muted); }
+.contact-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; margin-top: 56px; }
+.contact-info h3 { font-size: 20px; font-weight: 800; color: var(--ink); margin-bottom: 12px; }
+.contact-info p { font-size: 15px; color: var(--muted); line-height: 1.7; margin-bottom: 32px; }
+.contact-detail { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+.contact-detail-icon { width: 40px; height: 40px; background: var(--green-light); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+.contact-detail-text { font-size: 14px; color: var(--muted); }
+.contact-detail-text strong { display: block; font-weight: 700; color: var(--ink); font-size: 15px; }
+.contact-form-card { background: #fff; border-radius: 18px; padding: 36px; box-shadow: 0 4px 24px rgba(0,0,0,.07); }
+.contact-form-card h3 { font-size: 18px; font-weight: 800; color: var(--ink); margin-bottom: 24px; }
+.cf-row { margin-bottom: 18px; }
+.cf-row label { display: block; font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 6px; }
+.cf-row input, .cf-row select, .cf-row textarea { width: 100%; padding: 11px 14px; border: 1.5px solid #e2e8f0; border-radius: 10px; font-size: 14.5px; color: var(--ink); background: #fcfcfc; transition: border-color .2s; font-family: inherit; box-sizing: border-box; }
+.cf-row input:focus, .cf-row select:focus, .cf-row textarea:focus { outline: none; border-color: var(--green); background: #fff; }
+.cf-row textarea { resize: vertical; min-height: 110px; }
+.cf-submit { width: 100%; padding: 13px; background: var(--green); color: #fff; border: none; border-radius: 10px; font-size: 15px; font-weight: 700; cursor: pointer; transition: background .15s; }
+.cf-submit:hover { background: var(--green-dark); }
+.cf-submit:disabled { opacity: .6; cursor: not-allowed; }
+.cf-success { display: none; text-align: center; padding: 24px 0; }
+.cf-success .cf-ok-icon { font-size: 48px; margin-bottom: 12px; }
+.cf-success h4 { font-size: 18px; font-weight: 800; color: var(--ink); margin-bottom: 8px; }
+.cf-success p { font-size: 14.5px; color: var(--muted); line-height: 1.65; }
+.contact-detail-text a { color: var(--green); text-decoration: none; }
+.cf-error { display: none; color: #e53e3e; font-size: 13px; margin-top: 10px; }
+@media(max-width:860px){ .contact-wrap { grid-template-columns: 1fr; gap: 40px; } }
+
+/* ═══════════════════════════════════════════════
    FOOTER
 ═══════════════════════════════════════════════ */
 .footer {
@@ -650,6 +682,7 @@ ul { list-style: none; }
         <a href="#afip">AFIP / Fiscal</a>
         <a href="#precios">Precios</a>
         <a href="#faq">Ayuda</a>
+        <a href="#contacto">Contacto</a>
       </div>
       <div class="nav-actions">
         <button id="loginBtn" onclick="openLogin()" class="nav-ver btn btn-sm btn-ghost">Iniciar sesión</button>
@@ -1330,6 +1363,83 @@ ul { list-style: none; }
 </section>
 
 <!-- ════════════════════════════════════
+     CONTACTO
+════════════════════════════════════ -->
+<section class="contact-section" id="contacto">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Contacto</span>
+      <h2 class="section-h2">¿Tenés alguna consulta?</h2>
+      <p class="section-sub">Estamos para ayudarte. Escribinos y te respondemos a la brevedad.</p>
+    </div>
+    <div class="contact-wrap">
+      <!-- INFO -->
+      <div class="contact-info">
+        <h3>Hablemos</h3>
+        <p>Nuestro equipo responde consultas de lunes a viernes de 9 a 18 hs (GMT-3). También podés escribirnos directamente al mail.</p>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">📧</div>
+          <div class="contact-detail-text">
+            <strong>Email</strong>
+            <a href="mailto:hola@mello.com.ar">hola@mello.com.ar</a>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">🕐</div>
+          <div class="contact-detail-text">
+            <strong>Tiempo de respuesta</strong>
+            Respondemos en menos de 24 hs
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">🛒</div>
+          <div class="contact-detail-text">
+            <strong>Soporte técnico</strong>
+            <a href="https://licencias.mello.com.ar">Portal de suscripciones →</a>
+          </div>
+        </div>
+      </div>
+      <!-- FORM -->
+      <div class="contact-form-card">
+        <h3>Envianos un mensaje</h3>
+        <div id="cfForm">
+          <div class="cf-row">
+            <label for="cf-name">Tu nombre</label>
+            <input id="cf-name" type="text" placeholder="Ej: Juan García" autocomplete="name">
+          </div>
+          <div class="cf-row">
+            <label for="cf-email">Email</label>
+            <input id="cf-email" type="email" placeholder="tu@email.com" autocomplete="email">
+          </div>
+          <div class="cf-row">
+            <label for="cf-subject">Asunto</label>
+            <select id="cf-subject">
+              <option value="">Seleccioná un tema...</option>
+              <option value="consulta">Consulta comercial</option>
+              <option value="soporte">Soporte técnico</option>
+              <option value="facturacion">Facturación / suscripción</option>
+              <option value="demo">Solicitar demo</option>
+              <option value="otro">Otro</option>
+            </select>
+          </div>
+          <div class="cf-row">
+            <label for="cf-message">Mensaje</label>
+            <textarea id="cf-message" placeholder="Contanos en qué podemos ayudarte..."></textarea>
+          </div>
+          <button class="cf-submit" id="cfSubmitBtn" onclick="submitContact()">Enviar mensaje →</button>
+          <p id="cfError" class="cf-error"></p>
+        </div>
+        <div class="cf-success" id="cfSuccess">
+          <div class="cf-ok-icon">✅</div>
+          <h4>¡Mensaje enviado!</h4>
+          <p>Gracias por escribirnos. Te responderemos en menos de 24 horas a tu correo.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
      FOOTER
 ════════════════════════════════════ -->
 <footer class="footer">
@@ -1367,7 +1477,7 @@ ul { list-style: none; }
           <li><a href="#">Centro de ayuda</a></li>
           <li><a href="#">Manual de usuario</a></li>
           <li><a href="#faq">Preguntas frecuentes</a></li>
-          <li><a href="#">Contacto</a></li>
+          <li><a href="#contacto">Contacto</a></li>
           <li><a href="#">Estado del servicio</a></li>
         </ul>
       </div>
@@ -1550,6 +1660,44 @@ document.addEventListener('click', e => {
 });
 
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLogin(); });
+
+async function submitContact() {
+  const name    = document.getElementById('cf-name').value.trim();
+  const email   = document.getElementById('cf-email').value.trim();
+  const subject = document.getElementById('cf-subject').value;
+  const message = document.getElementById('cf-message').value.trim();
+  const errEl   = document.getElementById('cfError');
+  const btn     = document.getElementById('cfSubmitBtn');
+
+  errEl.style.display = 'none';
+  if (!name)    { errEl.textContent = 'Por favor ingresá tu nombre.'; errEl.style.display = 'block'; return; }
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { errEl.textContent = 'Ingresá un email válido.'; errEl.style.display = 'block'; return; }
+  if (!subject) { errEl.textContent = 'Seleccioná un asunto.'; errEl.style.display = 'block'; return; }
+  if (!message) { errEl.textContent = 'Escribí tu mensaje.'; errEl.style.display = 'block'; return; }
+
+  btn.disabled = true;
+  btn.textContent = 'Enviando...';
+  try {
+    const res = await fetch('https://licencias.mello.com.ar/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, subject, message })
+    });
+    if (res.ok) {
+      document.getElementById('cfForm').style.display = 'none';
+      document.getElementById('cfSuccess').style.display = 'block';
+    } else {
+      throw new Error('server');
+    }
+  } catch {
+    /* fallback: open mailto */
+    const body = encodeURIComponent(`Nombre: ${name}\nEmail: ${email}\nAsunto: ${subject}\n\n${message}`);
+    window.location.href = `mailto:hola@mello.com.ar?subject=${encodeURIComponent('Consulta PuntoNexo - ' + subject)}&body=${body}`;
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Enviar mensaje →';
+  }
+}
 
 document.addEventListener('DOMContentLoaded', () => {
   /* Restore session */
