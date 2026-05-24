@@ -1,0 +1,1567 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PuntoNexo — TPV para supermercados argentinos · Facturación AFIP incluida</title>
+<meta name="description" content="Software de punto de venta para supermercados y almacenes argentinos. Facturación electrónica AFIP, fidelización de clientes, multi-caja y reportes. Funciona sin internet.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+<script src="https://accounts.google.com/gsi/client" async></script>
+<style>
+/* ═══════════════════════════════════════════════
+   TOKENS & RESET
+═══════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --green:        #00b482;
+  --green-dark:   #009160;
+  --green-deep:   #006644;
+  --green-10:     #ecfdf5;
+  --green-20:     #d1fae5;
+  --green-border: #a7f3d0;
+  --ink:          #0f172a;
+  --ink-2:        #1e293b;
+  --muted:        #64748b;
+  --muted-2:      #94a3b8;
+  --border:       #e2e8f0;
+  --border-2:     #f1f5f9;
+  --bg:           #ffffff;
+  --bg-2:         #f8fafc;
+  --red:          #ef4444;
+  --amber:        #f59e0b;
+  --radius:       10px;
+  --radius-lg:    16px;
+  --shadow:       0 1px 3px rgba(0,0,0,.08), 0 4px 16px rgba(0,0,0,.06);
+  --shadow-lg:    0 8px 32px rgba(0,0,0,.1), 0 2px 8px rgba(0,0,0,.06);
+  --font:         'Inter', system-ui, -apple-system, sans-serif;
+}
+html { scroll-behavior: smooth; font-size: 16px; }
+body { font-family: var(--font); color: var(--ink); background: var(--bg); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+button { font-family: var(--font); cursor: pointer; }
+ul { list-style: none; }
+
+/* ═══════════════════════════════════════════════
+   UTILS
+═══════════════════════════════════════════════ */
+.container { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+.tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--green-10); color: var(--green-dark);
+  border: 1px solid var(--green-border);
+  padding: 5px 12px; border-radius: 20px;
+  font-size: 12px; font-weight: 700; letter-spacing: .3px; text-transform: uppercase;
+}
+.tag-dot { width: 6px; height: 6px; background: var(--green); border-radius: 50%; display: inline-block; }
+.chip { display: inline-flex; align-items: center; gap: 4px; padding: 3px 10px; border-radius: 10px; font-size: 11px; font-weight: 700; }
+.chip-green { background: var(--green-10); color: var(--green-dark); border: 1px solid var(--green-border); }
+.chip-blue  { background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; }
+.chip-amber { background: #fffbeb; color: #b45309; border: 1px solid #fde68a; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 22px; border-radius: var(--radius);
+  font-weight: 700; font-size: 14px; border: none;
+  transition: all .18s ease; cursor: pointer;
+}
+.btn-primary { background: var(--green); color: #fff; box-shadow: 0 4px 14px rgba(0,180,130,.28); }
+.btn-primary:hover { background: var(--green-dark); box-shadow: 0 6px 20px rgba(0,180,130,.38); transform: translateY(-1px); }
+.btn-outline { background: transparent; color: var(--ink); border: 1.5px solid var(--border); }
+.btn-outline:hover { border-color: var(--green); color: var(--green); background: var(--green-10); }
+.btn-ghost  { background: transparent; color: var(--muted); }
+.btn-ghost:hover  { color: var(--green); }
+.btn-lg { padding: 15px 28px; font-size: 15px; border-radius: 12px; }
+.btn-sm { padding: 8px 16px; font-size: 13px; border-radius: 8px; }
+.section { padding: 88px 0; }
+.section-sm { padding: 56px 0; }
+.eyebrow { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; color: var(--green); margin-bottom: 12px; }
+.section-title { font-size: 38px; font-weight: 900; line-height: 1.15; letter-spacing: -.5px; color: var(--ink); }
+.section-sub { font-size: 17px; color: var(--muted); line-height: 1.65; max-width: 560px; margin: 16px 0 0; }
+.text-center { text-align: center; }
+.text-center .section-sub { margin-left: auto; margin-right: auto; }
+
+/* ═══════════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════════ */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,.9); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-2);
+  transition: box-shadow .2s;
+}
+.nav.scrolled { box-shadow: 0 2px 16px rgba(0,0,0,.06); }
+.nav-inner {
+  display: flex; align-items: center; gap: 32px;
+  height: 64px;
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  font-weight: 800; font-size: 18px; color: var(--ink);
+  flex-shrink: 0;
+}
+.nav-logo .icon {
+  width: 34px; height: 34px; border-radius: 9px;
+  background: linear-gradient(135deg, var(--green), var(--green-dark));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 17px; flex-shrink: 0; box-shadow: 0 2px 8px rgba(0,180,130,.3);
+}
+.nav-logo .nexo { color: var(--green); }
+.nav-links { display: flex; align-items: center; gap: 4px; flex: 1; }
+.nav-links a {
+  padding: 7px 12px; border-radius: 7px; font-size: 14px;
+  font-weight: 500; color: var(--muted); transition: all .15s;
+}
+.nav-links a:hover { color: var(--ink); background: var(--bg-2); }
+.nav-actions { display: flex; align-items: center; gap: 8px; margin-left: auto; flex-shrink: 0; }
+.nav-ver { font-size: 13px; font-weight: 600; color: var(--muted); transition: color .15s; }
+.nav-ver:hover { color: var(--ink); }
+
+/* ═══════════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════════ */
+.hero {
+  padding: 80px 0 0;
+  background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(0,180,130,.1) 0%, transparent 70%), var(--bg);
+  overflow: hidden;
+}
+.hero-inner {
+  display: grid; grid-template-columns: 1fr 1.08fr;
+  gap: 64px; align-items: center;
+}
+.hero-text { padding-bottom: 80px; }
+.hero-tag { margin-bottom: 20px; }
+.hero-h1 {
+  font-size: 52px; font-weight: 900; line-height: 1.08;
+  letter-spacing: -1.5px; color: var(--ink);
+}
+.hero-h1 .highlight { color: var(--green); }
+.hero-sub {
+  margin-top: 20px; font-size: 18px; color: var(--muted);
+  line-height: 1.7; max-width: 500px;
+}
+.hero-ctas { display: flex; align-items: center; gap: 12px; margin-top: 32px; flex-wrap: wrap; }
+.hero-note { margin-top: 20px; font-size: 12.5px; color: var(--muted-2); display: flex; align-items: center; gap: 6px; }
+.hero-note svg { flex-shrink: 0; }
+.hero-badges { display: flex; align-items: center; gap: 10px; margin-top: 32px; flex-wrap: wrap; }
+
+/* ─── App Mockup ─── */
+.hero-visual { align-self: flex-end; }
+.app-frame {
+  background: #f1f5f9;
+  border-radius: 14px 14px 0 0;
+  box-shadow: 0 -4px 0 rgba(0,0,0,.04), var(--shadow-lg), 0 0 0 1px rgba(0,0,0,.06);
+  overflow: hidden;
+  transform: perspective(900px) rotateX(3deg) scale(.97);
+  transform-origin: bottom center;
+}
+.frame-bar {
+  height: 36px; background: #e8edf3;
+  display: flex; align-items: center; padding: 0 14px; gap: 6px;
+}
+.frame-dot { width: 10px; height: 10px; border-radius: 50%; }
+.frame-dot-r { background: #ff5f57; }
+.frame-dot-y { background: #ffbd2e; }
+.frame-dot-g { background: #28c840; }
+.frame-title { flex: 1; text-align: center; font-size: 11px; color: #94a3b8; font-weight: 500; }
+.app-shell {
+  display: grid; grid-template-columns: 200px 1fr;
+  height: 420px; background: #fff;
+}
+.app-side {
+  background: #fff; border-right: 1px solid #f1f5f9;
+  padding: 14px 0;
+}
+.app-brand {
+  padding: 0 16px 12px; border-bottom: 1px solid #f1f5f9;
+  margin-bottom: 8px;
+}
+.app-brand .logo-s { font-size: 13px; font-weight: 800; color: var(--green); display: flex; align-items: center; gap: 7px; }
+.app-brand .logo-s .ico-s { width: 22px; height: 22px; border-radius: 5px; background: linear-gradient(135deg,#00b482,#009160); display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff; }
+.app-brand .sub-s { font-size: 10px; color: #94a3b8; margin-top: 2px; margin-left: 29px; }
+.nav-item-s {
+  display: flex; align-items: center; gap: 8px;
+  padding: 7px 16px; font-size: 12px; font-weight: 500; color: #64748b;
+  border-left: 2px solid transparent;
+}
+.nav-item-s.active { color: var(--green); background: var(--green-10); border-left-color: var(--green); font-weight: 700; }
+.nav-item-s .ico { width: 16px; text-align: center; font-size: 13px; }
+.nav-section-s { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #cbd5e1; padding: 10px 16px 4px; }
+.user-s { margin: auto 0 0; padding: 10px 16px; border-top: 1px solid #f1f5f9; display: flex; align-items: center; gap: 8px; }
+.user-s .av { width: 26px; height: 26px; border-radius: 50%; background: linear-gradient(135deg,#00b482,#009160); color:#fff; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.user-s .info { flex: 1; min-width: 0; }
+.user-s .name-s { font-size: 11px; font-weight: 700; color: #0f172a; }
+.user-s .role-s { font-size: 10px; color: #94a3b8; }
+.app-main { display: grid; grid-template-rows: auto 1fr auto; overflow: hidden; }
+.app-topbar { padding: 10px 14px; border-bottom: 1px solid #f1f5f9; display: flex; align-items: center; gap: 8px; }
+.search-s { flex: 1; display: flex; align-items: center; gap: 6px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 6px 10px; }
+.search-s input { background: transparent; border: none; outline: none; font-size: 11.5px; font-family: var(--font); color: #1e293b; flex: 1; }
+.search-s .kbd { background: #e2e8f0; color: #64748b; font-size: 9px; padding: 1px 5px; border-radius: 3px; font-weight: 700; flex-shrink: 0; font-family: 'JetBrains Mono', monospace; }
+.afip-pill { display: flex; align-items: center; gap: 5px; background: #ecfdf5; border: 1px solid #a7f3d0; color: #009160; padding: 4px 10px; border-radius: 20px; font-size: 10px; font-weight: 700; white-space: nowrap; flex-shrink: 0; }
+.afip-dot { width: 6px; height: 6px; background: #00b482; border-radius: 50%; box-shadow: 0 0 6px #00b482; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:.5;} }
+.cart-s { overflow: hidden; }
+.cart-table { width: 100%; border-collapse: collapse; font-size: 11px; }
+.cart-table th { font-size: 9px; text-transform: uppercase; letter-spacing: .5px; color: #94a3b8; padding: 6px 10px; border-bottom: 1px solid #f1f5f9; text-align: left; font-weight: 700; }
+.cart-table th.r, .cart-table td.r { text-align: right; }
+.cart-table td { padding: 7px 10px; border-bottom: 1px solid #f8fafc; font-size: 11px; color: #1e293b; }
+.cart-table tbody tr:nth-child(odd) { background: #fafbfc; }
+.pname-s { font-weight: 600; color: #0f172a; }
+.bc-s { font-size: 9px; color: #94a3b8; font-family: 'JetBrains Mono', monospace; }
+.price-s { font-weight: 700; color: #00b482; font-family: 'JetBrains Mono', monospace; }
+.app-bottom { border-top: 1px solid #f1f5f9; padding: 10px 14px; background: #fafbfc; }
+.total-row-s { display: flex; align-items: center; gap: 10px; }
+.total-info-s { flex: 1; }
+.total-info-s .sub-row { font-size: 10px; color: #64748b; display: flex; justify-content: space-between; }
+.total-info-s .ttl-row { font-size: 15px; font-weight: 900; color: #0f172a; display: flex; justify-content: space-between; margin-top: 3px; }
+.cobrar-s { background: var(--green); color: #fff; border: none; padding: 10px 18px; border-radius: 8px; font-size: 12px; font-weight: 800; white-space: nowrap; cursor: pointer; box-shadow: 0 3px 10px rgba(0,180,130,.3); }
+.cancel-s { background: #f1f5f9; color: #64748b; border: none; padding: 10px 12px; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer; }
+
+/* ═══════════════════════════════════════════════
+   TRUST BAR
+═══════════════════════════════════════════════ */
+.trust-bar {
+  background: var(--ink); padding: 28px 0;
+}
+.trust-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 0; text-align: center;
+}
+.trust-item {
+  padding: 0 24px;
+  border-right: 1px solid rgba(255,255,255,.08);
+}
+.trust-item:last-child { border-right: none; }
+.trust-num { font-size: 32px; font-weight: 900; color: #fff; line-height: 1; }
+.trust-num span { color: var(--green); }
+.trust-lbl { font-size: 12px; color: rgba(255,255,255,.5); margin-top: 5px; font-weight: 500; }
+
+/* ═══════════════════════════════════════════════
+   PROBLEMS
+═══════════════════════════════════════════════ */
+.problems { background: var(--bg-2); }
+.prob-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 16px; margin-top: 48px;
+}
+.prob-card {
+  background: #fff; border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 24px;
+  transition: all .2s;
+}
+.prob-card:hover { box-shadow: var(--shadow); border-color: var(--border); transform: translateY(-2px); }
+.prob-icon { font-size: 26px; margin-bottom: 12px; }
+.prob-q { font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
+.prob-a { font-size: 13.5px; color: var(--muted); line-height: 1.6; }
+.prob-a strong { color: var(--green-dark); }
+
+/* ═══════════════════════════════════════════════
+   FEATURES
+═══════════════════════════════════════════════ */
+.features-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 24px; margin-top: 56px;
+}
+.feat-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 28px;
+  background: var(--bg);
+  transition: all .2s ease;
+  position: relative; overflow: hidden;
+}
+.feat-card::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(circle at top left, rgba(0,180,130,.04), transparent 60%);
+  pointer-events: none;
+}
+.feat-card:hover { box-shadow: var(--shadow-lg); border-color: var(--green-border); transform: translateY(-3px); }
+.feat-icon {
+  width: 44px; height: 44px; border-radius: 11px;
+  background: var(--green-10); display: flex; align-items: center; justify-content: center;
+  font-size: 21px; margin-bottom: 18px;
+  border: 1px solid var(--green-border);
+}
+.feat-icon.blue  { background: #eff6ff; border-color: #bfdbfe; }
+.feat-icon.purple{ background: #f5f3ff; border-color: #ddd6fe; }
+.feat-icon.amber { background: #fffbeb; border-color: #fde68a; }
+.feat-icon.pink  { background: #fdf2f8; border-color: #f9a8d4; }
+.feat-icon.slate { background: #f8fafc; border-color: #e2e8f0; }
+.feat-title { font-size: 16px; font-weight: 800; color: var(--ink); margin-bottom: 9px; }
+.feat-desc { font-size: 14px; color: var(--muted); line-height: 1.65; }
+.feat-list { margin-top: 14px; display: flex; flex-direction: column; gap: 5px; }
+.feat-list li { font-size: 13px; color: var(--muted); display: flex; align-items: flex-start; gap: 7px; }
+.feat-list li::before { content: '✓'; color: var(--green); font-weight: 800; flex-shrink: 0; margin-top: 1px; }
+
+/* ═══════════════════════════════════════════════
+   AFIP SECTION
+═══════════════════════════════════════════════ */
+.afip-section {
+  background: linear-gradient(135deg, #0a1a12 0%, #0d2018 40%, #061510 100%);
+  padding: 96px 0;
+  position: relative; overflow: hidden;
+}
+.afip-section::before {
+  content: '';
+  position: absolute; top: -100px; right: -100px;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(0,180,130,.12), transparent 70%);
+  pointer-events: none;
+}
+.afip-section::after {
+  content: '';
+  position: absolute; bottom: -80px; left: -80px;
+  width: 350px; height: 350px;
+  background: radial-gradient(circle, rgba(0,180,130,.07), transparent 70%);
+  pointer-events: none;
+}
+.afip-inner {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: center; position: relative; z-index: 1;
+}
+.afip-text .eyebrow { color: var(--green); }
+.afip-text .section-title { color: #fff; }
+.afip-text .section-sub { color: rgba(255,255,255,.6); max-width: 480px; }
+.afip-features { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+.afip-feat {
+  display: flex; align-items: flex-start; gap: 14px;
+}
+.afip-feat-icon {
+  width: 40px; height: 40px; border-radius: 10px;
+  background: rgba(0,180,130,.15); border: 1px solid rgba(0,180,130,.3);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; flex-shrink: 0;
+}
+.afip-feat-title { font-size: 14px; font-weight: 700; color: #fff; }
+.afip-feat-desc { font-size: 13px; color: rgba(255,255,255,.5); margin-top: 3px; line-height: 1.55; }
+.afip-visual { position: relative; }
+.ticket-mock {
+  background: #fff; border-radius: 12px;
+  padding: 24px; max-width: 320px; margin: 0 auto;
+  box-shadow: 0 20px 60px rgba(0,0,0,.4), 0 0 0 1px rgba(255,255,255,.06);
+  font-family: 'Courier New', monospace;
+  position: relative;
+}
+.ticket-mock::before {
+  content: ''; position: absolute; top: -8px; left: 0; right: 0; height: 8px;
+  background: repeating-linear-gradient(90deg, #fff 0,#fff 10px,transparent 10px,transparent 20px);
+}
+.ticket-mock::after {
+  content: ''; position: absolute; bottom: -8px; left: 0; right: 0; height: 8px;
+  background: repeating-linear-gradient(90deg, #fff 0,#fff 10px,transparent 10px,transparent 20px);
+}
+.tck-header { text-align: center; border-bottom: 1px dashed #e2e8f0; padding-bottom: 12px; margin-bottom: 12px; }
+.tck-store { font-size: 14px; font-weight: 700; color: #0f172a; }
+.tck-cuit  { font-size: 10px; color: #64748b; margin-top: 2px; }
+.tck-doc   { font-size: 11px; font-weight: 700; color: #00b482; margin-top: 4px; background: #ecfdf5; padding: 3px 8px; border-radius: 4px; display: inline-block; }
+.tck-items { margin-bottom: 12px; }
+.tck-row { display: flex; justify-content: space-between; font-size: 10.5px; color: #374151; padding: 2px 0; }
+.tck-row.total { font-weight: 700; font-size: 12px; color: #0f172a; border-top: 1px dashed #e2e8f0; padding-top: 6px; margin-top: 4px; }
+.tck-cae { border: 1px solid #e2e8f0; border-radius: 6px; padding: 10px; margin-top: 12px; }
+.tck-cae-label { font-size: 9px; color: #94a3b8; text-transform: uppercase; letter-spacing: .5px; }
+.tck-cae-num { font-size: 11.5px; font-weight: 700; color: #0f172a; font-family: 'Courier New', monospace; margin-top: 2px; letter-spacing: 1px; }
+.tck-cae-vto { font-size: 9.5px; color: #64748b; margin-top: 3px; }
+.tck-qr {
+  width: 72px; height: 72px; margin: 12px auto 0;
+  background: #0f172a; border-radius: 6px;
+  display: grid; grid-template-columns: repeat(7,1fr);
+  gap: 1px; padding: 6px;
+}
+.tck-qr .q { background: #0f172a; border-radius: 1px; }
+.tck-qr .w { background: #fff; border-radius: 1px; }
+.tck-qr-label { text-align: center; font-size: 9px; color: #94a3b8; margin-top: 4px; }
+.tck-verified { display: flex; align-items: center; justify-content: center; gap: 5px; margin-top: 10px; font-size: 10px; color: #00b482; font-weight: 700; font-family: var(--font); }
+
+/* ═══════════════════════════════════════════════
+   HOW IT WORKS
+═══════════════════════════════════════════════ */
+.steps-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 48px; margin-top: 56px;
+  position: relative;
+}
+.steps-grid::before {
+  content: ''; position: absolute;
+  top: 22px; left: calc(16.6% + 16px); right: calc(16.6% + 16px);
+  height: 2px; background: repeating-linear-gradient(90deg, var(--green-border) 0,var(--green-border) 10px,transparent 10px,transparent 20px);
+}
+.step { text-align: center; }
+.step-num {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: var(--green); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; font-weight: 900; margin: 0 auto 20px;
+  box-shadow: 0 4px 14px rgba(0,180,130,.35);
+  position: relative; z-index: 1;
+}
+.step-title { font-size: 17px; font-weight: 800; color: var(--ink); margin-bottom: 10px; }
+.step-desc { font-size: 14px; color: var(--muted); line-height: 1.65; }
+
+/* ═══════════════════════════════════════════════
+   TESTIMONIALS
+═══════════════════════════════════════════════ */
+.testi-section { background: var(--bg-2); }
+.testi-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 24px; margin-top: 48px;
+}
+.testi-card {
+  background: #fff; border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 28px;
+  transition: box-shadow .2s;
+}
+.testi-card:hover { box-shadow: var(--shadow); }
+.stars { color: #f59e0b; font-size: 14px; letter-spacing: 2px; margin-bottom: 14px; }
+.testi-text { font-size: 14.5px; color: var(--ink-2); line-height: 1.7; font-style: italic; margin-bottom: 20px; }
+.testi-author { display: flex; align-items: center; gap: 12px; }
+.testi-av {
+  width: 40px; height: 40px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 15px; color: #fff; flex-shrink: 0;
+}
+.testi-av-green  { background: linear-gradient(135deg,#00b482,#009160); }
+.testi-av-blue   { background: linear-gradient(135deg,#3b82f6,#6366f1); }
+.testi-av-amber  { background: linear-gradient(135deg,#f59e0b,#ef4444); }
+.plan-feat-off   { color: #94a3b8; }
+.promo-badge     { margin-left: 4px; background: #fffbeb; color: #b45309; border: 1px solid #fde68a; font-size: 9px; padding: 1px 5px; border-radius: 4px; font-weight: 700; }
+.loyalty-row     { color: #00b482; font-size: 9.5px; font-weight: 700; }
+.cobrar-col      { display: flex; flex-direction: column; gap: 5px; }
+.tck-addr        { margin-top: 2px; }
+.tck-num         { margin-top: 4px; }
+.pricing-note    { text-align: center; margin-top: 28px; font-size: 13px; color: var(--muted-2); }
+.faq-bg          { background: var(--bg-2); }
+.cta-note        { margin-top: 20px; font-size: 12px; color: rgba(255,255,255,.55); }
+.plan-strong     { font-weight: 700; }
+
+/* ─── UTIL ─── */
+.hidden { display: none !important; }
+
+/* ─── NAV USER ─── */
+.nav-user { position: relative; display: flex; align-items: center; }
+.nav-user-btn { display: flex; align-items: center; gap: 8px; background: transparent; border: 1px solid var(--border); border-radius: 20px; padding: 4px 10px 4px 4px; cursor: pointer; font-family: var(--font); transition: border-color .15s; }
+.nav-user-btn:hover { border-color: var(--green); }
+.nav-user-av { width: 26px; height: 26px; border-radius: 50%; object-fit: cover; }
+.nav-user-name { font-size: 13px; font-weight: 700; color: var(--ink); }
+.nav-caret { font-size: 10px; color: var(--muted); }
+.nav-user-menu { position: absolute; top: calc(100% + 8px); right: 0; background: #fff; border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-lg); min-width: 180px; overflow: hidden; z-index: 110; }
+.nav-user-menu a, .nav-user-menu button { display: block; width: 100%; padding: 10px 16px; font-size: 13px; color: var(--ink-2); text-align: left; background: transparent; border: none; cursor: pointer; font-family: var(--font); transition: background .12s; text-decoration: none; }
+.nav-user-menu a:hover, .nav-user-menu button:hover { background: var(--bg-2); }
+.nav-user-menu button { color: #ef4444; }
+
+/* ─── AUTH MODAL ─── */
+.auth-overlay { position: fixed; inset: 0; background: rgba(15,23,42,.6); z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 16px; -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
+.auth-modal { background: #fff; border-radius: 20px; padding: 40px; max-width: 420px; width: 100%; position: relative; box-shadow: 0 24px 64px rgba(0,0,0,.22); }
+.auth-close { position: absolute; top: 16px; right: 16px; width: 32px; height: 32px; border-radius: 50%; background: var(--bg-2); border: none; cursor: pointer; font-size: 14px; color: var(--muted); display: flex; align-items: center; justify-content: center; transition: all .15s; }
+.auth-close:hover { background: var(--border); color: var(--ink); }
+.auth-header { text-align: center; margin-bottom: 28px; }
+.auth-logo-icon { font-size: 40px; margin-bottom: 12px; }
+.auth-title { font-size: 22px; font-weight: 900; color: var(--ink); }
+.auth-sub { font-size: 14px; color: var(--muted); margin-top: 8px; line-height: 1.55; }
+#googleBtnContainer { display: flex; justify-content: center; min-height: 44px; margin-bottom: 4px; }
+.auth-or { display: flex; align-items: center; gap: 12px; margin: 18px 0; color: var(--muted-2); font-size: 12px; }
+.auth-or::before, .auth-or::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+.auth-portal-btn { width: 100%; justify-content: center; font-size: 14px; }
+.auth-user-card { display: flex; align-items: center; gap: 14px; background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; margin-bottom: 16px; }
+.auth-user-av { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; flex-shrink: 0; background: linear-gradient(135deg,#00b482,#009160); }
+.auth-user-name { font-size: 14px; font-weight: 700; color: var(--ink); }
+.auth-user-email { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.auth-logout-btn { display: block; width: 100%; margin-top: 10px; background: transparent; border: none; color: var(--muted); font-size: 13px; font-family: var(--font); cursor: pointer; padding: 8px; border-radius: var(--radius); transition: all .15s; }
+.auth-logout-btn:hover { background: var(--bg-2); color: #ef4444; }
+.auth-terms { font-size: 11px; color: var(--muted-2); text-align: center; margin-top: 20px; line-height: 1.5; }
+.auth-terms a { color: var(--green-dark); text-decoration: underline; }
+
+.testi-name { font-size: 13px; font-weight: 700; color: var(--ink); }
+.testi-biz { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+/* ═══════════════════════════════════════════════
+   PRICING
+═══════════════════════════════════════════════ */
+.pricing-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 24px; margin-top: 56px; align-items: start;
+}
+.price-card {
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-lg); padding: 32px;
+  background: var(--bg); position: relative;
+  transition: all .2s;
+}
+.price-card:hover { box-shadow: var(--shadow-lg); }
+.price-card.popular {
+  border-color: var(--green); border-width: 2px;
+  box-shadow: 0 8px 32px rgba(0,180,130,.12);
+}
+.popular-badge {
+  position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+  background: var(--green); color: #fff;
+  padding: 4px 16px; border-radius: 20px; font-size: 11px; font-weight: 700;
+  white-space: nowrap;
+}
+.plan-name { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); }
+.plan-price { margin: 12px 0; }
+.plan-price .amount { font-size: 40px; font-weight: 900; color: var(--ink); line-height: 1; }
+.plan-price .currency { font-size: 18px; font-weight: 700; color: var(--muted); margin-right: 2px; vertical-align: top; margin-top: 8px; display: inline-block; }
+.plan-price .period { font-size: 13px; color: var(--muted); font-weight: 500; }
+.plan-price .free-label { font-size: 40px; font-weight: 900; color: var(--green); line-height: 1; }
+.plan-desc { font-size: 13.5px; color: var(--muted); line-height: 1.55; margin-bottom: 24px; }
+.plan-divider { border: none; border-top: 1px solid var(--border-2); margin: 20px 0; }
+.plan-features { display: flex; flex-direction: column; gap: 9px; }
+.plan-feat { display: flex; align-items: flex-start; gap: 9px; font-size: 13px; color: var(--ink-2); }
+.plan-feat .chk { color: var(--green); font-weight: 700; font-size: 13px; flex-shrink: 0; margin-top: 1px; }
+.plan-feat .x { color: #cbd5e1; font-size: 13px; flex-shrink: 0; margin-top: 1px; }
+.plan-cta { margin-top: 28px; }
+.plan-cta .btn { width: 100%; justify-content: center; }
+
+/* ═══════════════════════════════════════════════
+   FAQ
+═══════════════════════════════════════════════ */
+.faq-list { max-width: 720px; margin: 48px auto 0; }
+.faq-item {
+  border-bottom: 1px solid var(--border);
+}
+.faq-q {
+  width: 100%; display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 0; font-size: 15px; font-weight: 700; color: var(--ink);
+  background: transparent; border: none; cursor: pointer; gap: 16px;
+  text-align: left; transition: color .15s;
+}
+.faq-q:hover { color: var(--green); }
+.faq-arrow { font-size: 18px; color: var(--muted-2); transition: transform .2s; flex-shrink: 0; }
+.faq-item.open .faq-arrow { transform: rotate(45deg); color: var(--green); }
+.faq-a {
+  font-size: 14px; color: var(--muted); line-height: 1.75;
+  max-height: 0; overflow: hidden; transition: max-height .3s ease, padding .3s ease;
+}
+.faq-item.open .faq-a { max-height: 300px; padding-bottom: 20px; }
+
+/* ═══════════════════════════════════════════════
+   CTA SECTION
+═══════════════════════════════════════════════ */
+.cta-section {
+  background: linear-gradient(135deg, #00b482 0%, #009160 100%);
+  padding: 88px 0; text-align: center; position: relative; overflow: hidden;
+}
+.cta-section::before {
+  content: ''; position: absolute;
+  top: -60px; left: -60px; width: 300px; height: 300px;
+  background: rgba(255,255,255,.06); border-radius: 50%;
+  pointer-events: none;
+}
+.cta-section::after {
+  content: ''; position: absolute;
+  bottom: -80px; right: -40px; width: 400px; height: 400px;
+  background: rgba(0,0,0,.06); border-radius: 50%;
+  pointer-events: none;
+}
+.cta-inner { position: relative; z-index: 1; }
+.cta-h2 { font-size: 40px; font-weight: 900; color: #fff; letter-spacing: -.5px; line-height: 1.2; }
+.cta-sub { font-size: 17px; color: rgba(255,255,255,.8); margin: 16px auto 32px; max-width: 520px; line-height: 1.65; }
+.cta-btns { display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
+.btn-white { background: #fff; color: var(--green-dark); }
+.btn-white:hover { background: #f0fdf4; }
+.btn-white-outline { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,.5); }
+.btn-white-outline:hover { border-color: #fff; background: rgba(255,255,255,.08); }
+
+/* ═══════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════ */
+.footer {
+  background: var(--ink); padding: 64px 0 32px;
+}
+.footer-inner {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 48px; padding-bottom: 48px;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+.footer-brand .logo-f {
+  display: flex; align-items: center; gap: 10px;
+  font-weight: 800; font-size: 18px; color: #fff; margin-bottom: 14px;
+}
+.footer-brand .logo-f .icon-f {
+  width: 32px; height: 32px; border-radius: 8px;
+  background: linear-gradient(135deg,#00b482,#009160);
+  display: flex; align-items: center; justify-content: center; font-size: 15px;
+}
+.footer-brand .nexo-f { color: var(--green); }
+.footer-tagline { font-size: 13.5px; color: rgba(255,255,255,.45); line-height: 1.65; max-width: 260px; }
+.footer-social { display: flex; gap: 10px; margin-top: 20px; }
+.social-btn { width: 34px; height: 34px; border-radius: 8px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); display: flex; align-items: center; justify-content: center; font-size: 14px; transition: all .15s; }
+.social-btn:hover { background: rgba(0,180,130,.2); border-color: rgba(0,180,130,.4); }
+.footer-col h4 { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,.35); margin-bottom: 14px; }
+.footer-col ul { display: flex; flex-direction: column; gap: 8px; }
+.footer-col ul a { font-size: 13.5px; color: rgba(255,255,255,.55); transition: color .15s; }
+.footer-col ul a:hover { color: #fff; }
+.footer-bottom {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-top: 24px; flex-wrap: wrap; gap: 12px;
+}
+.footer-copy { font-size: 12.5px; color: rgba(255,255,255,.3); }
+.footer-legal { display: flex; gap: 16px; }
+.footer-legal a { font-size: 12.5px; color: rgba(255,255,255,.3); transition: color .15s; }
+.footer-legal a:hover { color: rgba(255,255,255,.7); }
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .hero-h1 { font-size: 42px; }
+  .hero-inner { gap: 40px; }
+  .features-grid { grid-template-columns: repeat(2,1fr); }
+}
+@media (max-width: 860px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-visual { display: none; }
+  .hero-text { padding-bottom: 40px; }
+  .hero-h1 { font-size: 36px; }
+  .trust-grid { grid-template-columns: repeat(2,1fr); }
+  .trust-item:nth-child(2) { border-right: none; }
+  .trust-item:nth-child(3) { border-right: 1px solid rgba(255,255,255,.08); border-top: 1px solid rgba(255,255,255,.08); }
+  .trust-item:nth-child(4) { border-top: 1px solid rgba(255,255,255,.08); }
+  .trust-item { padding: 16px 24px; }
+  .prob-grid { grid-template-columns: 1fr; }
+  .features-grid { grid-template-columns: 1fr; }
+  .afip-inner { grid-template-columns: 1fr; }
+  .afip-visual { display: none; }
+  .steps-grid { grid-template-columns: 1fr; gap: 32px; }
+  .steps-grid::before { display: none; }
+  .testi-grid { grid-template-columns: 1fr; }
+  .pricing-grid { grid-template-columns: 1fr; }
+  .footer-inner { grid-template-columns: 1fr 1fr; }
+  .nav-links { display: none; }
+  .section-title { font-size: 28px; }
+  .cta-h2 { font-size: 28px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════
+     NAV
+════════════════════════════════════ -->
+<nav class="nav" id="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <div class="icon">🛒</div>
+        Punto<span class="nexo">Nexo</span>
+      </a>
+      <div class="nav-links">
+        <a href="#funciones">Funciones</a>
+        <a href="#afip">AFIP / Fiscal</a>
+        <a href="#precios">Precios</a>
+        <a href="#faq">Ayuda</a>
+      </div>
+      <div class="nav-actions">
+        <button id="loginBtn" onclick="openLogin()" class="nav-ver btn btn-sm btn-ghost">Iniciar sesión</button>
+        <div id="navUser" class="nav-user hidden">
+          <button class="nav-user-btn" onclick="toggleUserMenu()">
+            <img id="navUserAv" class="nav-user-av hidden" src="" alt="">
+            <span id="navUserName" class="nav-user-name"></span>
+            <span class="nav-caret">▾</span>
+          </button>
+          <div id="navUserMenu" class="nav-user-menu hidden">
+            <a href="https://licencias.mello.com.ar" target="_blank" rel="noopener">Mi suscripción →</a>
+            <button onclick="signOut()">Cerrar sesión</button>
+          </div>
+        </div>
+        <a href="https://licencias.mello.com.ar" target="_blank" rel="noopener" class="btn btn-sm btn-primary">Probar 7 días gratis</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ════════════════════════════════════
+     HERO
+════════════════════════════════════ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+
+      <!-- TEXT -->
+      <div class="hero-text">
+        <div class="hero-tag">
+          <span class="tag"><span class="tag-dot"></span>100% Argentino · AFIP Homologado</span>
+        </div>
+        <h1 class="hero-h1">
+          El TPV que<br>
+          <span class="highlight">factura, fideliza</span><br>
+          y nunca para.
+        </h1>
+        <p class="hero-sub">
+          Software de punto de venta para supermercados y almacenes argentinos. 
+          Facturación electrónica AFIP incluida, sistema de fidelización, multi-caja 
+          y reportes — funciona aunque no haya internet.
+        </p>
+        <div class="hero-ctas">
+          <a href="#descarga" class="btn btn-primary btn-lg">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+            Descargar gratis
+          </a>
+          <a href="#demo" class="btn btn-outline btn-lg">
+            Ver demo en vivo →
+          </a>
+        </div>
+        <p class="hero-note">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          Sin tarjeta de crédito · Instalación en 2 minutos · Solo Windows 10/11
+        </p>
+        <div class="hero-badges">
+          <span class="chip chip-green">✓ CAE / CAEA</span>
+          <span class="chip chip-blue">✓ Mercado Pago</span>
+          <span class="chip chip-amber">✓ Fidelización</span>
+          <span class="chip chip-green">✓ Multi-caja</span>
+        </div>
+      </div>
+
+      <!-- APP MOCKUP -->
+      <div class="hero-visual">
+        <div class="app-frame">
+          <div class="frame-bar">
+            <div class="frame-dot frame-dot-r"></div>
+            <div class="frame-dot frame-dot-y"></div>
+            <div class="frame-dot frame-dot-g"></div>
+            <span class="frame-title">PuntoNexo — Caja #01 · Mercado del Sur</span>
+          </div>
+          <div class="app-shell">
+            <aside class="app-side">
+              <div class="app-brand">
+                <div class="logo-s"><span class="ico-s">🛒</span> PuntoNexo</div>
+                <div class="sub-s">Mercado del Sur</div>
+              </div>
+              <div class="nav-section-s">Operación</div>
+              <div class="nav-item-s active"><span class="ico">💰</span> Caja</div>
+              <div class="nav-item-s"><span class="ico">📦</span> Artículos</div>
+              <div class="nav-item-s"><span class="ico">👥</span> Clientes</div>
+              <div class="nav-item-s"><span class="ico">🧾</span> Ventas</div>
+              <div class="nav-section-s">Gestión</div>
+              <div class="nav-item-s"><span class="ico">📊</span> Reportes</div>
+              <div class="nav-item-s"><span class="ico">🏦</span> AFIP</div>
+              <div class="nav-item-s"><span class="ico">⚙️</span> Configuración</div>
+              <div class="user-s">
+                <div class="av">JG</div>
+                <div class="info">
+                  <div class="name-s">Juan García</div>
+                  <div class="role-s">Administrador</div>
+                </div>
+              </div>
+            </aside>
+            <main class="app-main">
+              <div class="app-topbar">
+                <div class="search-s">
+                  <span>🔍</span>
+                  <input type="text" placeholder="Buscar SKU, nombre, código de barras..." value="arroz" readonly>
+                  <span class="kbd">F2</span>
+                </div>
+                <div class="afip-pill">
+                  <span class="afip-dot"></span> AFIP OK
+                </div>
+              </div>
+              <div class="cart-s">
+                <table class="cart-table">
+                  <thead>
+                    <tr>
+                      <th>Producto</th>
+                      <th class="r">Cant</th>
+                      <th class="r">P.Unit</th>
+                      <th class="r">Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><div class="pname-s">Arroz Largo Fino 1 kg</div><div class="bc-s">7790050001234</div></td>
+                      <td class="r">2</td><td class="r">$1.350</td><td class="r price-s">$2.700</td>
+                    </tr>
+                    <tr>
+                      <td><div class="pname-s">Aceite Girasol 1.5 L</div><div class="bc-s">7791234500011</div></td>
+                      <td class="r">1</td><td class="r">$2.890</td><td class="r price-s">$2.890</td>
+                    </tr>
+                    <tr>
+                      <td><div class="pname-s">Azúcar kg Granel</div><div class="bc-s">Pesable · 0.820 kg</div></td>
+                      <td class="r">0.82</td><td class="r">$1.150</td><td class="r price-s">$943</td>
+                    </tr>
+                    <tr>
+                      <td><div class="pname-s">Yerba Mate 500 g <span class="promo-badge">-10%</span></div><div class="bc-s">7791234599876</div></td>
+                      <td class="r">3</td><td class="r">$2.100</td><td class="r price-s">$5.670</td>
+                    </tr>
+                    <tr>
+                      <td><div class="pname-s">Leche Entera 1L</div><div class="bc-s">7791234500099</div></td>
+                      <td class="r">6</td><td class="r">$890</td><td class="r price-s">$5.340</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="app-bottom">
+                <div class="total-row-s">
+                  <div class="total-info-s">
+                    <div class="sub-row"><span>Subtotal (12 ítems)</span><span>$17.543</span></div>
+                    <div class="sub-row"><span>IVA 21% incl.</span><span>$2.196</span></div>
+                    <div class="sub-row loyalty-row"><span>✦ María López · 840 pts acum.</span></div>
+                    <div class="ttl-row"><span>TOTAL</span><span>$17.543</span></div>
+                  </div>
+                  <div class="cobrar-col">
+                    <button class="cobrar-s">F4 Cobrar ▶</button>
+                    <button class="cancel-s">Cancelar</button>
+                  </div>
+                </div>
+              </div>
+            </main>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     TRUST BAR
+════════════════════════════════════ -->
+<div class="trust-bar">
+  <div class="container">
+    <div class="trust-grid">
+      <div class="trust-item">
+        <div class="trust-num">+<span>1.200</span></div>
+        <div class="trust-lbl">comercios usando PuntoNexo</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-num">+<span>4M</span></div>
+        <div class="trust-lbl">ventas procesadas por mes</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-num"><span>99.9</span>%</div>
+        <div class="trust-lbl">uptime · funciona sin internet</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-num"><span>24/7</span></div>
+        <div class="trust-lbl">soporte técnico en español</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════
+     PROBLEMS
+════════════════════════════════════ -->
+<section class="section problems">
+  <div class="container">
+    <div class="eyebrow">¿Por qué PuntoNexo?</div>
+    <h2 class="section-title">Tu caja actual tiene estos problemas.<br>Nosotros los resolvemos.</h2>
+    <div class="prob-grid">
+      <div class="prob-card">
+        <div class="prob-icon">🧾</div>
+        <p class="prob-q">"Me cuesta facturar por AFIP y pierdo tiempo en cada venta."</p>
+        <p class="prob-a">PuntoNexo obtiene el CAE <strong>automáticamente</strong> en cada venta. Si AFIP no responde, usa CAEA y sigue facturando sin interrupciones.</p>
+      </div>
+      <div class="prob-card">
+        <div class="prob-icon">📶</div>
+        <p class="prob-q">"Si se corta internet la caja se paraliza."</p>
+        <p class="prob-a">La base de datos vive en tu PC. <strong>Sin internet, sin problema.</strong> PuntoNexo opera al 100% offline y sincroniza cuando vuelve la conexión.</p>
+      </div>
+      <div class="prob-card">
+        <div class="prob-icon">📊</div>
+        <p class="prob-q">"No sé qué productos me dan más ganancias ni cuándo reponer."</p>
+        <p class="prob-a">El dashboard en tiempo real muestra <strong>ventas por hora, rentabilidad y alertas de stock bajo</strong> para tomar decisiones rápidas.</p>
+      </div>
+      <div class="prob-card">
+        <div class="prob-icon">👤</div>
+        <p class="prob-q">"Mis clientes compran y no vuelven porque no tengo sistema de puntos."</p>
+        <p class="prob-a">El <strong>programa de fidelización</strong> acumula y canjea puntos automáticamente. Segmentá y premià a tus mejores clientes.</p>
+      </div>
+      <div class="prob-card">
+        <div class="prob-icon">💸</div>
+        <p class="prob-q">"Pago una fortuna por un sistema en la nube con cuotas en dólares."</p>
+        <p class="prob-a">Precio en pesos argentinos, sin dólares, sin sorpresas. Plan gratuito para empezar y planes accesibles para crecer.</p>
+      </div>
+      <div class="prob-card">
+        <div class="prob-icon">⚡</div>
+        <p class="prob-q">"Mi sistema es lento y el cajero se frustra en hora pico."</p>
+        <p class="prob-a">PuntoNexo es <strong>nativo en Windows</strong>: arranca en segundos, no consume memoria innecesaria y responde instantáneamente con atajos de teclado.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     FEATURES
+════════════════════════════════════ -->
+<section class="section" id="funciones">
+  <div class="container">
+    <div class="text-center">
+      <div class="eyebrow">Todo lo que necesitás</div>
+      <h2 class="section-title">Un sistema. Cada función que<br>tu supermercado requiere.</h2>
+      <p class="section-sub">Diseñado específicamente para comercios argentinos: AFIP, fidelización, atajos de caja y más.</p>
+    </div>
+    <div class="features-grid">
+
+      <div class="feat-card">
+        <div class="feat-icon">🧾</div>
+        <h3 class="feat-title">Facturación Electrónica AFIP</h3>
+        <p class="feat-desc">Emite comprobantes con CAE en cada venta. Compatible con todos los tipos de IVA y condiciones fiscales.</p>
+        <ul class="feat-list">
+          <li>Facturas A, B y C automáticas</li>
+          <li>CAEA para contingencia offline</li>
+          <li>Notas de crédito con CAE propio</li>
+          <li>QR fiscal en el ticket impreso</li>
+        </ul>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-icon blue">🌟</div>
+        <h3 class="feat-title">Fidelización de Clientes</h3>
+        <p class="feat-desc">Acumulá y canjeá puntos automáticamente en cada venta. Segmentá y premià a tus mejores clientes.</p>
+        <ul class="feat-list">
+          <li>Puntos por compra configurables</li>
+          <li>Canje en caja en tiempo real</li>
+          <li>Segmentos: Bronce, Plata, Oro</li>
+          <li>Historial completo por cliente</li>
+        </ul>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-icon purple">🖨️</div>
+        <h3 class="feat-title">Impresión Profesional</h3>
+        <p class="feat-desc">Compatible con impresoras térmicas ESC/POS y cualquier impresora Windows. Ticket con QR fiscal incluido.</p>
+        <ul class="feat-list">
+          <li>Impresión ESC/POS de alta velocidad</li>
+          <li>PDF de respaldo automático</li>
+          <li>Logo y datos del local configurables</li>
+          <li>Reimpresión por número de venta</li>
+        </ul>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-icon amber">📊</div>
+        <h3 class="feat-title">Reportes y Dashboard</h3>
+        <p class="feat-desc">Métricas de ventas en tiempo real, ranking de productos y alertas de stock bajo para decidir rápido.</p>
+        <ul class="feat-list">
+          <li>Ventas por hora, día, semana y mes</li>
+          <li>Rentabilidad por producto</li>
+          <li>Alertas de stock mínimo</li>
+          <li>Exportación a Excel/PDF</li>
+        </ul>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-icon pink">💳</div>
+        <h3 class="feat-title">Pagos y Cobros</h3>
+        <p class="feat-desc">Efectivo, tarjeta, QR y Mercado Pago Point integrado. Cobros mixtos y vuelto automático.</p>
+        <ul class="feat-list">
+          <li>Integración Mercado Pago Point</li>
+          <li>Cobros mixtos (efectivo + tarjeta)</li>
+          <li>Arqueo de caja por turno</li>
+          <li>Registro de ingresos y egresos</li>
+        </ul>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-icon slate">🏪</div>
+        <h3 class="feat-title">Multi-caja y Usuarios</h3>
+        <p class="feat-desc">Habilitá varias cajas en el mismo local con usuarios independientes, roles y permisos por función.</p>
+        <ul class="feat-list">
+          <li>Cajero, supervisor y administrador</li>
+          <li>Límite de descuento por rol</li>
+          <li>Auditoría de cada acción</li>
+          <li>Sesiones de caja independientes</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     AFIP DEEP SECTION
+════════════════════════════════════ -->
+<section class="afip-section" id="afip">
+  <div class="container">
+    <div class="afip-inner">
+      <div class="afip-text">
+        <div class="eyebrow">Cumplimiento fiscal</div>
+        <h2 class="section-title">AFIP no puede esperar.<br>PuntoNexo tampoco.</h2>
+        <p class="section-sub">
+          La facturación electrónica es obligatoria. PuntoNexo integra el 
+          WebService de AFIP/ARCA directamente en la caja: sin intermediarios, 
+          sin aplicaciones externas, sin costo adicional.
+        </p>
+        <div class="afip-features">
+          <div class="afip-feat">
+            <div class="afip-feat-icon">🔐</div>
+            <div>
+              <div class="afip-feat-title">CAE automático en cada venta</div>
+              <div class="afip-feat-desc">El CAE se solicita a AFIP en milisegundos durante el cobro. El cajero no hace nada distinto.</div>
+            </div>
+          </div>
+          <div class="afip-feat">
+            <div class="afip-feat-icon">📡</div>
+            <div>
+              <div class="afip-feat-title">CAEA para operar sin internet</div>
+              <div class="afip-feat-desc">Si AFIP no responde o no hay red, PuntoNexo usa CAEA para no detener la operación. Informa luego automáticamente.</div>
+            </div>
+          </div>
+          <div class="afip-feat">
+            <div class="afip-feat-icon">📋</div>
+            <div>
+              <div class="afip-feat-title">Notas de crédito electrónicas</div>
+              <div class="afip-feat-desc">Las devoluciones generan una nota de crédito con CAE propio, vinculada al comprobante original.</div>
+            </div>
+          </div>
+          <div class="afip-feat">
+            <div class="afip-feat-icon">📱</div>
+            <div>
+              <div class="afip-feat-title">QR fiscal en el ticket</div>
+              <div class="afip-feat-desc">Cada ticket impreso incluye el QR oficial de AFIP para verificación del consumidor.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="afip-visual">
+        <div class="ticket-mock">
+          <div class="tck-header">
+            <div class="tck-store">MERCADO DEL SUR S.R.L.</div>
+            <div class="tck-cuit">CUIT: 30-71234567-8 · IVA Responsable Inscripto</div>
+            <div class="tck-cuit tck-addr">Av. Corrientes 1234, Buenos Aires</div>
+            <div class="tck-doc">FACTURA ELECTRÓNICA B</div>
+            <div class="tck-cuit tck-num">Nº 0001-00012847 · 24/05/2026</div>
+          </div>
+          <div class="tck-items">
+            <div class="tck-row"><span>Arroz 1kg x2</span><span>$2.700</span></div>
+            <div class="tck-row"><span>Aceite 1.5L x1</span><span>$2.890</span></div>
+            <div class="tck-row"><span>Azúcar granel 0.82kg</span><span>$943</span></div>
+            <div class="tck-row"><span>Yerba Mate x3 (-10%)</span><span>$5.670</span></div>
+            <div class="tck-row"><span>Leche 1L x6</span><span>$5.340</span></div>
+            <div class="tck-row total"><span>TOTAL FACTURA</span><span>$17.543</span></div>
+          </div>
+          <div class="tck-cae">
+            <div class="tck-cae-label">Código de Autorización Electrónica</div>
+            <div class="tck-cae-num">72481936542917</div>
+            <div class="tck-cae-vto">Vence: 08/06/2026 · Autorizado por ARCA/AFIP</div>
+          </div>
+          <div class="tck-qr">
+            <!-- Simplified QR pattern suggestion -->
+            <div class="q"></div><div class="q"></div><div class="q"></div><div class="q"></div><div class="q"></div><div class="q"></div><div class="q"></div>
+            <div class="q"></div><div class="w"></div><div class="w"></div><div class="w"></div><div class="w"></div><div class="w"></div><div class="q"></div>
+            <div class="q"></div><div class="w"></div><div class="q"></div><div class="w"></div><div class="q"></div><div class="w"></div><div class="q"></div>
+            <div class="q"></div><div class="w"></div><div class="q"></div><div class="w"></div><div class="q"></div><div class="w"></div><div class="q"></div>
+            <div class="q"></div><div class="w"></div><div class="q"></div><div class="w"></div><div class="q"></div><div class="w"></div><div class="q"></div>
+            <div class="q"></div><div class="w"></div><div class="w"></div><div class="w"></div><div class="w"></div><div class="w"></div><div class="q"></div>
+            <div class="q"></div><div class="q"></div><div class="q"></div><div class="q"></div><div class="q"></div><div class="q"></div><div class="q"></div>
+          </div>
+          <div class="tck-qr-label">Verificar en AFIP · factura.afip.gov.ar</div>
+          <div class="tck-verified">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Comprobante autorizado por ARCA/AFIP
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     HOW IT WORKS
+════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="text-center">
+      <div class="eyebrow">Instalación simple</div>
+      <h2 class="section-title">Tres pasos para empezar</h2>
+      <p class="section-sub">Sin servidores, sin configuraciones complicadas. En 2 minutos tenés la caja lista.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3 class="step-title">Descargá e instalá</h3>
+        <p class="step-desc">Instalador de un clic para Windows 10/11. No requiere .NET externo ni Visual C++ Redistributable. Pesa menos de 60 MB.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3 class="step-title">Configurá tu negocio</h3>
+        <p class="step-desc">Wizard guiado: cargá el nombre del local, CUIT, punto de venta AFIP y el certificado digital. Cinco minutos y listo.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3 class="step-title">Empezá a vender</h3>
+        <p class="step-desc">Importá tu lista de precios desde Excel o cargá productos uno a uno. Primera venta con factura electrónica en minutos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     TESTIMONIALS
+════════════════════════════════════ -->
+<section class="section section testi-section">
+  <div class="container">
+    <div class="text-center">
+      <div class="eyebrow">Lo que dicen los comercios</div>
+      <h2 class="section-title">Más de 1.200 comercios ya<br>confían en PuntoNexo</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">"Antes perdíamos 30 minutos por turno con el sistema de facturación anterior. Hoy el CAE sale solo y el cajero ni lo nota. Increíble."</p>
+        <div class="testi-author">
+          <div class="testi-av testi-av-green">MR</div>
+          <div>
+            <div class="testi-name">María Rodríguez</div>
+            <div class="testi-biz">Supermercado La Esquina · Rosario, Santa Fe</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">"Se corta internet todo el tiempo en la zona y con el CAEA nunca tuve que parar la caja. Después sincroniza solo y listo. Vale oro."</p>
+        <div class="testi-author">
+          <div class="testi-av testi-av-blue">CL</div>
+          <div>
+            <div class="testi-name">Carlos López</div>
+            <div class="testi-biz">Almacén Don Carlos · Córdoba Capital</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">"El sistema de puntos me aumentó la recurrencia de clientes un 40% en tres meses. Se les acumulan y vuelven para canjear. Muy buena idea."</p>
+        <div class="testi-author">
+          <div class="testi-av testi-av-amber">AG</div>
+          <div>
+            <div class="testi-name">Analía González</div>
+            <div class="testi-biz">Minimarket Fresh · Buenos Aires, CABA</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     PRICING
+════════════════════════════════════ -->
+<section class="section" id="precios">
+  <div class="container">
+    <div class="text-center">
+      <div class="eyebrow">Planes y precios</div>
+      <h2 class="section-title">Precio en pesos. Sin sorpresas.</h2>
+      <p class="section-sub">7 días de prueba gratis en todos los planes. Sin contratos de permanencia. Cancelás cuando querés.</p>
+    </div>
+    <div class="pricing-grid">
+
+      <!-- STARTER -->
+      <div class="price-card">
+        <div class="plan-name">Starter</div>
+        <div class="plan-price">
+          <span class="currency">$</span>
+          <span class="amount">34.990</span>
+          <span class="period"> / mes</span>
+        </div>
+        <p class="plan-desc">Para almacenes y negocios chicos. 1 terminal, facturación AFIP y fidelización incluidas.</p>
+        <hr class="plan-divider">
+        <ul class="plan-features">
+          <li class="plan-feat"><span class="chk">✓</span>1 terminal / caja</li>
+          <li class="plan-feat"><span class="chk">✓</span>Ventas y caja ilimitadas</li>
+          <li class="plan-feat"><span class="chk">✓</span>Facturación AFIP (CAE + CAEA)</li>
+          <li class="plan-feat"><span class="chk">✓</span>Gestión de artículos y stock</li>
+          <li class="plan-feat"><span class="chk">✓</span>Clientes y fidelización</li>
+          <li class="plan-feat"><span class="chk">✓</span>Reportes básicos</li>
+          <li class="plan-feat"><span class="chk">✓</span>Importar artículos desde Excel</li>
+        </ul>
+        <div class="plan-cta">
+          <a href="https://licencias.mello.com.ar" target="_blank" rel="noopener" class="btn btn-outline">Probar 7 días gratis</a>
+        </div>
+      </div>
+
+      <!-- STANDARD (popular) -->
+      <div class="price-card popular">
+        <div class="popular-badge">✦ Más elegido</div>
+        <div class="plan-name">Standard</div>
+        <div class="plan-price">
+          <span class="currency">$</span>
+          <span class="amount">69.990</span>
+          <span class="period"> / mes</span>
+        </div>
+        <p class="plan-desc">Para supermercados que crecen. Hasta 3 terminales, gestión de compras y contabilidad.</p>
+        <hr class="plan-divider">
+        <ul class="plan-features">
+          <li class="plan-feat"><span class="chk">✓</span><span class="plan-strong">Hasta 3 terminales</span></li>
+          <li class="plan-feat"><span class="chk">✓</span>Todo lo de Starter</li>
+          <li class="plan-feat"><span class="chk">✓</span>Múltiples cajas simultáneas</li>
+          <li class="plan-feat"><span class="chk">✓</span>Gestión de compras y proveedores</li>
+          <li class="plan-feat"><span class="chk">✓</span>Cuentas corrientes</li>
+          <li class="plan-feat"><span class="chk">✓</span>Libro IVA digital</li>
+          <li class="plan-feat"><span class="chk">✓</span>Remitos y presupuestos</li>
+        </ul>
+        <div class="plan-cta">
+          <a href="https://licencias.mello.com.ar" target="_blank" rel="noopener" class="btn btn-primary">Probar 7 días gratis</a>
+        </div>
+      </div>
+
+      <!-- PRO -->
+      <div class="price-card">
+        <div class="plan-name">Pro</div>
+        <div class="plan-price">
+          <span class="currency">$</span>
+          <span class="amount">119.990</span>
+          <span class="period"> / mes</span>
+        </div>
+        <p class="plan-desc">Para cadenas y multi-sucursal. Hasta 5 terminales, portal web y soporte prioritario.</p>
+        <hr class="plan-divider">
+        <ul class="plan-features">
+          <li class="plan-feat"><span class="chk">✓</span><span class="plan-strong">Hasta 5 terminales</span></li>
+          <li class="plan-feat"><span class="chk">✓</span>Todo lo de Standard</li>
+          <li class="plan-feat"><span class="chk">✓</span>Portal web de gestión</li>
+          <li class="plan-feat"><span class="chk">✓</span>Gestión multi-sucursal</li>
+          <li class="plan-feat"><span class="chk">✓</span>Soporte prioritario con SLA</li>
+          <li class="plan-feat"><span class="chk">✓</span>Configuración asistida incluida</li>
+          <li class="plan-feat"><span class="chk">✓</span>Acceso a funciones beta</li>
+        </ul>
+        <div class="plan-cta">
+          <a href="https://licencias.mello.com.ar" target="_blank" rel="noopener" class="btn btn-outline">Probar 7 días gratis</a>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="pricing-note">
+      Precios en pesos argentinos. Sin contratos de permanencia. Cancelás cuando querés.
+    </p>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     FAQ
+════════════════════════════════════ -->
+<section class="section-sm faq-bg" id="faq">
+  <div class="container">
+    <div class="text-center">
+      <div class="eyebrow">Preguntas frecuentes</div>
+      <h2 class="section-title">Respuestas que buscás</h2>
+    </div>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Necesito contratar aparte el servicio de AFIP?
+          <span class="faq-arrow">+</span>
+        </button>
+        <div class="faq-a">
+          No. PuntoNexo incluye la integración con el WebService de AFIP/ARCA directamente. Solo necesitás tu certificado digital AFIP (que obtenés gratis desde afip.gov.ar) y tu número de CUIT. Nosotros nos conectamos al web service; no hay servicio intermediario ni costo extra.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Qué pasa si se corta internet mientras estoy atendiendo?
+          <span class="faq-arrow">+</span>
+        </button>
+        <div class="faq-a">
+          PuntoNexo funciona completamente offline. La base de datos es local, en tu propia PC. Si AFIP no está disponible, el sistema usa CAEA (Código de Autorización Electrónica Anticipado) para continuar facturando. Cuando se restablece la conexión, los comprobantes se informan automáticamente.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Con qué impresoras es compatible?
+          <span class="faq-arrow">+</span>
+        </button>
+        <div class="faq-a">
+          Compatible con impresoras térmicas ESC/POS (Epson, Bixolon, Star, etc.) vía USB o red, y con cualquier impresora instalada en Windows (inyección de tinta, laser, multifunción). También genera PDF de respaldo automáticamente.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Puedo migrar mi lista de precios desde Excel?
+          <span class="faq-arrow">+</span>
+        </button>
+        <div class="faq-a">
+          Sí. PuntoNexo importa listas de precios desde archivos Excel (.xlsx) y CSV. El formato es simple: código, descripción, precio, stock. También podés integrar listas de proveedores con formato compatible.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Funciona con balanzas o lectores de código de barras?
+          <span class="faq-arrow">+</span>
+        </button>
+        <div class="faq-a">
+          Sí. Compatible con lectores de código de barras USB (modo HID) y con balanzas que emiten código de barras pesable (formato PLU estándar). No requiere drivers adicionales; el lector funciona como si fuera un teclado.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Qué pasa con mis datos si cancelo el plan?
+          <span class="faq-arrow">+</span>
+        </button>
+        <div class="faq-a">
+          Tus datos son tuyos y siempre estuvieron en tu PC. Al cancelar podés exportar toda la información (ventas, clientes, productos, reportes) en formato Excel/CSV antes de desinstalar. No hay lock-in.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     CTA FINAL
+════════════════════════════════════ -->
+<section class="cta-section" id="descarga">
+  <div class="container">
+    <div class="cta-inner">
+      <h2 class="cta-h2">Descargá PuntoNexo hoy.<br>Tu primera venta en minutos.</h2>
+      <p class="cta-sub">
+        Instalación en 2 minutos. 7 días de prueba gratis sin tarjeta de crédito.
+        Después, plan desde $34.990/mes.
+      </p>
+      <div class="cta-btns">
+        <a href="#descarga" class="btn btn-white btn-lg">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          Descargar para Windows
+        </a>
+        <a href="https://licencias.mello.com.ar" target="_blank" rel="noopener" class="btn btn-white-outline btn-lg">
+          Activar suscripción →
+        </a>
+      </div>
+      <p class="cta-note">
+        7 días de prueba gratis · Windows 10/11 · 64 bits · ~55 MB
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     FOOTER
+════════════════════════════════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="logo-f">
+          <div class="icon-f">🛒</div>
+          Punto<span class="nexo-f">Nexo</span>
+        </div>
+        <p class="footer-tagline">
+          Software de punto de venta para supermercados y almacenes argentinos. 
+          Facturación AFIP, fidelización y más.
+        </p>
+        <div class="footer-social">
+          <a href="#" class="social-btn" title="Instagram">📸</a>
+          <a href="#" class="social-btn" title="WhatsApp">💬</a>
+          <a href="#" class="social-btn" title="YouTube">▶️</a>
+          <a href="#" class="social-btn" title="LinkedIn">🔗</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Producto</h4>
+        <ul>
+          <li><a href="#funciones">Funciones</a></li>
+          <li><a href="#afip">Facturación AFIP</a></li>
+          <li><a href="#precios">Precios</a></li>
+          <li><a href="#">Changelog</a></li>
+          <li><a href="#">Descargar</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Soporte</h4>
+        <ul>
+          <li><a href="#">Centro de ayuda</a></li>
+          <li><a href="#">Manual de usuario</a></li>
+          <li><a href="#faq">Preguntas frecuentes</a></li>
+          <li><a href="#">Contacto</a></li>
+          <li><a href="#">Estado del servicio</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Empresa</h4>
+        <ul>
+          <li><a href="#">Sobre nosotros</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Política de privacidad</a></li>
+          <li><a href="#">Términos de uso</a></li>
+          <li><a href="https://licencias.mello.com.ar" target="_blank" rel="noopener">licencias.mello.com.ar →</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 PuntoNexo · Hecho en Argentina 🇦🇷</span>
+      <div class="footer-legal">
+        <a href="#">Privacidad</a>
+        <a href="#">Términos</a>
+        <a href="#">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ════════════════════════════════════
+     AUTH MODAL
+════════════════════════════════════ -->
+<div id="authModal" class="auth-overlay hidden" onclick="if(event.target===this)closeLogin()">
+  <div class="auth-modal">
+    <button class="auth-close" onclick="closeLogin()" aria-label="Cerrar">✕</button>
+    <div class="auth-header">
+      <div class="auth-logo-icon">🛒</div>
+      <h2 class="auth-title">Accedé a tu cuenta</h2>
+      <p class="auth-sub">Iniciá sesión con Google para gestionar tu suscripción PuntoNexo.</p>
+    </div>
+    <div id="authOut">
+      <div id="googleBtnContainer"></div>
+      <div class="auth-or"><span>o también podés</span></div>
+      <a href="https://licencias.mello.com.ar" target="_blank" rel="noopener" class="btn btn-outline auth-portal-btn">
+        🔑 &nbsp;Activar suscripción con código
+      </a>
+    </div>
+    <div id="authIn" class="hidden">
+      <div class="auth-user-card">
+        <img id="authAv" class="auth-user-av" src="" alt="">
+        <div class="auth-user-info">
+          <div id="authUserName" class="auth-user-name"></div>
+          <div id="authUserEmail" class="auth-user-email"></div>
+        </div>
+      </div>
+      <a href="https://licencias.mello.com.ar" target="_blank" rel="noopener" class="btn btn-primary btn-lg auth-portal-btn">
+        Gestionar mi suscripción →
+      </a>
+      <button onclick="signOut()" class="auth-logout-btn">Cerrar sesión</button>
+    </div>
+    <p class="auth-terms">Al iniciar sesión aceptás los <a href="#">Términos de uso</a> y la <a href="#">Política de privacidad</a>.</p>
+  </div>
+</div>
+
+<script>
+/* Sticky nav shadow */
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 10);
+});
+
+/* FAQ accordion */
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+/* Smooth anchor scroll */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const id = a.getAttribute('href').slice(1);
+    if (!id) return;
+    const el = document.getElementById(id);
+    if (el) { e.preventDefault(); el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  });
+});
+
+/* ═══════════════════════════════════════════════
+   GOOGLE IDENTITY SERVICES AUTH
+   Reemplazar GCID con el Client ID de
+   Google Cloud Console → APIs & Services
+   → Credentials → OAuth 2.0 Client IDs
+═══════════════════════════════════════════════ */
+const GCID = 'YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com';
+let _googleReady = false;
+
+function _onGoogleReady() {
+  if (_googleReady || !window.google?.accounts?.id) return;
+  _googleReady = true;
+  google.accounts.id.initialize({
+    client_id: GCID,
+    callback: _onGoogleCredential,
+    auto_select: false
+  });
+}
+
+function _onGoogleCredential(response) {
+  try {
+    const raw = response.credential.split('.')[1].replace(/-/g, '+').replace(/_/g, '/');
+    const pad = raw.length % 4 ? raw + '='.repeat(4 - raw.length % 4) : raw;
+    const payload = JSON.parse(atob(pad));
+    const user = { name: payload.name, email: payload.email, picture: payload.picture || '' };
+    sessionStorage.setItem('pn_user', JSON.stringify(user));
+    _applyAuth(user);
+    closeLogin();
+  } catch (e) { console.error('[PuntoNexo] Google auth error', e); }
+}
+
+function _applyAuth(user) {
+  /* Nav */
+  document.getElementById('loginBtn')?.classList.add('hidden');
+  const nu = document.getElementById('navUser');
+  if (nu) {
+    nu.classList.remove('hidden');
+    const av = document.getElementById('navUserAv');
+    if (av && user.picture) { av.src = user.picture; av.classList.remove('hidden'); }
+    const nm = document.getElementById('navUserName');
+    if (nm) nm.textContent = user.name.split(' ')[0];
+  }
+  /* Modal signed-in state */
+  document.getElementById('authOut')?.classList.add('hidden');
+  const ai = document.getElementById('authIn');
+  if (ai) {
+    ai.classList.remove('hidden');
+    const aAv = document.getElementById('authAv');
+    const aN  = document.getElementById('authUserName');
+    const aE  = document.getElementById('authUserEmail');
+    if (aAv) aAv.src = user.picture || '';
+    if (aN)  aN.textContent = user.name;
+    if (aE)  aE.textContent = user.email;
+  }
+}
+
+function openLogin() {
+  document.getElementById('authModal').classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+  if (_googleReady) {
+    const el = document.getElementById('googleBtnContainer');
+    if (el) {
+      el.innerHTML = '';
+      const w = Math.max(200, Math.min(el.offsetWidth || 340, 400));
+      google.accounts.id.renderButton(el, {
+        type: 'standard', theme: 'outline', size: 'large',
+        text: 'signin_with', locale: 'es', width: w
+      });
+    }
+  }
+}
+
+function closeLogin() {
+  document.getElementById('authModal')?.classList.add('hidden');
+  document.body.style.overflow = '';
+}
+
+function signOut() {
+  sessionStorage.removeItem('pn_user');
+  window.google?.accounts?.id?.disableAutoSelect?.();
+  document.getElementById('loginBtn')?.classList.remove('hidden');
+  document.getElementById('navUser')?.classList.add('hidden');
+  document.getElementById('authOut')?.classList.remove('hidden');
+  document.getElementById('authIn')?.classList.add('hidden');
+  closeLogin();
+}
+
+function toggleUserMenu() {
+  document.getElementById('navUserMenu')?.classList.toggle('hidden');
+}
+
+document.addEventListener('click', e => {
+  if (!e.target.closest('#navUser')) {
+    document.getElementById('navUserMenu')?.classList.add('hidden');
+  }
+});
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLogin(); });
+
+document.addEventListener('DOMContentLoaded', () => {
+  /* Restore session */
+  const saved = sessionStorage.getItem('pn_user');
+  if (saved) { try { _applyAuth(JSON.parse(saved)); } catch (e) {} }
+  /* Poll until Google script loads */
+  let attempts = 0;
+  const poll = setInterval(() => {
+    if (window.google?.accounts?.id) { _onGoogleReady(); clearInterval(poll); }
+    else if (++attempts > 40) clearInterval(poll);
+  }, 250);
+});
+</script>
+</body>
+</html>
