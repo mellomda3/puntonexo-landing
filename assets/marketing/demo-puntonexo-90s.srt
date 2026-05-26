@@ -1,0 +1,23 @@
+1
+00:00:00,000 --> 00:00:15,000
+PuntoNexo abre la caja con usuario, fondo inicial y estado operativo visible antes de vender.
+
+2
+00:00:15,000 --> 00:00:30,000
+El cajero escanea productos, corrige cantidades y mantiene stock, precios y cliente en una sola pantalla.
+
+3
+00:00:30,000 --> 00:00:45,000
+La venta se cierra con efectivo, tarjeta o pago mixto; el vuelto y el ticket quedan listos al instante.
+
+4
+00:00:45,000 --> 00:01:00,000
+Stock, compras y reposición muestran qué productos se mueven y dónde hay que actuar.
+
+5
+00:01:00,000 --> 00:01:15,000
+Reportes, cierre de caja, backups y licencia ayudan a controlar el negocio sin planillas sueltas.
+
+6
+00:01:15,000 --> 00:01:30,000
+Elegí plan, pagá con Mercado Pago y activá PuntoNexo online en minutos.

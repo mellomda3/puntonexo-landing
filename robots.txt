@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://puntonexo.mello.com.ar/sitemap.xml

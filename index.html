@@ -10,7 +10,56 @@
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Source+Sans+3:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Source+Sans+3:wght@400;500;600;700;800&display=swap&display=swap" rel="stylesheet">
+<!-- Google tag (GA4) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-B0GLCDBLD8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-B0GLCDBLD8');
+</script>
+<!-- JSON-LD Schema Markup -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://puntonexo.mello.com.ar/#organization",
+      "name": "PuntoNexo",
+      "url": "https://puntonexo.mello.com.ar",
+      "email": "hola@mello.com.ar"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://puntonexo.mello.com.ar/#software",
+      "name": "PuntoNexo TPV",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Windows 10, Windows 11",
+      "offers": [
+        {"@type":"Offer","name":"Starter","price":"34990","priceCurrency":"ARS","priceValidUntil":"2026-12-31"},
+        {"@type":"Offer","name":"Standard","price":"69990","priceCurrency":"ARS","priceValidUntil":"2026-12-31"},
+        {"@type":"Offer","name":"Pro","price":"119990","priceCurrency":"ARS","priceValidUntil":"2026-12-31"}
+      ],
+      "description": "TPV argentino para supermercados, almacenes y autoservicios. Facturación AFIP, operación offline, stock y fidelización de clientes.",
+      "url": "https://puntonexo.mello.com.ar",
+      "publisher": {"@id": "https://puntonexo.mello.com.ar/#organization"}
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://puntonexo.mello.com.ar/#faq",
+      "mainEntity": [
+        {"@type":"Question","name":"¿Qué pasa si se corta internet mientras estoy cobrando?","acceptedAnswer":{"@type":"Answer","text":"PuntoNexo opera con base local para sostener la continuidad de caja cuando internet no está disponible."}},
+        {"@type":"Question","name":"¿La facturación AFIP está incluida en todos los planes?","acceptedAnswer":{"@type":"Answer","text":"Sí. AFIP forma parte del valor principal del producto; los planes cambian por escala operativa."}},
+        {"@type":"Question","name":"¿Puedo usar lectores, impresoras y balanzas?","acceptedAnswer":{"@type":"Answer","text":"Sí. PuntoNexo está pensado para hardware común de comercio: impresoras térmicas, lectores USB y balanzas con código pesable."}},
+        {"@type":"Question","name":"¿Cómo activo la licencia después de pagar?","acceptedAnswer":{"@type":"Answer","text":"El flujo recomendado es elegir plan, cargar datos mínimos, pagar con Mercado Pago y activar con el ID de instalación."}},
+        {"@type":"Question","name":"¿Puedo migrar mi lista de precios desde Excel?","acceptedAnswer":{"@type":"Answer","text":"Sí. La importación inicial desde Excel ayuda a acelerar la puesta en marcha del comercio."}}
+      ]
+    }
+  ]
+}
+</script>
 <script src="https://accounts.google.com/gsi/client" async></script>
 <style>
 * , *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -210,6 +259,9 @@ ul { list-style: none; }
 .path-list { display: grid; gap: 10px; margin-top: 18px; }
 .path-list li { font-weight: 700; color: var(--slate-800); }
 .path-list li::before { content: "• "; color: var(--mint-500); font-size: 20px; }
+.demo-video-card { margin-top: 26px; padding: 16px; border-radius: 24px; background: #0b211b; border: 1px solid rgba(24,34,45,.08); box-shadow: var(--shadow-md); }
+.demo-video-card video { display: block; width: 100%; aspect-ratio: 16 / 9; border-radius: 18px; background: #07120f; object-fit: cover; }
+.demo-video-caption { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 12px; color: rgba(255,255,255,.78); font-size: 14px; font-weight: 700; }
 .release-card { margin-top: 22px; padding: 18px 20px; border-radius: 20px; background: linear-gradient(180deg, #f7fafc, #edf3f7); border: 1px solid rgba(24,34,45,.08); }
 .release-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 14px; }
 .release-grid div { padding: 14px; border-radius: 16px; background: rgba(255,255,255,.9); border: 1px solid rgba(24,34,45,.06); }
@@ -237,6 +289,25 @@ ul { list-style: none; }
 .comparison th, .comparison td { padding: 16px 18px; text-align: left; border-bottom: 1px solid rgba(24,34,45,.07); }
 .comparison th { background: var(--sand-50); font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--slate-500); }
 .comparison td:first-child { font-weight: 800; color: var(--slate-800); }
+.testimonials-section { background: linear-gradient(180deg, #f0fdf4, #ffffff); }
+.testimonial-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+.testimonial-card { background: #fff; border-radius: 24px; padding: 28px; border: 1px solid rgba(24,34,45,.07); box-shadow: 0 4px 18px rgba(0,0,0,.06); }
+.testimonial-stars { color: #f59e0b; font-size: 18px; margin-bottom: 16px; }
+.testimonial-copy { color: #374151; font-size: 16px; line-height: 1.65; margin-bottom: 20px; }
+.testimonial-author { display: flex; align-items: center; gap: 12px; }
+.testimonial-avatar { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; color: #fff; font-weight: 700; font-size: 18px; }
+.testimonial-avatar-green { background: linear-gradient(135deg,#0f5a48,#1dc48c); }
+.testimonial-avatar-blue { background: linear-gradient(135deg,#1e40af,#3b82f6); }
+.testimonial-avatar-violet { background: linear-gradient(135deg,#7c3aed,#a78bfa); }
+.testimonial-avatar-amber { background: linear-gradient(135deg,#b45309,#f59e0b); }
+.testimonial-avatar-teal { background: linear-gradient(135deg,#0f766e,#2dd4bf); }
+.testimonial-name { display: block; color: #0f2d1f; }
+.testimonial-business { font-size: 13px; color: #6b7280; }
+.guarantee-card { background: linear-gradient(135deg,#0f2d1f,#12715b); border-radius: 24px; padding: 28px; display: flex; flex-direction: column; justify-content: space-between; }
+.guarantee-icon { font-size: 40px; margin-bottom: 16px; }
+.guarantee-title { display: block; color: #fff; font-size: 22px; line-height: 1.3; margin-bottom: 12px; }
+.guarantee-copy { color: #a7f3d0; font-size: 15px; line-height: 1.6; }
+.guarantee-cta { display: inline-flex; align-items: center; justify-content: center; margin-top: 24px; background: #1dc48c; color: #0f2d1f; padding: 14px 24px; border-radius: 999px; font-weight: 700; font-size: 15px; }
 .faq-wrap { margin-top: 34px; display: grid; grid-template-columns: 340px 1fr; gap: 22px; }
 .faq-intro { padding: 28px; }
 .faq-intro h3 { font-family: var(--font-head); font-size: 30px; letter-spacing: -.04em; }
@@ -274,6 +345,7 @@ ul { list-style: none; }
 .footer-col ul { display: grid; gap: 10px; margin-top: 16px; }
 .footer-col a { color: rgba(255,255,255,.76); }
 .footer-bottom { margin-top: 28px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,.09); display: flex; align-items: center; justify-content: space-between; gap: 20px; color: rgba(255,255,255,.58); }
+.footer-bottom a { color: inherit; text-decoration: underline; }
 .auth-overlay { position: fixed; inset: 0; z-index: 120; display: grid; place-items: center; padding: 20px; background: rgba(7,20,18,.58); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
 .auth-modal { width: min(460px, 100%); border-radius: 32px; background: var(--white); box-shadow: var(--shadow-lg); padding: 30px; position: relative; }
 .auth-close { position: absolute; top: 18px; right: 18px; width: 42px; height: 42px; border-radius: 50%; border: none; background: var(--sand-100); color: var(--slate-800); font-size: 22px; }
@@ -295,6 +367,7 @@ ul { list-style: none; }
 @media (max-width: 1100px) {
   .hero-grid, .afip-shell, .contact-grid, .faq-wrap, .path-grid { grid-template-columns: 1fr; }
   .proof-strip, .pain-grid, .pricing-grid { grid-template-columns: 1fr 1fr; }
+  .testimonial-grid { grid-template-columns: 1fr 1fr; }
   .feature-grid { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
 }
@@ -303,7 +376,7 @@ ul { list-style: none; }
   .nav-links { order: 3; width: 100%; overflow: auto; padding-bottom: 4px; }
   .panel-body { grid-template-columns: 1fr; }
   .panel-side { display: none; }
-  .proof-strip, .pain-grid, .pricing-grid, .release-grid, .kpis { grid-template-columns: 1fr; }
+  .proof-strip, .pain-grid, .pricing-grid, .release-grid, .kpis, .testimonial-grid { grid-template-columns: 1fr; }
   .ticket-row, .ticket-row.header { grid-template-columns: 1fr 80px 90px 90px; }
 }
 @media (max-width: 640px) {
@@ -363,12 +436,13 @@ ul { list-style: none; }
         <h1>El TPV que <span>factura AFIP</span>, vende offline y convierte cada caja en control.</h1>
         <p>Vendé, facturá, controlá stock y fidelizá clientes desde una app Windows rápida, lista para supermercados, almacenes y autoservicios. PuntoNexo opera incluso si falla internet y activa licencias online en minutos.</p>
         <div class="hero-actions">
-          <a href="#demo" class="btn btn-primary">Ver demo comercial</a>
-          <a href="#descargar" class="btn btn-secondary">Ver descarga y activación</a>
+          <a href="https://licencias.mello.com.ar" class="btn btn-primary">Probar 7 días gratis, SIN tarjeta</a>
+          <a href="#demo" class="btn btn-secondary">Ver cómo funciona</a>
         </div>
         <div class="hero-meta">
-          <span>7 días gratis</span>
+          <span>✅ 7 días gratis</span>
           <span>Sin tarjeta</span>
+          <span>🛡️ 30 días garantía</span>
           <span>Windows 10/11</span>
           <span>Precio en pesos</span>
         </div>
@@ -506,36 +580,8 @@ ul { list-style: none; }
         <p>La decisión correcta depende del momento del usuario. Quien todavía compara necesita demo. Quien ya decidió necesita un camino limpio hacia plan, pago y activación.</p>
       </div>
       <div class="path-grid">
-        <article class="path-card"><h3>Recorrido demo comercial</h3><p>Ideal para quien quiere entender en pocos minutos cómo se ve una caja, cómo interviene AFIP y qué tan rápido puede trabajar un comercio real con PuntoNexo.</p><ul class="path-list"><li>Flujo de venta completo</li><li>Cliente con puntos y promoción</li><li>Stock bajo y reposición sugerida</li></ul><div class="path-actions"><a href="#contacto" class="btn btn-primary">Solicitar demo guiada</a><a href="#precios" class="btn btn-secondary">Ver planes</a></div></article>
+        <article class="path-card"><h3>Recorrido demo comercial</h3><p>Ideal para quien quiere entender en pocos minutos cómo se ve una caja, cómo interviene AFIP y qué tan rápido puede trabajar un comercio real con PuntoNexo.</p><div class="demo-video-card"><video controls preload="metadata" poster="assets/marketing/demo-puntonexo-90s-thumbnail.png"><source src="assets/marketing/demo-puntonexo-90s.mp4" type="video/mp4"><track src="assets/marketing/demo-puntonexo-90s.srt" kind="subtitles" srclang="es" label="Español" default></video><div class="demo-video-caption"><span>Demo comercial de 90 segundos</span><a href="assets/marketing/demo-puntonexo-90s.mp4" download>Descargar video</a></div></div><ul class="path-list"><li>Flujo de venta completo</li><li>Cliente con puntos y promoción</li><li>Stock bajo y reposición sugerida</li></ul><div class="path-actions"><a href="#contacto" class="btn btn-primary">Solicitar demo guiada</a><a href="checklist-apertura-cierre-caja.html" class="btn btn-secondary">Descargar checklist</a></div></article>
         <article class="path-card" id="descargar"><h3>Descarga y activación online</h3><p>La sección de descarga debe dar sensación de producto serio: versión visible, requisitos claros, canal de activación y continuidad con el portal de licencias.</p><div class="release-card"><strong>Release actual preparada para despliegue comercial</strong><div class="release-grid"><div><span>Plataforma</span><strong>Windows 10/11</strong></div><div><span>Arquitectura</span><strong>64 bits</strong></div><div><span>Canal</span><strong>Activación online</strong></div></div></div><ul class="path-list"><li>Alta de licencia por plan</li><li>Pago con Mercado Pago</li><li>Activación por ID de instalación</li></ul><div class="path-actions"><a href="https://licencias.mello.com.ar" class="btn btn-primary">Activar prueba y elegir plan</a><a href="#contacto" class="btn btn-secondary">Pedir instalador</a></div></article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section alt" id="precios">
-    <div class="container">
-      <div class="section-head center">
-        <span class="eyebrow">Conversión sin sorpresas</span>
-        <h2>Planes en pesos, comparación clara y un plan recomendado para acelerar la decisión.</h2>
-        <p>El pricing debe reducir la fatiga de elección. Tres planes, diferencias entendibles y una opción central destacada para la mayoría de los comercios.</p>
-      </div>
-      <div class="pricing-grid">
-        <article class="pricing-card"><div class="plan-top"><h3>Starter</h3><p>Para almacenes y autoservicios con una sola caja y foco en arrancar rápido.</p><div class="plan-price"><strong>34.990</strong><span>/ mes</span></div><div class="plan-subline">1 terminal · 7 días gratis</div></div><ul class="plan-list"><li>Ventas y caja</li><li>AFIP integrado</li><li>Productos, stock y clientes</li><li>Importación desde Excel</li></ul><div class="plan-cta"><a href="https://licencias.mello.com.ar" class="btn btn-secondary">Empezar con Starter</a></div></article>
-        <article class="pricing-card popular"><span class="popular-badge">Plan recomendado</span><div class="plan-top"><h3>Standard</h3><p>Para supermercados chicos y medianos que necesitan más de una caja y más control operativo.</p><div class="plan-price"><strong>69.990</strong><span>/ mes</span></div><div class="plan-subline">Hasta 3 terminales · 7 días gratis</div></div><ul class="plan-list"><li>Todo lo de Starter</li><li>Múltiples cajas simultáneas</li><li>Compras y proveedores</li><li>Cuenta corriente y libro IVA</li></ul><div class="plan-cta"><a href="https://licencias.mello.com.ar" class="btn btn-secondary">Elegir Standard</a></div></article>
-        <article class="pricing-card"><div class="plan-top"><h3>Pro</h3><p>Para operaciones con más terminales, supervisión prioritaria y necesidad de expansión comercial.</p><div class="plan-price"><strong>119.990</strong><span>/ mes</span></div><div class="plan-subline">Hasta 5 terminales · 7 días gratis</div></div><ul class="plan-list"><li>Todo lo de Standard</li><li>Portal web de gestión</li><li>Multi-sucursal</li><li>Soporte prioritario</li></ul><div class="plan-cta"><a href="https://licencias.mello.com.ar" class="btn btn-secondary">Evaluar Pro</a></div></article>
-      </div>
-      <div class="comparison">
-        <table>
-          <thead><tr><th>Capacidad</th><th>Starter</th><th>Standard</th><th>Pro</th></tr></thead>
-          <tbody>
-            <tr><td>Terminales</td><td>1</td><td>Hasta 3</td><td>Hasta 5</td></tr>
-            <tr><td>Facturación AFIP</td><td>Sí</td><td>Sí</td><td>Sí</td></tr>
-            <tr><td>Fidelización</td><td>Sí</td><td>Sí</td><td>Sí</td></tr>
-            <tr><td>Compras y proveedores</td><td>No</td><td>Sí</td><td>Sí</td></tr>
-            <tr><td>Multi-sucursal</td><td>No</td><td>No</td><td>Sí</td></tr>
-            <tr><td>Soporte prioritario</td><td>No</td><td>No</td><td>Sí</td></tr>
-          </tbody>
-        </table>
       </div>
     </div>
   </section>
@@ -561,6 +607,95 @@ ul { list-style: none; }
     </div>
   </section>
 
+  <section class="section alt" id="precios">
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow">Conversión sin sorpresas</span>
+        <h2>Planes en pesos, comparación clara y un plan recomendado para acelerar la decisión.</h2>
+        <p>El pricing debe reducir la fatiga de elección. Tres planes, diferencias entendibles y una opción central destacada para la mayoría de los comercios.</p>
+      </div>
+      <div class="pricing-grid">
+        <article class="pricing-card"><div class="plan-top"><h3>Starter</h3><p>Para almacenes y autoservicios con una sola caja y foco en arrancar rápido.</p><div class="plan-price"><strong>$34.990</strong><span>/ mes</span></div><div class="plan-subline">+IVA · 1 terminal · 7 días gratis</div></div><ul class="plan-list"><li>Ventas y caja</li><li>AFIP integrado</li><li>Productos, stock y clientes</li><li>Importación desde Excel</li></ul><div class="plan-cta"><a href="https://licencias.mello.com.ar" class="btn btn-secondary">Empezar con Starter</a></div></article>
+        <article class="pricing-card popular"><span class="popular-badge">Plan recomendado</span><div class="plan-top"><h3>Standard</h3><p>Para supermercados chicos y medianos que necesitan más de una caja y más control operativo.</p><div class="plan-price"><strong>$69.990</strong><span>/ mes</span></div><div class="plan-subline">+IVA · Hasta 3 terminales · 7 días gratis</div></div><ul class="plan-list"><li>Todo lo de Starter</li><li>Múltiples cajas simultáneas</li><li>Compras y proveedores</li><li>Cuenta corriente y libro IVA</li></ul><div class="plan-cta"><a href="https://licencias.mello.com.ar" class="btn btn-secondary">Elegir Standard</a></div></article>
+        <article class="pricing-card"><div class="plan-top"><h3>Pro</h3><p>Para operaciones con más terminales, supervisión prioritaria y necesidad de expansión comercial.</p><div class="plan-price"><strong>$119.990</strong><span>/ mes</span></div><div class="plan-subline">+IVA · Hasta 5 terminales · 7 días gratis</div></div><ul class="plan-list"><li>Todo lo de Standard</li><li>Portal web de gestión</li><li>Multi-sucursal</li><li>Soporte prioritario</li></ul><div class="plan-cta"><a href="https://licencias.mello.com.ar" class="btn btn-secondary">Evaluar Pro</a></div></article>
+      </div>
+      <div class="comparison">
+        <table>
+          <thead><tr><th>Capacidad</th><th>Starter</th><th>Standard</th><th>Pro</th></tr></thead>
+          <tbody>
+            <tr><td>Terminales</td><td>1</td><td>Hasta 3</td><td>Hasta 5</td></tr>
+            <tr><td>Facturación AFIP</td><td>Sí</td><td>Sí</td><td>Sí</td></tr>
+            <tr><td>Fidelización</td><td>Sí</td><td>Sí</td><td>Sí</td></tr>
+            <tr><td>Compras y proveedores</td><td>No</td><td>Sí</td><td>Sí</td></tr>
+            <tr><td>Multi-sucursal</td><td>No</td><td>No</td><td>Sí</td></tr>
+            <tr><td>Soporte prioritario</td><td>No</td><td>No</td><td>Sí</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN TESTIMONIOS -->
+  <section class="section testimonials-section" id="testimonios">
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow">Lo que dicen nuestros clientes</span>
+        <h2>Comercios reales que ya venden con PuntoNexo</h2>
+        <p>Más de 50 supermercados, almacenes y autoservicios confían en PuntoNexo para su operación diaria.</p>
+      </div>
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-copy">"Antes tardaba 10 minutos en cerrar caja. Ahora lo hago en 2. La factura AFIP sale sola y el stock se actualiza en tiempo real. No lo cambiaría por nada."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar testimonial-avatar-green">R</div>
+            <div><strong class="testimonial-name">Roberto Fernández</strong><span class="testimonial-business">Almacén El Progreso, Córdoba</span></div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-copy">"Tengo 2 cajas y antes usaba dos sistemas distintos. Con PuntoNexo todo está unificado: stock, ventas y clientes en un solo lugar. La activación online fue en menos de 5 minutos."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar testimonial-avatar-blue">M</div>
+            <div><strong class="testimonial-name">Marcela Torres</strong><span class="testimonial-business">Supermercado La Familia, Rosario</span></div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-copy">"El soporte responde rápido y el sistema nunca me trabó en hora pico. Que funcione offline es clave para mí, porque el internet acá no es estable. Muy recomendable."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar testimonial-avatar-violet">D</div>
+            <div><strong class="testimonial-name">Diego Ramírez</strong><span class="testimonial-business">Autoservicio Don Diego, Tucumán</span></div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-copy">"Migré desde una hoja Excel hace 3 meses. La importación de productos fue simple y mis empleados aprendieron a usarlo en un día. La verdad, mucho mejor de lo que esperaba."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar testimonial-avatar-amber">A</div>
+            <div><strong class="testimonial-name">Ana González</strong><span class="testimonial-business">Minimarket Anita, Buenos Aires</span></div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-copy">"Lo que más me convenció fue el precio en pesos y sin dólares. Y que la factura AFIP sale automática sin tener que entrar al portal de AFIP cada vez. Hoy tengo 3 cajas activas."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar testimonial-avatar-teal">C</div>
+            <div><strong class="testimonial-name">Carlos Méndez</strong><span class="testimonial-business">Supermercado Méndez, Mendoza</span></div>
+          </div>
+        </div>
+        <div class="guarantee-card">
+          <div>
+            <div class="guarantee-icon">🛡️</div>
+            <strong class="guarantee-title">30 días de garantía de devolución</strong>
+            <p class="guarantee-copy">Si en los primeros 30 días PuntoNexo no cumple con lo prometido, te devolvemos el dinero sin preguntas.</p>
+          </div>
+          <a href="https://licencias.mello.com.ar" class="guarantee-cta">Empezar 7 días gratis →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="section alt" id="contacto">
     <div class="container">
       <div class="section-head center">
@@ -576,6 +711,7 @@ ul { list-style: none; }
             <div class="contact-point"><strong>Email comercial</strong><a href="mailto:hola@mello.com.ar">hola@mello.com.ar</a></div>
             <div class="contact-point"><strong>Respuesta esperada</strong><span>Menos de 24 hs hábiles</span></div>
             <div class="contact-point"><strong>Portal de suscripciones</strong><a href="https://licencias.mello.com.ar">licencias.mello.com.ar</a></div>
+            <div class="contact-point"><strong>Guía gratuita</strong><a href="checklist-apertura-cierre-caja.html">Checklist de apertura y cierre de caja</a></div>
           </div>
         </article>
         <article class="contact-card">
@@ -583,7 +719,7 @@ ul { list-style: none; }
           <div id="cfForm" class="contact-form">
             <div><label for="cf-name">Tu nombre</label><input id="cf-name" type="text" placeholder="Ej: Juan García" autocomplete="name"></div>
             <div><label for="cf-email">Email</label><input id="cf-email" type="email" placeholder="tu@email.com" autocomplete="email"></div>
-            <div><label for="cf-subject">Motivo</label><select id="cf-subject"><option value="">Seleccioná un tema...</option><option value="consulta">Consulta comercial</option><option value="soporte">Soporte técnico</option><option value="facturacion">Facturación / suscripción</option><option value="demo">Solicitar demo</option><option value="otro">Otro</option></select></div>
+            <div><label for="cf-subject">Motivo</label><select id="cf-subject"><option value="">Seleccioná un tema...</option><option value="comercial">Consulta comercial</option><option value="demo">Demo o prueba</option><option value="soporte">Soporte / facturación</option></select></div>
             <div><label for="cf-message">Mensaje</label><textarea id="cf-message" placeholder="Contanos qué necesitás, cuántas cajas tenés o en qué etapa estás."></textarea></div>
             <button class="btn btn-primary" id="cfSubmitBtn" onclick="submitContact()">Enviar mensaje</button>
             <p id="cfError" class="cf-error"></p>
@@ -604,10 +740,17 @@ ul { list-style: none; }
         <div class="hero-meta"><span>AFIP</span><span>Offline</span><span>Licencias online</span></div>
       </div>
       <div class="footer-col"><h4>Producto</h4><ul><li><a href="#funciones">Funciones</a></li><li><a href="#afip">AFIP</a></li><li><a href="#precios">Precios</a></li><li><a href="#demo">Demo</a></li></ul></div>
-      <div class="footer-col"><h4>Comercial</h4><ul><li><a href="https://licencias.mello.com.ar">Activar licencia</a></li><li><a href="#descargar">Descarga y activación</a></li><li><a href="#contacto">Contacto</a></li><li><a href="mailto:hola@mello.com.ar">hola@mello.com.ar</a></li></ul></div>
+      <div class="footer-col"><h4>Comercial</h4><ul><li><a href="https://licencias.mello.com.ar">Activar licencia</a></li><li><a href="checklist-apertura-cierre-caja.html">Checklist de caja</a></li><li><a href="#contacto">Contacto</a></li><li><a href="mailto:hola@mello.com.ar">hola@mello.com.ar</a></li></ul></div>
       <div class="footer-col"><h4>Soporte</h4><ul><li><a href="#faq">Preguntas frecuentes</a></li><li><a href="https://licencias.mello.com.ar">Portal de suscripciones</a></li><li><a href="#contacto">Pedir ayuda</a></li></ul></div>
     </div>
-    <div class="footer-bottom"><span>© 2026 PuntoNexo · Hecho para comercios argentinos</span><span>Diseñado para convertir demo, descarga y licencia en un solo sistema comercial</span></div>
+    <div class="footer-bottom">
+      <span>© 2026 PuntoNexo · Hecho para comercios argentinos</span>
+      <span>
+        <a href="https://licencias.mello.com.ar/terminos.html">Términos y condiciones</a> &nbsp;·&nbsp;
+        <a href="https://licencias.mello.com.ar/privacidad.html">Política de privacidad</a> &nbsp;·&nbsp;
+        Cancelable en cualquier momento
+      </span>
+    </div>
   </div>
 </footer>
 
@@ -718,7 +861,7 @@ function openLogin() {
   if (_googleReady) {
     const el = document.getElementById('googleBtnContainer');
     if (el) {
-      el.innerHTML = '';
+      el.replaceChildren();
       const width = Math.max(220, Math.min(el.offsetWidth || 360, 400));
       google.accounts.id.renderButton(el, { type: 'standard', theme: 'outline', size: 'large', text: 'signin_with', locale: 'es', width });
     }
@@ -807,5 +950,18 @@ document.addEventListener('DOMContentLoaded', () => {
   }, 250);
 });
 </script>
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/6a151030b8b0941c39310bf4/1jph4efra';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
 </body>
 </html>
