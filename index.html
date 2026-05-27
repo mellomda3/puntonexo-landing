@@ -31,7 +31,7 @@
       "@id": "https://puntonexo.mello.com.ar/#organization",
       "name": "PuntoNexo",
       "url": "https://puntonexo.mello.com.ar",
-      "email": "hola@mello.com.ar"
+      "email": "soporte@mello.com.ar"
     },
     {
       "@type": "SoftwareApplication",
@@ -710,7 +710,7 @@ ul { list-style: none; }
           <h3>Hablemos de tu operación</h3>
           <p>Usá esta sección para consultas comerciales, implementación, demo o activación. El tono es directo, confiable y pensado para responder rápido.</p>
           <div class="contact-points">
-            <div class="contact-point"><strong>Email comercial</strong><a href="mailto:hola@mello.com.ar">hola@mello.com.ar</a></div>
+            <div class="contact-point"><strong>Email comercial</strong><a href="mailto:soporte@mello.com.ar">soporte@mello.com.ar</a></div>
             <div class="contact-point"><strong>Respuesta esperada</strong><span>Menos de 24 hs hábiles</span></div>
             <div class="contact-point"><strong>Portal de suscripciones</strong><a href="https://licencias.mello.com.ar">licencias.mello.com.ar</a></div>
             <div class="contact-point"><strong>Guía gratuita</strong><a href="checklist-apertura-cierre-caja.html">Checklist de apertura y cierre de caja</a></div>
@@ -742,7 +742,7 @@ ul { list-style: none; }
         <div class="hero-meta"><span>AFIP</span><span>Offline</span><span>Licencias online</span></div>
       </div>
       <div class="footer-col"><h4>Producto</h4><ul><li><a href="#funciones">Funciones</a></li><li><a href="#afip">AFIP</a></li><li><a href="#precios">Precios</a></li><li><a href="#demo">Demo</a></li></ul></div>
-      <div class="footer-col"><h4>Comercial</h4><ul><li><a href="https://licencias.mello.com.ar">Activar licencia</a></li><li><a href="checklist-apertura-cierre-caja.html">Checklist de caja</a></li><li><a href="#contacto">Contacto</a></li><li><a href="mailto:hola@mello.com.ar">hola@mello.com.ar</a></li></ul></div>
+      <div class="footer-col"><h4>Comercial</h4><ul><li><a href="https://licencias.mello.com.ar">Activar licencia</a></li><li><a href="checklist-apertura-cierre-caja.html">Checklist de caja</a></li><li><a href="#contacto">Contacto</a></li><li><a href="mailto:soporte@mello.com.ar">soporte@mello.com.ar</a></li></ul></div>
       <div class="footer-col"><h4>Soporte</h4><ul><li><a href="#faq">Preguntas frecuentes</a></li><li><a href="https://licencias.mello.com.ar">Portal de suscripciones</a></li><li><a href="#contacto">Pedir ayuda</a></li></ul></div>
     </div>
     <div class="footer-bottom">
@@ -929,7 +929,7 @@ async function submitContact() {
     }
   } catch {
     const body = encodeURIComponent(`Nombre: ${name}\nEmail: ${email}\nAsunto: ${subject}\n\n${message}`);
-    window.location.href = `mailto:hola@mello.com.ar?subject=${encodeURIComponent('Consulta PuntoNexo - ' + subject)}&body=${body}`;
+    window.location.href = `mailto:soporte@mello.com.ar?subject=${encodeURIComponent('Consulta PuntoNexo - ' + subject)}&body=${body}`;
   } finally {
     btn.disabled = false;
     btn.textContent = 'Enviar mensaje';
