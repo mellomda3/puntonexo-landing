@@ -5,7 +5,7 @@ param(
   [string]$SupportEmail = $env:SUPPORT_EMAIL
 )
 
-$root = Split-Path -Parent $MyInvocation.MyCommand.Path
+$root = Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)
 if (-not $LicensingUrl) { $LicensingUrl = 'https://licencias.mello.com.ar/?from=landing' }
 if (-not $ReleaseVersion) { $ReleaseVersion = '1.0.1' }
 if (-not $ReleaseDownloadUrl) { $ReleaseDownloadUrl = 'https://github.com/mellomda3/puntonexo-releases/releases/latest/download/PuntoNexo-Installer.exe' }
