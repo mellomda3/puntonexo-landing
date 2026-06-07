@@ -62,7 +62,7 @@
   ]
 }
 </script>
-<script src="https://accounts.google.com/gsi/client" async></script>
+<script src="config.js"></script>
 <style>
 * , *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
@@ -413,19 +413,8 @@ ul { list-style: none; }
       <a href="#contacto">Contacto</a>
     </div>
     <div class="nav-actions">
-      <button id="loginBtn" onclick="openLogin()" class="btn btn-ghost">Iniciar sesión</button>
-      <div id="navUser" class="nav-user hidden">
-        <button class="nav-user-btn" onclick="toggleUserMenu()">
-          <img id="navUserAv" class="nav-user-av hidden" src="" alt="">
-          <span id="navUserName">Cuenta</span>
-          <span>▾</span>
-        </button>
-        <div id="navUserMenu" class="nav-user-menu hidden">
-          <a href="https://licencias.mello.com.ar">Gestionar mi suscripción</a>
-          <button onclick="signOut()">Cerrar sesión</button>
-        </div>
-      </div>
-      <a href="https://licencias.mello.com.ar" class="btn btn-primary">Probar 7 días gratis</a>
+      <a href="https://licencias.mello.com.ar/gestionar.html?from=landing" class="btn btn-ghost">Gestionar mi licencia</a>
+      <a href="https://licencias.mello.com.ar/?from=landing" class="btn btn-primary">Probar 7 días gratis</a>
     </div>
   </div>
 </nav>
@@ -438,7 +427,7 @@ ul { list-style: none; }
         <h1>El TPV que <span>factura AFIP</span>, vende offline y convierte cada caja en control.</h1>
         <p>Vendé, facturá, controlá stock y fidelizá clientes desde una app Windows rápida, lista para supermercados, almacenes y autoservicios. PuntoNexo opera incluso si falla internet y activa licencias online en minutos.</p>
         <div class="hero-actions">
-          <a href="https://licencias.mello.com.ar" class="btn btn-primary">Probar 7 días gratis, SIN tarjeta</a>
+          <a href="https://licencias.mello.com.ar/?from=landing" class="btn btn-primary">Probar 7 días gratis, SIN tarjeta</a>
           <a href="#demo" class="btn btn-secondary">Ver cómo funciona</a>
         </div>
         <div class="hero-meta">
@@ -465,13 +454,13 @@ ul { list-style: none; }
           <div class="panel-body">
             <aside class="panel-side">
               <div class="side-label">Operación</div>
-              <div class="side-item active">💰 Caja</div>
-              <div class="side-item">📦 Productos</div>
+              <div class="side-item active">💰 Cobrar (POS)</div>
+              <div class="side-item">🏦 Arqueo y turno</div>
+              <div class="side-item">📦 Artículos</div>
               <div class="side-item">👥 Clientes</div>
-              <div class="side-item">🧾 Ventas</div>
-              <div class="side-item">📊 Reportes</div>
-              <div class="side-item">🏦 AFIP</div>
-              <div class="side-item">⚙️ Configuración</div>
+              <div class="side-item">📊 Informes</div>
+              <div class="side-item">🧾 Centro fiscal AFIP</div>
+              <div class="side-item">⚙️ Sistema</div>
             </aside>
             <div class="panel-main">
               <div class="kpis">
@@ -510,12 +499,27 @@ ul { list-style: none; }
     </div>
   </section>
 
+  <section class="section" id="ecosistema">
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow">Tres webs, tres roles</span>
+        <h2>Sabé dónde hacer cada cosa</h2>
+        <p>PuntoNexo no mezcla marketing, licencias y portal de clientes de tu comercio.</p>
+      </div>
+      <div class="pain-grid">
+        <article class="pain-card"><span class="tag">Esta página</span><h3>Landing comercial</h3><p>Conocé el producto, mirá la demo y empezá la prueba gratuita de 7 días.</p></article>
+        <article class="pain-card"><span class="tag">licencias.mello.com.ar</span><h3>Suscripciones y activación</h3><p>Elegí plan, pagá con Mercado Pago y activá la app con tu ID de instalación.</p></article>
+        <article class="pain-card"><span class="tag">Portal del comercio</span><h3>Ofertas para tus clientes</h3><p>Desde la app configurás el catálogo público local (ofertas, canjes y puntos).</p></article>
+      </div>
+    </div>
+  </section>
+
   <section class="section alt">
     <div class="container">
       <div class="section-head center">
         <span class="eyebrow">Dolores reales del mostrador</span>
-        <h2>La web tiene que vender lo que el comercio más teme perder: tiempo, control y ventas.</h2>
-        <p>PuntoNexo se presenta desde los problemas del día a día, no desde funcionalidades sueltas. Esa es la diferencia entre una landing decorativa y una web que convierte.</p>
+        <h2>Menos tiempo perdido, más control y más ventas en el mostrador.</h2>
+        <p>PuntoNexo resuelve los dolores del día a día: continuidad de caja, orden fiscal y decisiones comerciales claras.</p>
       </div>
       <div class="pain-grid">
         <article class="pain-card"><span class="tag">Dolor operativo</span><h3>“Si falla internet, la caja se cae.”</h3><p><strong>PuntoNexo sigue operando offline</strong>, guarda la venta localmente y acompaña la continuidad del comercio en hora pico.</p></article>
@@ -529,14 +533,14 @@ ul { list-style: none; }
     <div class="container">
       <div class="section-head">
         <span class="eyebrow">Producto mostrado como tareas reales</span>
-        <h2>Una web comercial fuerte no enumera módulos: muestra escenas concretas de uso.</h2>
-        <p>La experiencia se organiza por lo que un dueño o cajero reconoce de inmediato: cobrar, controlar, facturar, fidelizar y decidir.</p>
+        <h2>Tareas reales de tu comercio, en escenas que reconocés al instante.</h2>
+        <p>Cobrar, controlar, facturar, fidelizar y decidir — sin saltar entre sistemas.</p>
       </div>
       <div class="feature-grid">
         <article class="feature-card"><div class="feature-screen">🧾</div><div class="feature-body"><h3>Caja con AFIP integrada</h3><p>La venta sucede en una sola secuencia: producto, cliente, cobro y comprobante. El diseño deja claro que el cajero no salta entre pantallas ni procesos externos.</p><ul class="feature-list"><li>Factura A, B y C desde la misma caja</li><li>CAE automático y CAEA de contingencia</li><li>QR fiscal en el ticket impreso</li></ul></div></article>
-        <article class="feature-card"><div class="feature-screen">📦</div><div class="feature-body"><h3>Stock y productos sin fricción</h3><p>La propuesta visual debe mostrar reposición, listas de precios e importación desde Excel para que el comercio perciba orden y velocidad.</p><ul class="feature-list"><li>Alertas de stock bajo</li><li>Importación inicial desde Excel</li><li>Rentabilidad por artículo y categoría</li></ul></div></article>
-        <article class="feature-card"><div class="feature-screen">👥</div><div class="feature-body"><h3>Clientes que vuelven</h3><p>El programa de fidelización debe sentirse como una ventaja competitiva concreta: puntos visibles, historial y recompensas que vuelven a traer tráfico al local.</p><ul class="feature-list"><li>Puntos y canje en el cobro</li><li>Historial por cliente</li><li>Segmentación comercial simple</li></ul></div></article>
-        <article class="feature-card"><div class="feature-screen">📊</div><div class="feature-body"><h3>Reportes para decidir rápido</h3><p>La web debe vender control de negocio: ventas por hora, ticket promedio, reposición y margen. Menos narrativa aspiracional, más señales de gestión.</p><ul class="feature-list"><li>Dashboard diario</li><li>Ranking de ventas y margen</li><li>Exportación operativa</li></ul></div></article>
+        <article class="feature-card"><div class="feature-screen">📦</div><div class="feature-body"><h3>Stock y productos sin fricción</h3><p>Reposición, listas de precios e importación desde Excel para arrancar ordenado y mantener el mostrador al día.</p><ul class="feature-list"><li>Alertas de stock bajo</li><li>Importación inicial desde Excel</li><li>Rentabilidad por artículo y categoría</li></ul></div></article>
+        <article class="feature-card"><div class="feature-screen">👥</div><div class="feature-body"><h3>Clientes que vuelven</h3><p>Puntos visibles, historial y recompensas que traen tráfico de vuelta al local.</p><ul class="feature-list"><li>Puntos y canje en el cobro</li><li>Historial por cliente</li><li>Segmentación comercial simple</li></ul></div></article>
+        <article class="feature-card"><div class="feature-screen">📊</div><div class="feature-body"><h3>Reportes para decidir rápido</h3><p>Ventas por hora, ticket promedio, reposición y margen en señales accionables para el dueño.</p><ul class="feature-list"><li>Dashboard diario</li><li>Ranking de ventas y margen</li><li>Exportación operativa</li></ul></div></article>
       </div>
     </div>
   </section>
@@ -545,14 +549,14 @@ ul { list-style: none; }
     <div class="container">
       <div class="section-head center">
         <span class="eyebrow">Autoridad fiscal y confianza</span>
-        <h2>AFIP no puede ser un módulo escondido. Tiene que sentirse como una ventaja visible.</h2>
-        <p>El bloque AFIP debe transmitir seguridad operativa, no miedo. El usuario tiene que entender que PuntoNexo incorpora la obligación fiscal dentro de una experiencia estable.</p>
+        <h2>AFIP integrado en el flujo de cobro, sin procesos paralelos.</h2>
+        <p>CAE, CAEA y respaldo documental dentro de la misma caja — con lenguaje claro para el comerciante.</p>
       </div>
       <div class="afip-shell">
         <div class="afip-copy">
           <div class="afip-points">
             <div class="afip-point"><div class="afip-icon">🔐</div><div><strong>CAE automático en el momento del cobro</strong><span>La facturación acompaña la operación comercial sin obligar al usuario a cambiar de pantalla ni de lógica.</span></div></div>
-            <div class="afip-point"><div class="afip-icon">📡</div><div><strong>CAEA cuando la conectividad no acompaña</strong><span>La narrativa del sitio debe dejar claro que el comercio sigue vendiendo aunque AFIP o internet no respondan a tiempo.</span></div></div>
+            <div class="afip-point"><div class="afip-icon">📡</div><div><strong>CAEA cuando la conectividad no acompaña</strong><span>Modo contingencia CAEA (ARCA 2026): seguís cobrando con comprobantes válidos y luego informás en ARCA con el asistente post-contingencia de PuntoNexo.</span></div></div>
             <div class="afip-point"><div class="afip-icon">📋</div><div><strong>Notas de crédito y respaldo documental</strong><span>El usuario compra tranquilidad cuando entiende que el sistema cubre ventas, devoluciones y trazabilidad fiscal.</span></div></div>
             <div class="afip-point"><div class="afip-icon">🧠</div><div><strong>Lenguaje claro para el comerciante</strong><span>La web no debe explicar AFIP como si hablara a un desarrollador. Debe traducirlo en continuidad, orden y menor riesgo.</span></div></div>
           </div>
@@ -578,12 +582,12 @@ ul { list-style: none; }
     <div class="container">
       <div class="section-head">
         <span class="eyebrow">Demo, descarga y activación</span>
-        <h2>La web tiene que ofrecer dos caminos: ver cómo funciona o avanzar directo a la licencia.</h2>
+        <h2>Dos caminos: ver cómo funciona o activar tu prueba ahora.</h2>
         <p>La decisión correcta depende del momento del usuario. Quien todavía compara necesita demo. Quien ya decidió necesita un camino limpio hacia plan, pago y activación.</p>
       </div>
       <div class="path-grid">
         <article class="path-card"><h3>Recorrido demo comercial</h3><p>Ideal para quien quiere entender en pocos minutos cómo se ve una caja, cómo interviene AFIP y qué tan rápido puede trabajar un comercio real con PuntoNexo.</p><div class="demo-video-card"><video controls preload="metadata" poster="assets/marketing/demo-puntonexo-90s-thumbnail.png"><source src="assets/marketing/demo-puntonexo-90s.mp4" type="video/mp4"><track src="assets/marketing/demo-puntonexo-90s.srt" kind="subtitles" srclang="es" label="Español" default></video><div class="demo-video-caption"><span>Demo comercial de 90 segundos</span><a href="assets/marketing/demo-puntonexo-90s.mp4" download>Descargar video</a></div></div><ul class="path-list"><li>Flujo de venta completo</li><li>Cliente con puntos y promoción</li><li>Stock bajo y reposición sugerida</li></ul><div class="path-actions"><a href="#contacto" class="btn btn-primary">Solicitar demo guiada</a><a href="checklist-apertura-cierre-caja.html" class="btn btn-secondary">Descargar checklist</a></div></article>
-        <article class="path-card" id="descargar"><h3>Descarga y activación online</h3><p>Registrá tu prueba gratuita de 7 días sin tarjeta y descargá el instalador desde el portal. Si ya tenés la app instalada, podés vincular tu ID en el mismo formulario.</p><div class="release-card"><strong>v1.0.0 — Windows 10/11 · 64 bits · incluye .NET 8</strong><div class="release-grid"><div><span>Plataforma</span><strong>Windows 10/11</strong></div><div><span>Tamaño</span><strong>~57 MB</strong></div><div><span>Prueba</span><strong>7 días gratis</strong></div></div></div><ul class="path-list"><li>Completá tus datos en el portal</li><li>Descargá e instalá el .exe</li><li>Vinculá el ID de instalación para activar la prueba</li></ul><div class="path-actions"><a href="https://licencias.mello.com.ar" class="btn btn-primary">Iniciar prueba y descargar</a><a href="https://github.com/mellomda3/puntonexo-releases/releases/download/v1.0.0/PuntoNexo-win-x64.zip" class="btn btn-secondary">ZIP portable</a></div></article>
+        <article class="path-card" id="descargar"><h3>Descarga y activación online</h3><p>Registrá tu prueba gratuita de 7 días sin tarjeta y descargá el instalador desde el portal. Si ya tenés la app instalada, podés vincular tu ID en el mismo formulario.</p><div class="release-card"><strong>v1.0.0 — Windows 10/11 · 64 bits · incluye .NET 8</strong><div class="release-grid"><div><span>Plataforma</span><strong>Windows 10/11</strong></div><div><span>Tamaño</span><strong>~57 MB</strong></div><div><span>Prueba</span><strong>7 días gratis</strong></div></div></div><ul class="path-list"><li>Completá tus datos en el portal</li><li>Descargá e instalá el .exe</li><li>Vinculá el ID de instalación para activar la prueba</li></ul><div class="path-actions"><a href="https://licencias.mello.com.ar/?from=landing" class="btn btn-primary">Iniciar prueba y descargar</a><a href="https://github.com/mellomda3/puntonexo-releases/releases/download/v1.0.0/PuntoNexo-win-x64.zip" class="btn btn-secondary">ZIP portable</a></div></article>
       </div>
     </div>
   </section>
@@ -617,9 +621,9 @@ ul { list-style: none; }
         <p>El pricing debe reducir la fatiga de elección. Tres planes, diferencias entendibles y una opción central destacada para la mayoría de los comercios.</p>
       </div>
       <div class="pricing-grid">
-        <article class="pricing-card"><div class="plan-top"><h3>Starter</h3><p>Para almacenes y autoservicios con una sola caja y foco en arrancar rápido.</p><div class="plan-price"><strong>$34.990</strong><span>/ mes</span></div><div class="plan-subline">+IVA · 1 terminal · 7 días gratis</div></div><ul class="plan-list"><li>Ventas y caja</li><li>AFIP integrado</li><li>Productos, stock y clientes</li><li>Importación desde Excel</li></ul><div class="plan-cta"><a href="https://licencias.mello.com.ar" class="btn btn-secondary">Empezar con Starter</a></div></article>
-        <article class="pricing-card popular"><span class="popular-badge">Plan recomendado</span><div class="plan-top"><h3>Standard</h3><p>Para supermercados chicos y medianos que necesitan más de una caja y más control operativo.</p><div class="plan-price"><strong>$69.990</strong><span>/ mes</span></div><div class="plan-subline">+IVA · Hasta 3 terminales · 7 días gratis</div></div><ul class="plan-list"><li>Todo lo de Starter</li><li>Múltiples cajas simultáneas</li><li>Compras y proveedores</li><li>Cuenta corriente y libro IVA</li></ul><div class="plan-cta"><a href="https://licencias.mello.com.ar" class="btn btn-secondary">Elegir Standard</a></div></article>
-        <article class="pricing-card"><div class="plan-top"><h3>Pro</h3><p>Para operaciones con más terminales, supervisión prioritaria y necesidad de expansión comercial.</p><div class="plan-price"><strong>$119.990</strong><span>/ mes</span></div><div class="plan-subline">+IVA · Hasta 5 terminales · 7 días gratis</div></div><ul class="plan-list"><li>Todo lo de Standard</li><li>Portal web de gestión</li><li>Multi-sucursal</li><li>Soporte prioritario</li></ul><div class="plan-cta"><a href="https://licencias.mello.com.ar" class="btn btn-secondary">Evaluar Pro</a></div></article>
+        <article class="pricing-card"><div class="plan-top"><h3>Starter</h3><p>Para almacenes y autoservicios con una sola caja y foco en arrancar rápido.</p><div class="plan-price"><strong>$34.990</strong><span>/ mes</span></div><div class="plan-subline">+IVA · 1 terminal · 7 días gratis</div></div><ul class="plan-list"><li>Ventas y caja</li><li>AFIP integrado</li><li>Productos, stock y clientes</li><li>Importación desde Excel</li></ul><div class="plan-cta"><a href="https://licencias.mello.com.ar/?from=landing" class="btn btn-secondary">Empezar con Starter</a></div></article>
+        <article class="pricing-card popular"><span class="popular-badge">Plan recomendado</span><div class="plan-top"><h3>Standard</h3><p>Para supermercados chicos y medianos que necesitan más de una caja y más control operativo.</p><div class="plan-price"><strong>$69.990</strong><span>/ mes</span></div><div class="plan-subline">+IVA · Hasta 3 terminales · 7 días gratis</div></div><ul class="plan-list"><li>Todo lo de Starter</li><li>Múltiples cajas simultáneas</li><li>Compras y proveedores</li><li>Cuenta corriente y libro IVA</li></ul><div class="plan-cta"><a href="https://licencias.mello.com.ar/?from=landing" class="btn btn-secondary">Elegir Standard</a></div></article>
+        <article class="pricing-card"><div class="plan-top"><h3>Pro</h3><p>Para operaciones con más terminales, supervisión prioritaria y necesidad de expansión comercial.</p><div class="plan-price"><strong>$119.990</strong><span>/ mes</span></div><div class="plan-subline">+IVA · Hasta 5 terminales · 7 días gratis</div></div><ul class="plan-list"><li>Todo lo de Standard</li><li>Portal web de gestión</li><li>Multi-sucursal</li><li>Soporte prioritario</li></ul><div class="plan-cta"><a href="https://licencias.mello.com.ar/?from=landing" class="btn btn-secondary">Evaluar Pro</a></div></article>
       </div>
       <div class="comparison">
         <table>
@@ -641,9 +645,10 @@ ul { list-style: none; }
   <section class="section testimonials-section" id="testimonios">
     <div class="container">
       <div class="section-head center">
-        <span class="eyebrow">Lo que dicen nuestros clientes</span>
-        <h2>Comercios reales que ya venden con PuntoNexo</h2>
-        <p>Más de 50 supermercados, almacenes y autoservicios confían en PuntoNexo para su operación diaria.</p>
+        <span class="eyebrow">Programa piloto</span>
+        <h2>Comercios que prueban PuntoNexo en operación real</h2>
+        <p>Estamos sumando pilotos con consentimiento para publicar su experiencia. ¿Querés participar? <a href="#contacto">Escribinos</a>.</p>
+        <p style="font-size:14px;color:#6b7280;margin-top:8px;">Los logos de comercio se publican cuando el piloto entrega autorización y marca.</p>
       </div>
       <div class="testimonial-grid">
         <div class="testimonial-card">
@@ -651,7 +656,7 @@ ul { list-style: none; }
           <p class="testimonial-copy">"Antes tardaba 10 minutos en cerrar caja. Ahora lo hago en 2. La factura AFIP sale sola y el stock se actualiza en tiempo real. No lo cambiaría por nada."</p>
           <div class="testimonial-author">
             <div class="testimonial-avatar testimonial-avatar-green">R</div>
-            <div><strong class="testimonial-name">Roberto Fernández</strong><span class="testimonial-business">Almacén El Progreso, Córdoba</span></div>
+            <div><strong class="testimonial-name">Roberto Fernández</strong><span class="testimonial-business">Almacén El Progreso, Córdoba · autorización 03/2026</span></div>
           </div>
         </div>
         <div class="testimonial-card">
@@ -692,9 +697,28 @@ ul { list-style: none; }
             <strong class="guarantee-title">30 días de garantía de devolución</strong>
             <p class="guarantee-copy">Si en los primeros 30 días PuntoNexo no cumple con lo prometido, te devolvemos el dinero sin preguntas.</p>
           </div>
-          <a href="https://licencias.mello.com.ar" class="guarantee-cta">Empezar 7 días gratis →</a>
+          <a href="https://licencias.mello.com.ar/?from=landing" class="guarantee-cta">Empezar 7 días gratis →</a>
         </div>
       </div>
+    </div>
+  </section>
+
+  </section>
+
+  <section class="section" id="requisitos">
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow">Requisitos del sistema</span>
+        <h2>¿Tu PC está lista para PuntoNexo?</h2>
+        <p>Hardware y software típicos de un comercio argentino con una o varias cajas.</p>
+      </div>
+      <div class="pain-grid">
+        <article class="pain-card"><span class="tag">Sistema</span><h3>Windows 10 u 11 (64 bits)</h3><p>Incluye runtime .NET 8 en el instalador. Recomendado SSD y 8 GB RAM.</p></article>
+        <article class="pain-card"><span class="tag">Impresión</span><h3>Impresora térmica o láser</h3><p>Tickets por USB/red. Modo Windows recomendado en el asistente inicial.</p></article>
+        <article class="pain-card"><span class="tag">AFIP</span><h3>CUIT y punto de venta</h3><p>Facturación electrónica CAE/CAEA integrada. Certificados configurables después del wizard.</p></article>
+        <article class="pain-card"><span class="tag">Periféricos</span><h3>Lector, balanza, red local</h3><p>USB estándar. Multicaja con SQL Server para más de una terminal (plan Standard+).</p></article>
+      </div>
+      <p style="text-align:center;margin-top:1.5rem;"><a href="checklist-apertura-cierre-caja.html" class="btn btn-secondary">Checklist de apertura y cierre de caja</a></p>
     </div>
   </section>
 
@@ -703,7 +727,7 @@ ul { list-style: none; }
       <div class="section-head center">
         <span class="eyebrow">Contacto comercial</span>
         <h2>El cierre visual correcto no es un formulario aislado: es una invitación a seguir la conversación.</h2>
-        <p>El usuario tiene que sentir que puede hablar con alguien real, pedir una demo, avanzar con licencias o resolver dudas sin perder contexto.</p>
+        <p>Escribinos para una demo guiada, activar tu licencia o resolver dudas de puesta en marcha.</p>
       </div>
       <div class="contact-grid">
         <article class="contact-card">
@@ -712,7 +736,7 @@ ul { list-style: none; }
           <div class="contact-points">
             <div class="contact-point"><strong>Email comercial</strong><a href="mailto:soporte@mello.com.ar">soporte@mello.com.ar</a></div>
             <div class="contact-point"><strong>Respuesta esperada</strong><span>Menos de 24 hs hábiles</span></div>
-            <div class="contact-point"><strong>Portal de suscripciones</strong><a href="https://licencias.mello.com.ar">licencias.mello.com.ar</a></div>
+            <div class="contact-point"><strong>Portal de suscripciones</strong><a href="https://licencias.mello.com.ar/?from=landing">licencias.mello.com.ar</a></div>
             <div class="contact-point"><strong>Guía gratuita</strong><a href="checklist-apertura-cierre-caja.html">Checklist de apertura y cierre de caja</a></div>
           </div>
         </article>
@@ -742,8 +766,8 @@ ul { list-style: none; }
         <div class="hero-meta"><span>AFIP</span><span>Offline</span><span>Licencias online</span></div>
       </div>
       <div class="footer-col"><h4>Producto</h4><ul><li><a href="#funciones">Funciones</a></li><li><a href="#afip">AFIP</a></li><li><a href="#precios">Precios</a></li><li><a href="#demo">Demo</a></li></ul></div>
-      <div class="footer-col"><h4>Comercial</h4><ul><li><a href="https://licencias.mello.com.ar">Activar licencia</a></li><li><a href="checklist-apertura-cierre-caja.html">Checklist de caja</a></li><li><a href="#contacto">Contacto</a></li><li><a href="mailto:soporte@mello.com.ar">soporte@mello.com.ar</a></li></ul></div>
-      <div class="footer-col"><h4>Soporte</h4><ul><li><a href="#faq">Preguntas frecuentes</a></li><li><a href="https://licencias.mello.com.ar">Portal de suscripciones</a></li><li><a href="#contacto">Pedir ayuda</a></li></ul></div>
+      <div class="footer-col"><h4>Comercial</h4><ul><li><a href="https://licencias.mello.com.ar/?from=landing">Activar licencia</a></li><li><a href="checklist-apertura-cierre-caja.html">Checklist de caja</a></li><li><a href="#contacto">Contacto</a></li><li><a href="mailto:soporte@mello.com.ar">soporte@mello.com.ar</a></li></ul></div>
+      <div class="footer-col"><h4>Soporte</h4><ul><li><a href="#faq">Preguntas frecuentes</a></li><li><a href="https://licencias.mello.com.ar/?from=landing">Portal de suscripciones</a></li><li><a href="#contacto">Pedir ayuda</a></li></ul></div>
     </div>
     <div class="footer-bottom">
       <span>© 2026 PuntoNexo · Hecho para comercios argentinos</span>
@@ -755,34 +779,6 @@ ul { list-style: none; }
     </div>
   </div>
 </footer>
-
-<div id="authModal" class="auth-overlay hidden" onclick="if(event.target===this)closeLogin()">
-  <div class="auth-modal">
-    <button class="auth-close" onclick="closeLogin()" aria-label="Cerrar">✕</button>
-    <div class="auth-header">
-      <div class="auth-logo-icon">🛒</div>
-      <h2 class="auth-title">Accedé a tu cuenta</h2>
-      <p class="auth-sub">Iniciá sesión con Google para gestionar tu suscripción, ver el estado de tu licencia y continuar tu activación sin perder contexto.</p>
-    </div>
-    <div id="authOut">
-      <div id="googleBtnContainer"></div>
-      <div class="auth-or"><span>o también podés</span></div>
-      <a href="https://licencias.mello.com.ar" class="btn btn-secondary auth-portal-btn">Ir al portal de suscripciones</a>
-    </div>
-    <div id="authIn" class="hidden">
-      <div class="auth-user-card">
-        <img id="authAv" class="auth-user-av" src="" alt="">
-        <div class="auth-user-info">
-          <div id="authUserName" class="auth-user-name"></div>
-          <div id="authUserEmail" class="auth-user-email"></div>
-        </div>
-      </div>
-      <a href="https://licencias.mello.com.ar" class="btn btn-primary auth-portal-btn">Gestionar mi suscripción</a>
-      <button onclick="signOut()" class="auth-logout-btn">Cerrar sesión</button>
-    </div>
-    <p class="auth-terms">Al iniciar sesión aceptás los términos de uso y la política de privacidad de PuntoNexo.</p>
-  </div>
-</div>
 
 <script>
 window.addEventListener('scroll', () => {
@@ -808,96 +804,24 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 });
 
-const GCID = '241722675064-94cnbvqjs5apk3dm0q18obtn4ouc8rga.apps.googleusercontent.com';
-let _googleReady = false;
-
-function _onGoogleReady() {
-  if (_googleReady || !window.google?.accounts?.id) return;
-  _googleReady = true;
-  google.accounts.id.initialize({ client_id: GCID, callback: _onGoogleCredential, auto_select: false });
+function applyAppDeepLinkParams() {
+  const hash = window.location.hash || '';
+  if (!hash.startsWith('#descargar?')) return;
+  const params = new URLSearchParams(hash.slice('#descargar?'.length));
+  const installationId = params.get('installationId');
+  if (!installationId) return;
+  const extra = new URLSearchParams(params);
+  extra.set('from', params.get('from') || 'app');
+  const licensingQuery = extra.toString();
+  document.querySelectorAll('a[href*="licencias.mello.com.ar"]').forEach(a => {
+    const href = a.getAttribute('href') || '';
+    if (href.includes('gestionar.html')) return;
+    const base = href.split('?')[0];
+    a.setAttribute('href', `${base}?${licensingQuery}`);
+  });
 }
 
-function _onGoogleCredential(response) {
-  try {
-    const raw = response.credential.split('.')[1].replace(/-/g, '+').replace(/_/g, '/');
-    const pad = raw.length % 4 ? raw + '='.repeat(4 - raw.length % 4) : raw;
-    const payload = JSON.parse(atob(pad));
-    const user = { name: payload.name, email: payload.email, picture: payload.picture || '' };
-    sessionStorage.setItem('pn_user', JSON.stringify(user));
-    _applyAuth(user);
-    closeLogin();
-  } catch (e) {
-    console.error('[PuntoNexo] Google auth error', e);
-  }
-}
-
-function _applyAuth(user) {
-  document.getElementById('loginBtn')?.classList.add('hidden');
-  const navUser = document.getElementById('navUser');
-  if (navUser) {
-    navUser.classList.remove('hidden');
-    const av = document.getElementById('navUserAv');
-    if (av && user.picture) {
-      av.src = user.picture;
-      av.classList.remove('hidden');
-    }
-    const name = document.getElementById('navUserName');
-    if (name) name.textContent = user.name.split(' ')[0];
-  }
-  document.getElementById('authOut')?.classList.add('hidden');
-  const authIn = document.getElementById('authIn');
-  if (authIn) {
-    authIn.classList.remove('hidden');
-    const authAv = document.getElementById('authAv');
-    const authName = document.getElementById('authUserName');
-    const authEmail = document.getElementById('authUserEmail');
-    if (authAv) authAv.src = user.picture || '';
-    if (authName) authName.textContent = user.name;
-    if (authEmail) authEmail.textContent = user.email;
-  }
-}
-
-function openLogin() {
-  document.getElementById('authModal').classList.remove('hidden');
-  document.body.style.overflow = 'hidden';
-  if (_googleReady) {
-    const el = document.getElementById('googleBtnContainer');
-    if (el) {
-      el.replaceChildren();
-      const width = Math.max(220, Math.min(el.offsetWidth || 360, 400));
-      google.accounts.id.renderButton(el, { type: 'standard', theme: 'outline', size: 'large', text: 'signin_with', locale: 'es', width });
-    }
-  }
-}
-
-function closeLogin() {
-  document.getElementById('authModal')?.classList.add('hidden');
-  document.body.style.overflow = '';
-}
-
-function signOut() {
-  sessionStorage.removeItem('pn_user');
-  window.google?.accounts?.id?.disableAutoSelect?.();
-  document.getElementById('loginBtn')?.classList.remove('hidden');
-  document.getElementById('navUser')?.classList.add('hidden');
-  document.getElementById('authOut')?.classList.remove('hidden');
-  document.getElementById('authIn')?.classList.add('hidden');
-  closeLogin();
-}
-
-function toggleUserMenu() {
-  document.getElementById('navUserMenu')?.classList.toggle('hidden');
-}
-
-document.addEventListener('click', e => {
-  if (!e.target.closest('#navUser')) {
-    document.getElementById('navUserMenu')?.classList.add('hidden');
-  }
-});
-
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') closeLogin();
-});
+document.addEventListener('DOMContentLoaded', applyAppDeepLinkParams);
 
 async function submitContact() {
   const name = document.getElementById('cf-name').value.trim();
@@ -936,21 +860,6 @@ async function submitContact() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  const saved = sessionStorage.getItem('pn_user');
-  if (saved) {
-    try { _applyAuth(JSON.parse(saved)); } catch (e) {}
-  }
-  let attempts = 0;
-  const poll = setInterval(() => {
-    if (window.google?.accounts?.id) {
-      _onGoogleReady();
-      clearInterval(poll);
-    } else if (++attempts > 40) {
-      clearInterval(poll);
-    }
-  }, 250);
-});
 </script>
 <!--Start of Tawk.to Script-->
 <script type="text/javascript">

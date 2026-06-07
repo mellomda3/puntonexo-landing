@@ -1,0 +1,23 @@
+name: Deploy landing (smoke)
+
+on:
+  push:
+    branches: [main, dev/cursor]
+    paths:
+      - '**'
+  workflow_dispatch:
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate config.js
+        shell: pwsh
+        run: ./scripts/build-landing.ps1 -LicensingUrl "https://licencias.mello.com.ar/?from=landing" -ReleaseVersion "1.0.0"
+      - name: Link smoke (local files exist)
+        run: |
+          test -f index.html
+          test -f config.js
+          test -f checklist-apertura-cierre-caja.html
+          grep -q "PN_CONFIG" config.js
