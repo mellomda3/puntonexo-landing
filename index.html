@@ -53,7 +53,7 @@
       "@id": "https://puntonexo.mello.com.ar/#faq",
       "mainEntity": [
         {"@type":"Question","name":"¿Qué pasa si se corta internet mientras estoy cobrando?","acceptedAnswer":{"@type":"Answer","text":"PuntoNexo opera con base local para sostener la continuidad de caja cuando internet no está disponible."}},
-        {"@type":"Question","name":"¿La facturación AFIP está incluida en todos los planes?","acceptedAnswer":{"@type":"Answer","text":"Sí. AFIP forma parte del valor principal del producto; los planes cambian por escala operativa."}},
+        {"@type":"Question","name":"¿La facturación AFIP está incluida en todos los planes?","acceptedAnswer":{"@type":"Answer","text":"AFIP está incluida desde el plan Standard. Starter es para una sola caja sin facturación electrónica; Standard y Pro incluyen CAE/CAEA integrado."}},
         {"@type":"Question","name":"¿Puedo usar lectores, impresoras y balanzas?","acceptedAnswer":{"@type":"Answer","text":"Sí. PuntoNexo está pensado para hardware común de comercio: impresoras térmicas, lectores USB y balanzas con código pesable."}},
         {"@type":"Question","name":"¿Cómo activo la licencia después de pagar?","acceptedAnswer":{"@type":"Answer","text":"Descargá PuntoNexo, configurá CUIT y sucursal en la app (ahí se genera el ID), pagá en el portal y sincronizá con tu email de compra."}},
         {"@type":"Question","name":"¿Puedo migrar mi lista de precios desde Excel?","acceptedAnswer":{"@type":"Answer","text":"Sí. La importación inicial desde Excel ayuda a acelerar la puesta en marcha del comercio."}}
@@ -456,11 +456,11 @@ ul { list-style: none; }
               <div class="side-label">Operación</div>
               <div class="side-item active">Cobrar (POS)</div>
               <div class="side-item">Sistema</div>
-              <div class="side-item">·Y"· Artículos</div>
-              <div class="side-item">·Y'· Clientes</div>
-              <div class="side-item">·Y"S Informes</div>
-              <div class="side-item">·Y·· Centro fiscal AFIP</div>
-              <div class="side-item">·sT️ Sistema</div>
+              <div class="side-item">Artículos</div>
+              <div class="side-item">Clientes</div>
+              <div class="side-item">Informes</div>
+              <div class="side-item">Centro fiscal AFIP</div>
+              <div class="side-item">Sistema</div>
             </aside>
             <div class="panel-main">
               <div class="kpis">
@@ -603,7 +603,7 @@ ul { list-style: none; }
         <aside class="faq-intro"><h3>Antes de elegir, el comercio necesita tranquilidad.</h3><p>Por eso el FAQ resuelve dudas operativas y comerciales con lenguaje simple, evitando tecnicismos innecesarios y dejando siempre una salida clara hacia contacto o activación.</p></aside>
         <div class="faq-list">
           <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">¿Qué pasa si se corta internet mientras estoy cobrando?<span class="faq-arrow">+</span></button><div class="faq-a">PuntoNexo está pensado para que la operación no dependa exclusivamente de internet. La base opera localmente y el discurso comercial se apoya en esa ventaja: continuidad de caja, menor estrés y menos riesgo en hora pico.</div></div>
-          <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">¿La facturación AFIP está incluida en todos los planes?<span class="faq-arrow">+</span></button><div class="faq-a">Sí. La promesa comercial debe ser consistente: AFIP no es un extra oculto, sino parte del valor principal del producto. Lo que cambia entre planes es la escala operativa, no la base fiscal.</div></div>
+          <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">¿La facturación AFIP está incluida en todos los planes?<span class="faq-arrow">+</span></button><div class="faq-a">AFIP está incluida desde el plan Standard. Starter cubre ventas y stock con una caja, sin facturación electrónica. Standard y Pro incluyen CAE/CAEA en el flujo de cobro.</div></div>
           <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">¿Puedo usar lectores, impresoras y balanzas?<span class="faq-arrow">+</span></button><div class="faq-a">La web transmite compatibilidad con hardware común de comercio: impresoras térmicas, lectores USB y balanzas con código pesable. Eso reduce la ansiedad previa a la compra.</div></div>
           <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">¿Cómo activo la licencia después de pagar?<span class="faq-arrow">+</span></button><div class="faq-a">Instalá PuntoNexo, configurá CUIT y sucursal (el ID se genera en la app), elegí plan en el portal, pagá con Mercado Pago y sincronizá con tu email desde Archivo → Licencia.</div></div>
           <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">¿Puedo migrar mi lista de precios desde Excel?<span class="faq-arrow">+</span></button><div class="faq-a">Sí. Mostrar importación inicial desde Excel ayuda mucho en conversión porque convierte una implementación incierta en una primera semana más controlada.</div></div>
@@ -622,7 +622,7 @@ ul { list-style: none; }
       </div>
       <div class="pricing-grid">
         <article class="pricing-card"><div class="plan-top"><h3>Starter</h3><p>Para almacenes y kioscos con una sola caja, sin facturación electrónica.</p><div class="plan-price"><strong>$34.990</strong><span>/ mes</span></div><div class="plan-subline">+IVA · 1 terminal · 7 días gratis</div></div><ul class="plan-list"><li>Ventas y caja</li><li>Productos, stock y clientes</li><li>Importación desde Excel</li><li>Reportes básicos</li></ul><div class="plan-cta"><a href="https://licencias.mello.com.ar/?from=landing&amp;plan=Starter" class="btn btn-secondary">Empezar con Starter</a></div></article>
-        <article class="pricing-card popular"><span class="popular-badge">Plan recomendado</span><div class="plan-top"><h3>Standard</h3><p>Operación completa y AFIP: desde kiosco con 1 caja hasta 3 cajas en supermercado chico.</p><div class="plan-price"><strong>$69.990</strong><span>/ mes</span></div><div class="plan-subline">+IVA · Hasta 3 terminales · 7 días gratis</div></div><ul class="plan-list"><li>Todo lo de Starter</li><li>Facturación AFIP guiada</li><li>Múltiples cajas (hasta 3)</li><li>Compras y proveedores</li><li>Fidelización y catálogo web</li></ul><div class="plan-cta"><a href="https://licencias.mello.com.ar/?from=landing&amp;plan=Standard" class="btn btn-secondary">Elegir Standard</a></div></article>
+        <article class="pricing-card popular"><span class="popular-badge">Plan recomendado</span><div class="plan-top"><h3>Standard</h3><p>Operación completa y AFIP: desde kiosco con 1 caja hasta 3 cajas en supermercado chico.</p><div class="plan-price"><strong>$69.990</strong><span>/ mes</span></div><div class="plan-subline">+IVA · Hasta 3 terminales · 7 días gratis</div></div><ul class="plan-list"><li>Todo lo de Starter</li><li>Facturación AFIP guiada</li><li>Múltiples cajas (hasta 3)</li><li>Compras y proveedores</li><li>Fidelización y catálogo web</li></ul><div class="plan-cta"><a href="https://licencias.mello.com.ar/?from=landing&amp;plan=Standard" class="btn btn-primary">Elegir Standard</a></div></article>
         <article class="pricing-card"><div class="plan-top"><h3>Pro</h3><p>Locales con muchas cajas, reportes avanzados y soporte prioritario.</p><div class="plan-price"><strong>$119.990</strong><span>/ mes</span></div><div class="plan-subline">+IVA · Hasta 10 terminales · 7 días gratis</div></div><ul class="plan-list"><li>Todo lo de Standard</li><li>Hasta 10 cajas por sucursal</li><li>Reportes avanzados y exportación</li><li>Soporte prioritario</li></ul><div class="plan-cta"><a href="https://licencias.mello.com.ar/?from=landing&amp;plan=Pro" class="btn btn-secondary">Evaluar Pro</a></div></article>
       </div>
       <div class="comparison">
@@ -804,6 +804,52 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 });
 
+function pnLicensingOrigin() {
+  const url = (window.PN_CONFIG && window.PN_CONFIG.licensingUrl) || 'https://licencias.mello.com.ar/?from=landing';
+  try { return new URL(url).origin; } catch { return 'https://licencias.mello.com.ar'; }
+}
+
+function applyPnConfig() {
+  const cfg = window.PN_CONFIG || {};
+  const licensing = cfg.licensingUrl || 'https://licencias.mello.com.ar/?from=landing';
+  const manageUrl = pnLicensingOrigin() + '/gestionar.html?from=landing';
+  const download = cfg.releaseDownloadUrl || 'https://github.com/mellomda3/puntonexo-releases/releases/latest/download/PuntoNexo-Installer.exe';
+  const support = cfg.supportEmail || 'soporte@mello.com.ar';
+
+  document.querySelectorAll('a[href*="licencias.mello.com.ar"]').forEach(a => {
+    const href = a.getAttribute('href') || '';
+    if (href.includes('gestionar.html')) {
+      a.setAttribute('href', manageUrl);
+      return;
+    }
+    if (href.includes('terminos.html') || href.includes('privacidad.html')) return;
+    const base = href.split('?')[0];
+    const q = new URLSearchParams(href.includes('?') ? href.split('?')[1] : '');
+    if (!q.get('from')) q.set('from', 'landing');
+    const plan = q.get('plan');
+    const target = new URL(licensing);
+    target.searchParams.set('from', q.get('from') || 'landing');
+    if (plan) target.searchParams.set('plan', plan);
+    a.setAttribute('href', target.toString());
+  });
+
+  document.querySelectorAll('a[href*="puntonexo-releases"][href*="PuntoNexo-Installer"]').forEach(a => {
+    a.setAttribute('href', download);
+  });
+
+  if (cfg.releaseVersion) {
+    document.querySelectorAll('.release-card strong').forEach(el => {
+      if (/v[\d.]+/.test(el.textContent))
+        el.textContent = el.textContent.replace(/v[\d.]+/, 'v' + cfg.releaseVersion);
+    });
+  }
+
+  const contactMail = document.querySelector('a[href^="mailto:soporte@"]');
+  if (contactMail) contactMail.setAttribute('href', 'mailto:' + support);
+
+  window.__pnContactApi = pnLicensingOrigin() + '/api/contact';
+}
+
 function applyAppDeepLinkParams() {
   const hash = window.location.hash || '';
   if (!hash.startsWith('#descargar?')) return;
@@ -839,6 +885,7 @@ function applyLandingPlanLinks() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  applyPnConfig();
   applyAppDeepLinkParams();
   applyLandingPlanLinks();
 });
@@ -860,7 +907,7 @@ async function submitContact() {
   btn.disabled = true;
   btn.textContent = 'Enviando...';
   try {
-    const res = await fetch('https://licencias.mello.com.ar/api/contact', {
+    const res = await fetch(window.__pnContactApi || (pnLicensingOrigin() + '/api/contact'), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, email, subject, message })
@@ -873,7 +920,7 @@ async function submitContact() {
     }
   } catch {
     const body = encodeURIComponent(`Nombre: ${name}\nEmail: ${email}\nAsunto: ${subject}\n\n${message}`);
-    window.location.href = `mailto:soporte@mello.com.ar?subject=${encodeURIComponent('Consulta PuntoNexo - ' + subject)}&body=${body}`;
+    window.location.href = `mailto:${(window.PN_CONFIG && window.PN_CONFIG.supportEmail) || 'soporte@mello.com.ar'}?subject=${encodeURIComponent('Consulta PuntoNexo - ' + subject)}&body=${body}`;
   } finally {
     btn.disabled = false;
     btn.textContent = 'Enviar mensaje';
@@ -881,17 +928,23 @@ async function submitContact() {
 }
 
 </script>
-<!--Start of Tawk.to Script-->
+<!--Start of Tawk.to Script (carga diferida para no competir con CTAs)-->
 <script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/6a151030b8b0941c39310bf4/1jph4efra';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
+function loadTawkChat(){
+  if (window.__tawkLoaded) return;
+  window.__tawkLoaded = true;
+  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+  var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+  s1.async=true;
+  s1.src='https://embed.tawk.to/6a151030b8b0941c39310bf4/1jph4efra';
+  s1.charset='UTF-8';
+  s1.setAttribute('crossorigin','*');
+  s0.parentNode.insertBefore(s1,s0);
+}
+setTimeout(loadTawkChat, 45000);
+document.addEventListener('click', function(e){
+  if (e.target.closest('a.btn-primary, a.btn-secondary, .pricing-card a')) loadTawkChat();
+}, { once: true, capture: true });
 </script>
 <!--End of Tawk.to Script-->
 </body>
