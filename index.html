@@ -1,952 +1,795 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-AR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-<script>if(location.protocol!=='https:'&&location.hostname!=='localhost')location.replace('https:'+location.href.slice(location.protocol.length));</script>
-<title>PuntoNexo | TPV argentino para supermercados, almacenes y autoservicios</title>
-<meta name="description" content="PuntoNexo es el TPV argentino que factura AFIP, funciona offline, gestiona stock y fideliza clientes. Probalo, activá tu licencia online y vendé sin frenar la caja.">
-<meta property="og:title" content="PuntoNexo | TPV argentino para comercios que no pueden frenar la caja">
-<meta property="og:description" content="Facturación AFIP, operación offline, stock, fidelización y licencias online para supermercados y almacenes argentinos.">
-<meta property="og:type" content="website">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Source+Sans+3:wght@400;500;600;700;800&display=swap&display=swap" rel="stylesheet">
-<!-- Google tag (GA4) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-B0GLCDBLD8"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-B0GLCDBLD8');
-</script>
-<!-- JSON-LD Schema Markup -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Organization",
-      "@id": "https://puntonexo.mello.com.ar/#organization",
-      "name": "PuntoNexo",
-      "url": "https://puntonexo.mello.com.ar",
-      "email": "soporte@mello.com.ar"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "@id": "https://puntonexo.mello.com.ar/#software",
-      "name": "PuntoNexo TPV",
-      "applicationCategory": "BusinessApplication",
-      "operatingSystem": "Windows 10, Windows 11",
-      "offers": [
-        {"@type":"Offer","name":"Starter","price":"34990","priceCurrency":"ARS","priceValidUntil":"2026-12-31"},
-        {"@type":"Offer","name":"Standard","price":"69990","priceCurrency":"ARS","priceValidUntil":"2026-12-31"},
-        {"@type":"Offer","name":"Pro","price":"119990","priceCurrency":"ARS","priceValidUntil":"2026-12-31"}
-      ],
-      "description": "TPV argentino para supermercados, almacenes y autoservicios. Facturación AFIP, operación offline, stock y fidelización de clientes.",
-      "url": "https://puntonexo.mello.com.ar",
-      "publisher": {"@id": "https://puntonexo.mello.com.ar/#organization"}
-    },
-    {
-      "@type": "FAQPage",
-      "@id": "https://puntonexo.mello.com.ar/#faq",
-      "mainEntity": [
-        {"@type":"Question","name":"¿Qué pasa si se corta internet mientras estoy cobrando?","acceptedAnswer":{"@type":"Answer","text":"PuntoNexo opera con base local para sostener la continuidad de caja cuando internet no está disponible."}},
-        {"@type":"Question","name":"¿La facturación AFIP está incluida en todos los planes?","acceptedAnswer":{"@type":"Answer","text":"AFIP está incluida desde el plan Standard. Starter es para una sola caja sin facturación electrónica; Standard y Pro incluyen CAE/CAEA integrado."}},
-        {"@type":"Question","name":"¿Puedo usar lectores, impresoras y balanzas?","acceptedAnswer":{"@type":"Answer","text":"Sí. PuntoNexo está pensado para hardware común de comercio: impresoras térmicas, lectores USB y balanzas con código pesable."}},
-        {"@type":"Question","name":"¿Cómo activo la licencia después de pagar?","acceptedAnswer":{"@type":"Answer","text":"Descargá PuntoNexo, configurá CUIT y sucursal en la app (ahí se genera el ID), pagá en el portal y sincronizá con tu email de compra."}},
-        {"@type":"Question","name":"¿Puedo migrar mi lista de precios desde Excel?","acceptedAnswer":{"@type":"Answer","text":"Sí. La importación inicial desde Excel ayuda a acelerar la puesta en marcha del comercio."}}
-      ]
-    }
-  ]
-}
-</script>
-<script src="config.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PuntoNexo — El TPV que no te falla. Aunque caiga internet.</title>
+  <meta name="description" content="Sistema de punto de venta para supermercados y almacenes argentinos. Facturación ARCA, operación offline, stock y fidelización. Probalo 14 días sin tarjeta.">
+  <meta property="og:title" content="PuntoNexo — TPV argentino que funciona sin internet">
+  <meta property="og:description" content="Facturá con ARCA, controlá el stock y cerrá caja aunque caiga internet. Probá 14 días gratis.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://puntonexo.mello.com.ar/og-image.png">
+  <link rel="canonical" href="https://puntonexo.mello.com.ar">
+  <link rel="icon" href="/favicon.ico">
+  <script>if(location.protocol!=='https:'&&location.hostname!=='localhost')location.replace('https:'+location.href.slice(location.protocol.length));</script>
+
+  <!-- Fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Config dinámica (versión, URL descarga) -->
+  <script src="config.js"></script>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-B0GLCDBLD8"></script>
+  <script>
+    window.dataLayer=window.dataLayer||[];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js',new Date());
+    gtag('config','G-B0GLCDBLD8');
+  </script>
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@graph":[
+      {"@type":"Organization","@id":"https://puntonexo.mello.com.ar/#org","name":"PuntoNexo","url":"https://puntonexo.mello.com.ar","email":"soporte@mello.com.ar"},
+      {"@type":"SoftwareApplication","@id":"https://puntonexo.mello.com.ar/#app","name":"PuntoNexo","applicationCategory":"BusinessApplication","operatingSystem":"Windows 10, Windows 11","offers":[{"@type":"Offer","name":"Starter","price":"24990","priceCurrency":"ARS"},{"@type":"Offer","name":"Standard","price":"69990","priceCurrency":"ARS"},{"@type":"Offer","name":"Pro","price":"119990","priceCurrency":"ARS"}],"description":"TPV argentino para supermercados y almacenes. Funciona sin internet, con facturación ARCA integrada.","url":"https://puntonexo.mello.com.ar"},
+      {"@type":"FAQPage","@id":"https://puntonexo.mello.com.ar/#faq","mainEntity":[{"@type":"Question","name":"¿Necesito internet para vender?","acceptedAnswer":{"@type":"Answer","text":"No. PuntoNexo funciona en tu PC aunque no haya conexión. Solo necesitás internet para activar la licencia y sincronizar ARCA."}},{"@type":"Question","name":"¿La facturación ARCA está incluida?","acceptedAnswer":{"@type":"Answer","text":"ARCA está incluida en Standard y Pro. Starter es para comercios que aún no facturan electrónicamente."}},{"@type":"Question","name":"¿Puedo probar antes de pagar?","acceptedAnswer":{"@type":"Answer","text":"Sí, 14 días completos sin tarjeta de crédito. Acceso a todas las funciones del plan elegido."}}]}
+    ]
+  }
+  </script>
+
 <style>
-* , *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* ── Tokens ── */
 :root {
-  --forest-950: #092f29;
-  --forest-900: #0c3b33;
-  --forest-800: #0f5a48;
-  --forest-700: #12715b;
-  --mint-500:   #1dc48c;
-  --mint-400:   #38d39f;
-  --mint-100:   #e8fbf3;
-  --blue-900:   #122c5b;
-  --blue-100:   #e8f0ff;
-  --amber-100:  #fff4da;
-  --sand-50:    #fbfaf7;
-  --sand-100:   #f4f1ea;
-  --slate-900:  #18222d;
-  --slate-800:  #223241;
-  --slate-700:  #425364;
-  --slate-500:  #738393;
-  --line:       #dde5eb;
-  --white:      #ffffff;
-  --shadow-sm:  0 6px 18px rgba(15, 35, 30, .08);
-  --shadow-md:  0 20px 60px rgba(10, 32, 28, .12);
-  --shadow-lg:  0 30px 90px rgba(9, 34, 29, .18);
-  --font-head:  'Archivo', system-ui, sans-serif;
-  --font-body:  'Source Sans 3', system-ui, sans-serif;
+  --forest:      #1B4332;
+  --forest-dk:   #0d2b1f;
+  --forest-lt:   #2D6A4F;
+  --forest-bg:   #f0f7f3;
+  --mint:        #95D5B2;
+  --mint-lt:     #d8f3e8;
+  --cream:       #FAF9F6;
+  --cream-dk:    #F0EDE5;
+  --ink:         #1A1A1A;
+  --muted:       #6B7280;
+  --border:      #E5E0D8;
+  --success:     #059669;
+  --error:       #DC2626;
+  --radius:      10px;
+  --radius-lg:   16px;
+  --radius-xl:   24px;
+  --font-d:      'DM Sans', system-ui, sans-serif;
+  --font-b:      'Inter', system-ui, sans-serif;
+  --shadow:      0 4px 16px rgba(27,67,50,.10);
+  --shadow-lg:   0 12px 40px rgba(27,67,50,.14);
+  --container:   1160px;
 }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-body {
-  font-family: var(--font-body);
-  color: var(--slate-900);
-  background:
-    radial-gradient(circle at top left, rgba(29,196,140,.13), transparent 28%),
-    linear-gradient(180deg, #f8fbfa 0%, #fbfaf7 32%, #ffffff 100%);
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-}
+body { font-family: var(--font-b); color: var(--ink); background: var(--cream); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+img { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
-button, input, textarea, select { font: inherit; }
-img { max-width: 100%; display: block; }
-ul { list-style: none; }
-.hidden { display: none !important; }
-.container { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
-.section { padding: 96px 0; }
-.section.alt { background: linear-gradient(180deg, rgba(244,241,234,.55), rgba(255,255,255,0)); }
-.eyebrow {
-  display: inline-flex; align-items: center; gap: 10px; padding: 9px 14px; border-radius: 999px;
-  background: rgba(255,255,255,.82); border: 1px solid rgba(18,92,70,.12); color: var(--forest-800);
-  font-size: 13px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
-}
-.eyebrow::before {
-  content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--mint-500);
-  box-shadow: 0 0 0 6px rgba(29,196,140,.14);
-}
-.section-head { max-width: 760px; }
-.section-head.center { margin: 0 auto; text-align: center; }
-.section-head h2 {
-  margin-top: 18px; font-family: var(--font-head); font-size: clamp(34px, 5vw, 54px);
-  line-height: 1.05; letter-spacing: -.045em;
-}
-.section-head p { margin-top: 18px; font-size: 20px; line-height: 1.55; color: var(--slate-700); }
+::selection { background: var(--mint); color: var(--forest); }
+
+/* ── Utilidades ── */
+.container { max-width: var(--container); margin: 0 auto; padding: 0 24px; }
+.section { padding: 80px 0; }
+.section-alt { background: var(--cream-dk); }
+.section-dark { background: var(--forest-dk); color: #fff; }
+.tag { display: inline-block; background: var(--mint-lt); color: var(--forest); font-family: var(--font-d); font-size: .75rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 4px 12px; border-radius: 999px; margin-bottom: 14px; }
+.section-title { font-family: var(--font-d); font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800; line-height: 1.2; margin-bottom: 16px; }
+.section-sub { font-size: 1.05rem; color: var(--muted); max-width: 580px; }
+.text-center { text-align: center; }
+.text-center .section-sub { margin: 0 auto; }
+
+/* ── Botones ── */
 .btn {
-  display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 0 22px;
-  border-radius: 999px; border: 1px solid transparent; font-size: 16px; font-weight: 800;
-  transition: transform .18s ease, box-shadow .18s ease, background .18s ease, color .18s ease, border-color .18s ease;
-  cursor: pointer;
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-d); font-weight: 700; font-size: .95rem;
+  padding: 14px 28px; border-radius: var(--radius); border: 2px solid transparent;
+  cursor: pointer; transition: all 150ms ease; white-space: nowrap; text-decoration: none;
 }
-.btn:hover { transform: translateY(-1px); }
-.btn-primary { color: var(--white); background: linear-gradient(135deg, var(--forest-700), var(--mint-500)); box-shadow: 0 16px 34px rgba(18,113,91,.24); }
-.btn-secondary { color: var(--forest-900); background: rgba(255,255,255,.92); border-color: rgba(12,59,51,.12); }
-.btn-ghost { color: var(--slate-700); background: transparent; border-color: rgba(34,50,65,.12); }
-.site-nav {
-  position: sticky; top: 0; z-index: 100; -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); background: rgba(251,250,247,.82);
-  border-bottom: 1px solid rgba(24,34,45,.06);
+.btn-primary { background: var(--forest); color: #fff; border-color: var(--forest); }
+.btn-primary:hover { background: var(--forest-lt); border-color: var(--forest-lt); }
+.btn-outline { background: transparent; color: var(--forest); border-color: var(--forest); }
+.btn-outline:hover { background: var(--forest-bg); }
+.btn-ghost { background: transparent; color: var(--muted); border-color: transparent; }
+.btn-ghost:hover { color: var(--ink); }
+.btn-lg { padding: 17px 36px; font-size: 1.05rem; }
+.btn-sm { padding: 9px 18px; font-size: .85rem; }
+
+/* ── Nav ── */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(250,249,246,.93);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
 }
-.site-nav.scrolled { box-shadow: 0 14px 40px rgba(16,28,39,.08); }
-.nav-inner { display: flex; align-items: center; gap: 28px; min-height: 78px; }
-.brand { display: flex; align-items: center; gap: 14px; font-family: var(--font-head); font-size: 23px; font-weight: 800; letter-spacing: -.04em; }
-.brand-mark {
-  width: 44px; height: 44px; border-radius: 14px; background: linear-gradient(145deg, var(--forest-900), var(--mint-500));
-  display: grid; place-items: center; color: var(--white); box-shadow: 0 12px 24px rgba(12,59,51,.22);
+.nav-inner {
+  display: flex; align-items: center; gap: 8px;
+  height: 64px; max-width: var(--container); margin: 0 auto; padding: 0 24px;
 }
-.brand strong { color: var(--mint-500); }
-.nav-links { display: flex; align-items: center; gap: 6px; margin-left: 12px; flex: 1; }
-.nav-links a { padding: 10px 14px; border-radius: 999px; color: var(--slate-700); font-size: 15px; font-weight: 700; }
-.nav-links a:hover { color: var(--forest-900); background: rgba(18,113,91,.07); }
-.nav-actions { display: flex; align-items: center; gap: 10px; }
-.nav-user { position: relative; }
-.nav-user-btn {
-  display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 14px; border-radius: 999px;
-  border: 1px solid rgba(24,34,45,.1); background: rgba(255,255,255,.9); font-weight: 700; color: var(--forest-900);
+.nav-logo {
+  font-family: var(--font-d); font-weight: 800; font-size: 1.2rem;
+  color: var(--forest); display: flex; align-items: center; gap: 8px; margin-right: auto;
+  letter-spacing: -.02em;
 }
-.nav-user-av { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; }
-.nav-user-menu {
-  position: absolute; top: calc(100% + 10px); right: 0; min-width: 230px; border-radius: 20px; background: var(--white);
-  box-shadow: var(--shadow-md); border: 1px solid rgba(24,34,45,.08); padding: 10px;
+.nav-logo span { color: var(--mint); }
+.nav-links { display: flex; align-items: center; gap: 4px; }
+.nav-links a { font-size: .9rem; font-weight: 500; padding: 8px 12px; border-radius: 8px; color: var(--ink); transition: all 150ms; }
+.nav-links a:hover { background: var(--cream-dk); color: var(--forest); }
+.nav-cta { margin-left: 8px; }
+.nav-mobile-btn { display: none; flex-direction: column; gap: 5px; padding: 8px; border-radius: 8px; cursor: pointer; }
+.nav-mobile-btn span { display: block; width: 22px; height: 2px; background: var(--ink); border-radius: 2px; transition: all 200ms; }
+.nav-mobile-menu { display: none; position: absolute; top: 64px; left: 0; right: 0; background: var(--cream); border-bottom: 1px solid var(--border); padding: 12px 24px 20px; flex-direction: column; gap: 4px; }
+.nav-mobile-menu a { display: block; padding: 10px 12px; font-weight: 500; border-radius: 8px; }
+.nav-mobile-menu a:hover { background: var(--cream-dk); }
+.nav-mobile-menu .btn { width: 100%; justify-content: center; margin-top: 8px; }
+@media (max-width: 768px) {
+  .nav-links, .nav-cta { display: none; }
+  .nav-mobile-btn { display: flex; }
+  .nav-mobile-menu.open { display: flex; }
 }
-.nav-user-menu a, .nav-user-menu button {
-  display: flex; width: 100%; align-items: center; gap: 10px; padding: 12px 14px; border-radius: 14px;
-  background: transparent; border: none; font-weight: 700; color: var(--slate-800); text-align: left; cursor: pointer;
+
+/* ── Hero ── */
+.hero {
+  padding: 72px 0 80px;
+  background: linear-gradient(160deg, var(--cream) 60%, var(--forest-bg) 100%);
+  overflow: hidden; position: relative;
 }
-.nav-user-menu a:hover, .nav-user-menu button:hover { background: rgba(18,113,91,.07); }
-.hero { position: relative; padding: 52px 0 84px; }
-.hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 44px; align-items: center; }
-.hero-copy h1 {
-  margin-top: 24px; font-family: var(--font-head); font-size: clamp(48px, 7vw, 82px); line-height: .96;
-  letter-spacing: -.06em; max-width: 760px;
+.hero-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--mint-lt); color: var(--forest); border: 1px solid var(--mint);
+  padding: 6px 14px; border-radius: 999px; font-size: .8rem; font-weight: 600;
+  margin-bottom: 20px;
 }
-.hero-copy h1 span { color: var(--forest-700); }
-.hero-copy p { margin-top: 22px; max-width: 690px; font-size: 23px; line-height: 1.48; color: var(--slate-700); }
-.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 30px; }
-.hero-meta, .hero-badges { display: flex; flex-wrap: wrap; gap: 10px; }
-.hero-meta { margin-top: 28px; }
-.hero-badges { margin-top: 18px; }
-.hero-meta span, .hero-badges span {
-  padding: 10px 14px; border-radius: 999px; background: rgba(255,255,255,.86); border: 1px solid rgba(24,34,45,.08);
-  box-shadow: var(--shadow-sm); font-size: 14px; font-weight: 800; color: var(--slate-800);
+.hero-badge::before { content: ''; width: 8px; height: 8px; background: var(--success); border-radius: 50%; }
+.hero h1 {
+  font-family: var(--font-d); font-weight: 800;
+  font-size: clamp(2rem, 4.5vw, 3rem); line-height: 1.12; letter-spacing: -.03em;
+  color: var(--forest-dk); margin-bottom: 20px;
 }
-.hero-panel { padding: 18px; border-radius: 32px; background: linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.78)); border: 1px solid rgba(24,34,45,.08); box-shadow: var(--shadow-lg); }
-.panel-window { overflow: hidden; border-radius: 26px; background: #fdfefe; border: 1px solid rgba(24,34,45,.08); }
-.panel-top { display: flex; align-items: center; justify-content: space-between; padding: 18px 20px; background: linear-gradient(180deg, #0d4036, #0b332c); color: var(--white); }
-.panel-title { font-size: 15px; font-weight: 800; }
-.panel-pill {
-  display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px;
-  background: rgba(255,255,255,.12); font-size: 12px; font-weight: 800;
+.hero h1 em { font-style: normal; color: var(--forest); }
+.hero-lead { font-size: 1.1rem; color: var(--muted); max-width: 480px; margin-bottom: 32px; line-height: 1.7; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 24px; }
+.hero-meta { font-size: .82rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 16px; }
+.hero-meta span { display: flex; align-items: center; gap: 5px; }
+.hero-meta span::before { content: '✓'; color: var(--success); font-weight: 700; }
+.hero-screen {
+  background: var(--forest-dk); border-radius: var(--radius-xl); overflow: hidden;
+  box-shadow: var(--shadow-lg); aspect-ratio: 16/10; position: relative;
+  border: 3px solid rgba(255,255,255,.08);
 }
-.panel-pill::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #6af1be; box-shadow: 0 0 0 4px rgba(106,241,190,.18); }
-.panel-body { display: grid; grid-template-columns: 220px 1fr; min-height: 520px; }
-.panel-side { padding: 20px 16px; background: linear-gradient(180deg, #f7f9fb, #eef3f6); border-right: 1px solid rgba(24,34,45,.06); }
-.side-label { margin-bottom: 8px; font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--slate-500); }
-.side-item { display: flex; align-items: center; gap: 10px; padding: 11px 12px; margin-bottom: 8px; border-radius: 16px; font-size: 15px; font-weight: 700; color: var(--slate-700); }
-.side-item.active { color: var(--forest-900); background: var(--white); box-shadow: 0 10px 24px rgba(34,50,65,.08); }
-.panel-main { padding: 24px; display: grid; grid-template-rows: auto auto 1fr auto; gap: 18px; }
-.kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-.kpi { padding: 16px; border-radius: 18px; background: linear-gradient(180deg, #ffffff, #f7f9fb); border: 1px solid rgba(24,34,45,.06); }
-.kpi small { display: block; font-size: 13px; font-weight: 700; color: var(--slate-500); }
-.kpi strong { display: block; margin-top: 8px; font-size: 28px; font-family: var(--font-head); }
-.scan-bar { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 16px 18px; border-radius: 18px; background: var(--sand-50); border: 1px solid rgba(24,34,45,.07); }
-.scan-bar strong { font-size: 16px; }
-.scan-bar span { color: var(--slate-700); }
-.scan-bar code { padding: 8px 12px; border-radius: 12px; background: var(--white); border: 1px solid rgba(24,34,45,.08); font-weight: 800; color: var(--blue-900); }
-.ticket-grid { display: grid; gap: 10px; }
-.ticket-row { display: grid; grid-template-columns: 1fr 80px 110px 110px; gap: 10px; align-items: center; padding: 14px 16px; border-radius: 18px; background: var(--white); border: 1px solid rgba(24,34,45,.07); }
-.ticket-row.header { background: transparent; border: none; padding: 0 6px; color: var(--slate-500); font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
-.ticket-row .name { font-weight: 800; color: var(--slate-900); }
-.ticket-row .muted { font-size: 13px; color: var(--slate-500); }
-.ticket-row .price { font-weight: 800; text-align: right; }
-.checkout-band { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 20px 22px; border-radius: 22px; background: linear-gradient(135deg, var(--forest-900), var(--forest-700)); color: var(--white); }
-.checkout-band small { display: block; font-size: 13px; opacity: .8; }
-.checkout-band strong { display: block; margin-top: 4px; font-family: var(--font-head); font-size: 38px; }
-.checkout-actions { display: flex; gap: 10px; }
-.checkout-actions button { min-width: 128px; min-height: 50px; border: none; border-radius: 16px; font-weight: 800; }
-.checkout-actions .pay { background: var(--white); color: var(--forest-900); }
-.checkout-actions .aux { background: rgba(255,255,255,.14); color: var(--white); }
-.proof-strip { margin-top: 16px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
-.proof-card { padding: 20px 22px; border-radius: 24px; background: rgba(255,255,255,.8); border: 1px solid rgba(24,34,45,.06); box-shadow: var(--shadow-sm); }
-.proof-card strong { display: block; font-size: 17px; font-weight: 800; color: var(--forest-900); }
-.proof-card span { display: block; margin-top: 6px; color: var(--slate-700); line-height: 1.5; }
-.pain-grid, .feature-grid, .path-grid, .pricing-grid, .contact-grid { display: grid; gap: 18px; }
-.pain-grid { grid-template-columns: repeat(3, 1fr); margin-top: 36px; }
-.pain-card, .feature-card, .path-card, .pricing-card, .contact-card, .faq-intro {
-  overflow: hidden; border-radius: 28px; background: rgba(255,255,255,.88); border: 1px solid rgba(24,34,45,.07); box-shadow: var(--shadow-sm);
+.hero-screen-bar {
+  background: rgba(255,255,255,.05); padding: 10px 14px;
+  display: flex; align-items: center; gap: 6px;
 }
-.pain-card { padding: 28px; }
-.pain-card .tag { display: inline-flex; padding: 7px 12px; border-radius: 999px; background: var(--amber-100); color: #8a5e0f; font-size: 12px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
-.pain-card h3 { margin-top: 18px; font-family: var(--font-head); font-size: 28px; letter-spacing: -.04em; }
-.pain-card p { margin-top: 14px; color: var(--slate-700); font-size: 18px; line-height: 1.55; }
-.pain-card strong { color: var(--forest-800); }
-.feature-grid { grid-template-columns: repeat(2, 1fr); margin-top: 34px; }
-.feature-card { padding: 28px; display: grid; grid-template-columns: 110px 1fr; gap: 22px; align-items: start; }
-.feature-screen { height: 104px; border-radius: 22px; background: linear-gradient(180deg, #eef4f8, #f8fbfd); border: 1px solid rgba(24,34,45,.08); display: grid; place-items: center; font-size: 34px; }
-.feature-body h3 { font-family: var(--font-head); font-size: 28px; letter-spacing: -.04em; }
-.feature-body p { margin-top: 12px; font-size: 18px; line-height: 1.55; color: var(--slate-700); }
-.feature-list { display: grid; gap: 8px; margin-top: 16px; }
-.feature-list li { color: var(--slate-800); font-weight: 700; }
-.feature-list li::before { content: "·o" "; color: var(--mint-500); font-weight: 900; }
-.afip-shell { margin-top: 36px; display: grid; grid-template-columns: 1.02fr .98fr; gap: 26px; }
-.afip-copy, .afip-ticket { padding: 34px; border-radius: 32px; background: linear-gradient(180deg, rgba(255,255,255,.94), rgba(246,249,252,.94)); border: 1px solid rgba(24,34,45,.08); box-shadow: var(--shadow-md); }
-.afip-points { display: grid; gap: 16px; }
-.afip-point { display: grid; grid-template-columns: 48px 1fr; gap: 14px; align-items: start; }
-.afip-icon { width: 48px; height: 48px; border-radius: 16px; display: grid; place-items: center; background: var(--blue-100); color: var(--blue-900); font-size: 22px; }
-.afip-point strong { display: block; font-size: 18px; }
-.afip-point span { display: block; margin-top: 6px; color: var(--slate-700); line-height: 1.52; }
-.ticket-paper { max-width: 380px; margin: 0 auto; padding: 28px; border-radius: 20px; background: repeating-linear-gradient(180deg, #ffffff, #ffffff 24px, #fcfcfc 24px, #fcfcfc 25px); border: 1px solid rgba(24,34,45,.08); box-shadow: 0 20px 40px rgba(24,34,45,.08); }
-.ticket-paper h4 { text-align: center; font-family: var(--font-head); font-size: 24px; }
-.ticket-paper .meta { margin-top: 6px; text-align: center; color: var(--slate-700); font-size: 14px; line-height: 1.4; }
-.ticket-paper .meta-extra { margin-top: 16px; }
-.ticket-paper .line { display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px dashed rgba(24,34,45,.14); font-size: 15px; }
-.ticket-paper .line.total { margin-top: 8px; font-weight: 900; font-size: 17px; }
-.ticket-qr { width: 92px; height: 92px; margin: 22px auto 10px; border: 6px solid var(--slate-900); background: repeating-linear-gradient(90deg, #000 0, #000 10px, transparent 10px, transparent 22px), repeating-linear-gradient(#000 0, #000 10px, transparent 10px, transparent 22px), #fff; }
-.ticket-foot { text-align: center; font-size: 13px; color: var(--slate-700); }
-.path-grid { grid-template-columns: 1fr 1fr; margin-top: 36px; }
-.path-card { padding: 30px; }
-.path-card h3 { font-family: var(--font-head); font-size: 30px; letter-spacing: -.04em; }
-.path-card p { margin-top: 12px; color: var(--slate-700); font-size: 18px; line-height: 1.55; }
-.path-list { display: grid; gap: 10px; margin-top: 18px; }
-.path-list li { font-weight: 700; color: var(--slate-800); }
-.path-list li::before { content: "\2022 "; color: var(--mint-500); font-size: 20px; }
-.demo-video-card { margin-top: 26px; padding: 16px; border-radius: 24px; background: #0b211b; border: 1px solid rgba(24,34,45,.08); box-shadow: var(--shadow-md); }
-.demo-video-card video { display: block; width: 100%; aspect-ratio: 16 / 9; border-radius: 18px; background: #07120f; object-fit: cover; }
-.demo-video-caption { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 12px; color: rgba(255,255,255,.78); font-size: 14px; font-weight: 700; }
-.release-card { margin-top: 22px; padding: 18px 20px; border-radius: 20px; background: linear-gradient(180deg, #f7fafc, #edf3f7); border: 1px solid rgba(24,34,45,.08); }
-.release-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 14px; }
-.release-grid div { padding: 14px; border-radius: 16px; background: rgba(255,255,255,.9); border: 1px solid rgba(24,34,45,.06); }
-.release-grid span { display: block; font-size: 13px; color: var(--slate-500); font-weight: 700; }
-.release-grid strong { display: block; margin-top: 4px; font-size: 16px; }
-.path-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
-.pricing-grid { grid-template-columns: repeat(3, 1fr); margin-top: 36px; }
-.pricing-card { padding: 28px; }
-.pricing-card.popular { background: linear-gradient(180deg, #0d4036, #115547); color: var(--white); box-shadow: var(--shadow-lg); }
-.popular-badge { display: inline-flex; padding: 8px 12px; border-radius: 999px; background: rgba(255,255,255,.15); font-size: 12px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
-.plan-top h3 { margin-top: 16px; font-family: var(--font-head); font-size: 30px; letter-spacing: -.04em; }
-.plan-top p { margin-top: 10px; opacity: .88; line-height: 1.5; font-size: 17px; }
-.plan-price { margin-top: 18px; display: flex; align-items: end; gap: 8px; }
-.plan-price strong { font-family: var(--font-head); font-size: 52px; line-height: .9; letter-spacing: -.06em; }
-.plan-price span { font-size: 18px; font-weight: 700; opacity: .78; }
-.plan-subline { margin-top: 8px; font-size: 15px; font-weight: 700; opacity: .82; }
-.plan-list { display: grid; gap: 10px; margin-top: 22px; }
-.plan-list li { line-height: 1.45; font-size: 16px; font-weight: 700; }
-.plan-list li::before { content: "·o" "; color: var(--mint-400); font-weight: 900; }
-.pricing-card:not(.popular) .plan-list li::before { color: var(--forest-700); }
-.plan-cta { margin-top: 24px; }
-.plan-cta .btn { width: 100%; }
-.comparison { margin-top: 30px; overflow: auto; border-radius: 26px; border: 1px solid rgba(24,34,45,.08); background: var(--white); box-shadow: var(--shadow-sm); }
-.comparison table { width: 100%; border-collapse: collapse; min-width: 780px; }
-.comparison th, .comparison td { padding: 16px 18px; text-align: left; border-bottom: 1px solid rgba(24,34,45,.07); }
-.comparison th { background: var(--sand-50); font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--slate-500); }
-.comparison td:first-child { font-weight: 800; color: var(--slate-800); }
-.testimonials-section { background: linear-gradient(180deg, #f0fdf4, #ffffff); }
-.testimonial-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
-.testimonial-card { background: #fff; border-radius: 24px; padding: 28px; border: 1px solid rgba(24,34,45,.07); box-shadow: 0 4px 18px rgba(0,0,0,.06); }
-.testimonial-stars { color: #f59e0b; font-size: 18px; margin-bottom: 16px; }
-.testimonial-copy { color: #374151; font-size: 16px; line-height: 1.65; margin-bottom: 20px; }
-.testimonial-author { display: flex; align-items: center; gap: 12px; }
-.testimonial-avatar { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; color: #fff; font-weight: 700; font-size: 18px; }
-.testimonial-avatar-green { background: linear-gradient(135deg,#0f5a48,#1dc48c); }
-.testimonial-avatar-blue { background: linear-gradient(135deg,#1e40af,#3b82f6); }
-.testimonial-avatar-violet { background: linear-gradient(135deg,#7c3aed,#a78bfa); }
-.testimonial-avatar-amber { background: linear-gradient(135deg,#b45309,#f59e0b); }
-.testimonial-avatar-teal { background: linear-gradient(135deg,#0f766e,#2dd4bf); }
-.testimonial-name { display: block; color: #0f2d1f; }
-.testimonial-business { font-size: 13px; color: #6b7280; }
-.guarantee-card { background: linear-gradient(135deg,#0f2d1f,#12715b); border-radius: 24px; padding: 28px; display: flex; flex-direction: column; justify-content: space-between; }
-.guarantee-icon { font-size: 40px; margin-bottom: 16px; }
-.guarantee-title { display: block; color: #fff; font-size: 22px; line-height: 1.3; margin-bottom: 12px; }
-.guarantee-copy { color: #a7f3d0; font-size: 15px; line-height: 1.6; }
-.guarantee-cta { display: inline-flex; align-items: center; justify-content: center; margin-top: 24px; background: #1dc48c; color: #0f2d1f; padding: 14px 24px; border-radius: 999px; font-weight: 700; font-size: 15px; }
-.faq-wrap { margin-top: 34px; display: grid; grid-template-columns: 340px 1fr; gap: 22px; }
-.faq-intro { padding: 28px; }
-.faq-intro h3 { font-family: var(--font-head); font-size: 30px; letter-spacing: -.04em; }
-.faq-intro p { margin-top: 14px; color: var(--slate-700); font-size: 18px; line-height: 1.55; }
-.faq-list { display: grid; gap: 12px; }
-.faq-item { border-radius: 22px; background: rgba(255,255,255,.9); border: 1px solid rgba(24,34,45,.07); box-shadow: var(--shadow-sm); overflow: hidden; }
-.faq-q { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 22px 24px; background: transparent; border: none; text-align: left; font-size: 19px; font-weight: 800; color: var(--slate-900); cursor: pointer; }
-.faq-arrow { width: 34px; height: 34px; flex-shrink: 0; display: grid; place-items: center; border-radius: 50%; background: var(--mint-100); color: var(--forest-800); font-size: 20px; font-weight: 900; }
-.faq-a { max-height: 0; overflow: hidden; transition: max-height .24s ease, padding .24s ease; padding: 0 24px; color: var(--slate-700); font-size: 17px; line-height: 1.6; }
-.faq-item.open .faq-a { max-height: 240px; padding: 0 24px 22px; }
-.faq-item.open .faq-arrow { transform: rotate(45deg); }
-.contact-grid { grid-template-columns: .92fr 1.08fr; margin-top: 34px; }
-.contact-card { padding: 30px; }
-.contact-card h3 { font-family: var(--font-head); font-size: 30px; letter-spacing: -.04em; }
-.contact-card p { margin-top: 14px; color: var(--slate-700); font-size: 18px; line-height: 1.55; }
-.contact-points { display: grid; gap: 14px; margin-top: 20px; }
-.contact-point { padding: 16px 18px; border-radius: 18px; background: linear-gradient(180deg, #f8fbfd, #eef4f7); border: 1px solid rgba(24,34,45,.07); }
-.contact-point strong { display: block; font-size: 16px; }
-.contact-point span, .contact-point a { display: block; margin-top: 6px; color: var(--slate-700); }
-.contact-form { display: grid; gap: 14px; margin-top: 20px; }
-.contact-form label { display: block; margin-bottom: 8px; font-size: 14px; font-weight: 800; color: var(--slate-800); }
-.contact-form input, .contact-form select, .contact-form textarea { width: 100%; min-height: 54px; padding: 0 16px; border-radius: 16px; border: 1px solid rgba(24,34,45,.12); background: rgba(255,255,255,.96); color: var(--slate-900); }
-.contact-form textarea { min-height: 150px; padding: 14px 16px; resize: vertical; }
-.cf-error { display: none; font-size: 14px; font-weight: 700; color: #b42318; }
-.cf-success { display: none; padding: 18px 20px; border-radius: 18px; background: var(--mint-100); border: 1px solid rgba(18,113,91,.16); }
-.cf-success h4 { font-family: var(--font-head); font-size: 24px; }
-.cf-success p { margin-top: 10px; color: var(--slate-700); }
-.footer { padding: 36px 0 48px; background: linear-gradient(180deg, #0c2d28, #071b18); color: rgba(255,255,255,.86); }
-.footer-grid { display: grid; grid-template-columns: 1.3fr repeat(3, 1fr); gap: 26px; }
-.footer-brand p { margin-top: 18px; line-height: 1.6; max-width: 420px; color: rgba(255,255,255,.68); }
-.footer-brand .brand-footer { color: #fff; }
-.footer-brand .hero-meta { margin-top: 18px; }
-.footer-brand .hero-meta span { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.1); color: rgba(255,255,255,.86); box-shadow: none; }
-.footer-col h4 { font-size: 13px; text-transform: uppercase; letter-spacing: .08em; color: rgba(255,255,255,.46); }
-.footer-col ul { display: grid; gap: 10px; margin-top: 16px; }
-.footer-col a { color: rgba(255,255,255,.76); }
-.footer-bottom { margin-top: 28px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,.09); display: flex; align-items: center; justify-content: space-between; gap: 20px; color: rgba(255,255,255,.58); }
-.footer-bottom a { color: inherit; text-decoration: underline; }
-.auth-overlay { position: fixed; inset: 0; z-index: 120; display: grid; place-items: center; padding: 20px; background: rgba(7,20,18,.58); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
-.auth-modal { width: min(460px, 100%); border-radius: 32px; background: var(--white); box-shadow: var(--shadow-lg); padding: 30px; position: relative; }
-.auth-close { position: absolute; top: 18px; right: 18px; width: 42px; height: 42px; border-radius: 50%; border: none; background: var(--sand-100); color: var(--slate-800); font-size: 22px; }
-.auth-header { padding-right: 40px; }
-.auth-logo-icon { width: 58px; height: 58px; border-radius: 18px; display: grid; place-items: center; color: var(--white); background: linear-gradient(145deg, var(--forest-900), var(--mint-500)); box-shadow: 0 16px 30px rgba(12,59,51,.22); }
-.auth-title { margin-top: 18px; font-family: var(--font-head); font-size: 34px; line-height: 1; letter-spacing: -.05em; }
-.auth-sub { margin-top: 12px; color: var(--slate-700); line-height: 1.55; font-size: 18px; }
-.auth-or { margin: 20px 0 16px; display: flex; align-items: center; gap: 10px; color: var(--slate-500); font-size: 14px; font-weight: 700; }
-.auth-or::before, .auth-or::after { content: ""; flex: 1; height: 1px; background: rgba(24,34,45,.08); }
-#googleBtnContainer { display: flex; justify-content: center; min-height: 44px; }
-.auth-portal-btn { width: 100%; }
-.auth-user-card { display: flex; align-items: center; gap: 14px; padding: 18px; border-radius: 22px; background: linear-gradient(180deg, #f8fbfd, #eef4f7); border: 1px solid rgba(24,34,45,.07); margin-bottom: 16px; }
-.auth-user-av { width: 54px; height: 54px; border-radius: 50%; object-fit: cover; background: #dbe5ec; }
-.auth-user-name { font-weight: 900; font-size: 18px; }
-.auth-user-email { color: var(--slate-700); }
-.auth-logout-btn { width: 100%; min-height: 50px; border-radius: 16px; border: 1px solid rgba(24,34,45,.1); background: transparent; font-weight: 800; color: var(--slate-800); }
-.auth-terms { margin-top: 18px; font-size: 14px; color: var(--slate-500); line-height: 1.55; }
-.auth-terms a { color: var(--forest-700); }
-@media (max-width: 1100px) {
-  .hero-grid, .afip-shell, .contact-grid, .faq-wrap, .path-grid { grid-template-columns: 1fr; }
-  .proof-strip, .pain-grid, .pricing-grid { grid-template-columns: 1fr 1fr; }
-  .testimonial-grid { grid-template-columns: 1fr 1fr; }
-  .feature-grid { grid-template-columns: 1fr; }
-  .footer-grid { grid-template-columns: 1fr 1fr; }
+.hero-screen-bar span { width: 10px; height: 10px; border-radius: 50%; }
+.hero-screen-bar span:nth-child(1) { background: #FF5F57; }
+.hero-screen-bar span:nth-child(2) { background: #FEBC2E; }
+.hero-screen-bar span:nth-child(3) { background: #28C840; }
+.hero-screen-content {
+  padding: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
 }
+.hero-metric {
+  background: rgba(255,255,255,.06); border-radius: var(--radius);
+  padding: 14px; border: 1px solid rgba(255,255,255,.06);
+}
+.hero-metric-label { font-size: .72rem; color: rgba(255,255,255,.45); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 6px; font-family: var(--font-d); }
+.hero-metric-value { font-family: var(--font-d); font-size: 1.5rem; font-weight: 800; color: #fff; }
+.hero-metric-sub { font-size: .72rem; color: var(--mint); margin-top: 2px; }
+.hero-offline-badge {
+  position: absolute; bottom: 16px; right: 16px;
+  background: var(--forest); color: #fff; border: 1px solid var(--mint);
+  padding: 7px 14px; border-radius: 999px; font-size: .78rem; font-weight: 600;
+  display: flex; align-items: center; gap: 6px; box-shadow: var(--shadow);
+}
+.hero-offline-badge::before { content: ''; width: 7px; height: 7px; background: var(--mint); border-radius: 50%; }
 @media (max-width: 900px) {
-  .nav-inner { flex-wrap: wrap; padding: 12px 0; }
-  .nav-links { order: 3; width: 100%; overflow: auto; padding-bottom: 4px; }
-  .panel-body { grid-template-columns: 1fr; }
-  .panel-side { display: none; }
-  .proof-strip, .pain-grid, .pricing-grid, .release-grid, .kpis, .testimonial-grid { grid-template-columns: 1fr; }
-  .ticket-row, .ticket-row.header { grid-template-columns: 1fr 80px 90px 90px; }
+  .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+  .hero-screen { max-width: 480px; }
 }
-@media (max-width: 640px) {
-  .section { padding: 72px 0; }
-  .container { width: min(100% - 28px, 1180px); }
-  .hero { padding-top: 28px; }
-  .hero-copy p, .section-head p, .pain-card p, .feature-body p, .path-card p, .faq-intro p, .contact-card p { font-size: 17px; }
-  .hero-actions, .path-actions, .checkout-actions { flex-direction: column; }
-  .btn { width: 100%; }
-  .checkout-band { flex-direction: column; align-items: stretch; }
-  .ticket-row, .ticket-row.header { grid-template-columns: 1fr; }
-  .ticket-row .price { text-align: left; }
-  .feature-card { grid-template-columns: 1fr; }
-  .footer-grid { grid-template-columns: 1fr; }
-  .footer-bottom { display: grid; }
+@media (max-width: 480px) {
+  .hero { padding: 48px 0 56px; }
+  .hero-actions { flex-direction: column; align-items: stretch; }
+  .hero-actions .btn { justify-content: center; }
 }
+
+/* ── Cómo funciona ── */
+.steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 48px; }
+.step-card { position: relative; }
+.step-num {
+  width: 36px; height: 36px; background: var(--forest); color: #fff;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-d); font-weight: 700; font-size: .9rem; margin-bottom: 16px;
+  flex-shrink: 0;
+}
+.step-card::after {
+  content: ''; position: absolute; top: 18px; left: 54px; right: -12px;
+  height: 2px; background: var(--border); border-radius: 2px;
+}
+.step-card:last-child::after { display: none; }
+.step-card h3 { font-family: var(--font-d); font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
+.step-card p { font-size: .9rem; color: var(--muted); line-height: 1.5; }
+@media (max-width: 768px) {
+  .steps-grid { grid-template-columns: 1fr 1fr; }
+  .step-card::after { display: none; }
+}
+@media (max-width: 480px) {
+  .steps-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Diferenciadores ── */
+.diff-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+.diff-card {
+  background: var(--cream); border: 1px solid var(--border); border-radius: var(--radius-lg);
+  padding: 32px; transition: box-shadow 200ms, transform 200ms;
+}
+.diff-card:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
+.diff-card:first-child { border-color: var(--mint); background: var(--mint-lt); }
+.diff-icon { font-size: 2rem; margin-bottom: 16px; }
+.diff-card h3 { font-family: var(--font-d); font-size: 1.1rem; font-weight: 800; margin-bottom: 10px; }
+.diff-card p { font-size: .92rem; color: var(--muted); line-height: 1.6; }
+.diff-card:first-child p { color: var(--forest-lt); }
+.diff-card:first-child h3 { color: var(--forest-dk); }
+@media (max-width: 768px) {
+  .diff-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Funciones ── */
+.feat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 48px; }
+.feat-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  background: var(--cream); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 20px;
+}
+.feat-item-icon {
+  width: 40px; height: 40px; background: var(--forest-bg); border-radius: var(--radius);
+  display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;
+}
+.feat-item h4 { font-family: var(--font-d); font-size: .95rem; font-weight: 700; margin-bottom: 4px; }
+.feat-item p { font-size: .85rem; color: var(--muted); line-height: 1.4; }
+@media (max-width: 900px) { .feat-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .feat-grid { grid-template-columns: 1fr; } }
+
+/* ── Precios ── */
+.plans-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 48px; }
+.plan-card {
+  background: var(--cream); border: 2px solid var(--border);
+  border-radius: var(--radius-xl); padding: 32px;
+  display: flex; flex-direction: column; gap: 0;
+  transition: box-shadow 200ms, transform 200ms;
+}
+.plan-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+.plan-card.featured { border-color: var(--forest); background: var(--forest); color: #fff; position: relative; }
+.plan-badge {
+  position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
+  background: var(--mint); color: var(--forest-dk); font-family: var(--font-d);
+  font-size: .72rem; font-weight: 800; text-transform: uppercase; letter-spacing: .06em;
+  padding: 4px 14px; border-radius: 999px; white-space: nowrap;
+}
+.plan-name { font-family: var(--font-d); font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+.plan-price { font-family: var(--font-d); font-size: 2.2rem; font-weight: 800; line-height: 1; margin-bottom: 4px; }
+.plan-price sup { font-size: 1rem; vertical-align: super; font-weight: 600; }
+.plan-price-sub { font-size: .82rem; color: var(--muted); margin-bottom: 20px; }
+.plan-card.featured .plan-price-sub { color: rgba(255,255,255,.6); }
+.plan-divider { border: none; border-top: 1px solid var(--border); margin: 16px 0; }
+.plan-card.featured .plan-divider { border-color: rgba(255,255,255,.15); }
+.plan-features { list-style: none; display: flex; flex-direction: column; gap: 10px; flex: 1; margin-bottom: 24px; }
+.plan-features li { display: flex; align-items: flex-start; gap: 8px; font-size: .9rem; }
+.plan-features li::before { content: '✓'; color: var(--success); font-weight: 700; flex-shrink: 0; }
+.plan-card.featured .plan-features li::before { color: var(--mint); }
+.plan-features li.no::before { content: '—'; color: var(--muted); }
+.plan-features li.no { color: var(--muted); }
+.plan-card.featured .plan-features li.no { color: rgba(255,255,255,.4); }
+.plan-cta { margin-top: auto; }
+.plan-card.featured .btn-primary { background: var(--mint); color: var(--forest-dk); border-color: var(--mint); }
+.plan-card.featured .btn-primary:hover { background: #fff; border-color: #fff; }
+.plans-note { text-align: center; color: var(--muted); font-size: .88rem; margin-top: 20px; }
+@media (max-width: 900px) { .plans-grid { grid-template-columns: 1fr; max-width: 420px; margin-left: auto; margin-right: auto; } }
+
+/* ── FAQ ── */
+.faq-list { max-width: 720px; margin: 48px auto 0; display: flex; flex-direction: column; gap: 8px; }
+.faq-item { border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+.faq-q {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 20px 24px; font-family: var(--font-d); font-weight: 600; font-size: .97rem;
+  cursor: pointer; transition: background 150ms; background: var(--cream);
+}
+.faq-q:hover { background: var(--cream-dk); }
+.faq-arrow { font-size: 1rem; transition: transform 300ms; flex-shrink: 0; color: var(--muted); }
+.faq-item.open .faq-arrow { transform: rotate(180deg); }
+.faq-a {
+  padding: 0 24px; max-height: 0; overflow: hidden;
+  font-size: .92rem; color: var(--muted); line-height: 1.7;
+  transition: max-height 300ms ease, padding 300ms ease;
+}
+.faq-item.open .faq-a { max-height: 400px; padding: 0 24px 20px; }
+
+/* ── CTA Final ── */
+.cta-section {
+  background: var(--forest-dk);
+  color: #fff; text-align: center; padding: 80px 24px;
+}
+.cta-section h2 { font-family: var(--font-d); font-size: clamp(1.7rem, 3.5vw, 2.4rem); font-weight: 800; margin-bottom: 14px; }
+.cta-section p { color: rgba(255,255,255,.65); margin-bottom: 32px; font-size: 1.05rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+.cta-section .btn-primary { background: var(--mint); color: var(--forest-dk); border-color: var(--mint); font-size: 1.05rem; padding: 16px 40px; }
+.cta-section .btn-primary:hover { background: #fff; border-color: #fff; }
+.cta-meta { margin-top: 16px; font-size: .83rem; color: rgba(255,255,255,.4); }
+
+/* ── Footer ── */
+footer {
+  background: var(--forest-dk); border-top: 1px solid rgba(255,255,255,.06);
+  padding: 40px 24px; color: rgba(255,255,255,.5);
+}
+.footer-inner {
+  max-width: var(--container); margin: 0 auto;
+  display: flex; flex-wrap: wrap; gap: 20px; align-items: center; justify-content: space-between;
+}
+.footer-logo { font-family: var(--font-d); font-weight: 800; font-size: 1rem; color: rgba(255,255,255,.8); }
+.footer-links { display: flex; flex-wrap: wrap; gap: 20px; }
+.footer-links a { font-size: .85rem; transition: color 150ms; }
+.footer-links a:hover { color: rgba(255,255,255,.85); }
+.footer-copy { font-size: .82rem; width: 100%; text-align: center; margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.06); }
+
+/* ── Util: offline-pill en secciones ── */
+.offline-pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--forest-bg); color: var(--forest); border: 1px solid var(--mint);
+  border-radius: 999px; padding: 5px 14px; font-size: .8rem; font-weight: 600;
+}
+.offline-pill::before { content: ''; width: 7px; height: 7px; background: var(--success); border-radius: 50%; }
+
+/* ── Banner alerta / novedad ── */
+.topbar {
+  background: var(--forest); color: #fff; text-align: center;
+  padding: 10px 24px; font-size: .85rem; font-weight: 500;
+}
+.topbar a { color: var(--mint); font-weight: 700; margin-left: 8px; }
 </style>
 </head>
+
 <body>
-<nav class="site-nav" id="nav">
-  <div class="container nav-inner">
-    <a href="#top" class="brand">
-      <span class="brand-mark">PN</span>
-      Punto<strong>Nexo</strong>
-    </a>
+
+<!-- Topbar -->
+<div class="topbar">
+  PuntoNexo 2.0.0 disponible — 14 días de prueba gratis, sin tarjeta.
+  <a href="/descargar.html">Descargar ahora</a>
+</div>
+
+<!-- Nav -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Punto<span>Nexo</span></a>
     <div class="nav-links">
       <a href="#funciones">Funciones</a>
-      <a href="#afip">AFIP</a>
-      <a href="#demo">Demo</a>
-      <a href="#precios">Precios</a>
-      <a href="#faq">Preguntas</a>
-      <a href="#contacto">Contacto</a>
+      <a href="precios.html">Precios</a>
+      <a href="descargar.html">Descargar</a>
+      <a href="#faq">Ayuda</a>
     </div>
-    <div class="nav-actions">
-      <a href="https://licencias.mello.com.ar/gestionar.html?from=landing" class="btn btn-ghost" title="Ingresá con tu email — te enviamos un enlace seguro">Gestionar con mi email</a>
-      <a href="https://licencias.mello.com.ar/?from=landing" class="btn btn-primary">Probar 7 días gratis</a>
-    </div>
+    <a href="descargar.html" class="btn btn-primary btn-sm nav-cta" onclick="gtag('event','nav_download_click')">Descargar gratis</a>
+    <button class="nav-mobile-btn" id="mobileMenuBtn" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-mobile-menu" id="mobileMenu">
+    <a href="#funciones">Funciones</a>
+    <a href="precios.html">Precios</a>
+    <a href="descargar.html">Descargar</a>
+    <a href="#faq">Ayuda</a>
+    <a href="descargar.html" class="btn btn-primary" onclick="gtag('event','mobile_nav_download_click')">Descargar gratis</a>
   </div>
 </nav>
 
-<main id="top">
-  <section class="hero">
-    <div class="container hero-grid">
-      <div class="hero-copy">
-        <span class="eyebrow">TPV argentino para comercios que no pueden frenar la caja</span>
-        <h1>El TPV que <span>factura AFIP</span>, vende offline y convierte cada caja en control.</h1>
-        <p>Vendé, facturá, controlá stock y fidelizá clientes desde una app Windows rápida, lista para supermercados, almacenes y autoservicios. PuntoNexo opera incluso si falla internet y activa licencias online en minutos.</p>
-        <div class="hero-actions">
-          <a href="https://licencias.mello.com.ar/?from=landing" class="btn btn-primary">Probar 7 días gratis, SIN tarjeta</a>
-          <a href="#demo" class="btn btn-secondary">Ver cómo funciona</a>
-        </div>
-        <div class="hero-meta">
-          <span>7 días gratis</span>
-          <span>Sin tarjeta</span>
-          <span>·Y>·️ 30 días garantía</span>
-          <span>Windows 10/11</span>
-          <span>Precio en pesos</span>
-        </div>
-        <div class="hero-badges">
-          <span>AFIP y CAEA</span>
-          <span>Mercado Pago</span>
-          <span>Fidelización</span>
-          <span>Multi-caja</span>
-        </div>
+<!-- Hero -->
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="hero-text">
+      <div class="hero-badge">Funciona sin internet · ARCA integrado</div>
+      <h1>El TPV que no te falla.<br><em>Aunque caiga internet.</em></h1>
+      <p class="hero-lead">
+        Facturá con ARCA, controlá el stock y cerrá caja desde tu PC.
+        Sin servidores en la nube que fallen a las 18hs del viernes.
+      </p>
+      <div class="hero-actions">
+        <a href="descargar.html" class="btn btn-primary btn-lg" onclick="gtag('event','hero_download_click')">
+          Descargar para Windows
+        </a>
+        <a href="#como-funciona" class="btn btn-outline">Ver cómo funciona</a>
       </div>
-
-      <div class="hero-panel">
-        <div class="panel-window">
-          <div class="panel-top">
-            <div class="panel-title">PuntoNexo · Caja 02 · Mercado del Sur</div>
-            <div class="panel-pill">AFIP operativo</div>
-          </div>
-          <div class="panel-body">
-            <aside class="panel-side">
-              <div class="side-label">Operación</div>
-              <div class="side-item active">Cobrar (POS)</div>
-              <div class="side-item">Sistema</div>
-              <div class="side-item">Artículos</div>
-              <div class="side-item">Clientes</div>
-              <div class="side-item">Informes</div>
-              <div class="side-item">Centro fiscal AFIP</div>
-              <div class="side-item">Sistema</div>
-            </aside>
-            <div class="panel-main">
-              <div class="kpis">
-                <div class="kpi"><small>Ventas del día</small><strong>$ 684.320</strong></div>
-                <div class="kpi"><small>Clientes con puntos</small><strong>128</strong></div>
-                <div class="kpi"><small>Productos bajo stock</small><strong>6</strong></div>
-              </div>
-              <div class="scan-bar">
-                <div>
-                  <strong>Búsqueda por código o descripción</strong>
-                  <span>Lectores USB, balanzas y atajos de teclado en la misma caja.</span>
-                </div>
-                <code>7791234599876</code>
-              </div>
-              <div class="ticket-grid">
-                <div class="ticket-row header"><div>Producto</div><div>Cant.</div><div>P.Unit</div><div>Total</div></div>
-                <div class="ticket-row"><div><div class="name">Yerba Mate 500 g</div><div class="muted">Promo fidelización -10%</div></div><div>3</div><div>$2.100</div><div class="price">$6.300</div></div>
-                <div class="ticket-row"><div><div class="name">Aceite Girasol 1.5L</div><div class="muted">Reposición sugerida mañana</div></div><div>1</div><div>$2.890</div><div class="price">$2.890</div></div>
-                <div class="ticket-row"><div><div class="name">Arroz Largo Fino 1kg</div><div class="muted">Factura B con QR fiscal</div></div><div>2</div><div>$1.350</div><div class="price">$2.700</div></div>
-              </div>
-              <div class="checkout-band">
-                <div><small>Cliente: María López · 840 pts acumulados</small><strong>$11.890</strong></div>
-                <div class="checkout-actions"><button class="pay">Cobrar</button><button class="aux">Guardar</button></div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="hero-meta">
+        <span>Windows 10/11 · 64 bits</span>
+        <span>Versión 2.0.0 · ~60 MB</span>
+        <span>14 días gratis</span>
+        <span>Sin tarjeta</span>
       </div>
     </div>
 
-    <div class="container proof-strip">
-      <div class="proof-card"><strong>Facturás sin salir de la caja</strong><span>CAE y CAEA integrados para no depender de procesos paralelos.</span></div>
-      <div class="proof-card"><strong>Operación local y rápida</strong><span>La base vive en tu equipo para que la caja responda al instante.</span></div>
-      <div class="proof-card"><strong>Ventas con más contexto</strong><span>Stock, rentabilidad, clientes y reposición en una sola vista.</span></div>
-      <div class="proof-card"><strong>Licencias online claras</strong><span>Elegís plan, pagás con Mercado Pago y activás en minutos.</span></div>
-    </div>
-  </section>
-
-  <section class="section" id="ecosistema">
-    <div class="container">
-      <div class="section-head center">
-        <span class="eyebrow">Tres webs, tres roles</span>
-        <h2>Sabé dónde hacer cada cosa</h2>
-        <p>PuntoNexo no mezcla marketing, licencias y portal de clientes de tu comercio.</p>
+    <div class="hero-screen">
+      <div class="hero-screen-bar">
+        <span></span><span></span><span></span>
+        <span style="flex:1;background:rgba(255,255,255,.04);border-radius:4px;height:20px;margin-left:10px"></span>
       </div>
-      <div class="pain-grid">
-        <article class="pain-card"><span class="tag">Esta página</span><h3>Landing comercial</h3><p>Conocé el producto, mirá la demo y empezá la prueba gratuita de 7 días.</p></article>
-        <article class="pain-card"><span class="tag">licencias.mello.com.ar</span><h3>Suscripciones y activación</h3><p>Elegí plan, pagá con Mercado Pago y activá la app. Para gestionar tu cuenta, ingresá con tu email (magic link, sin contraseña).</p></article>
-        <article class="pain-card"><span class="tag">Portal del comercio</span><h3>Ofertas para tus clientes</h3><p>Desde la app configurás el catálogo público local (ofertas, canjes y puntos).</p></article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section alt">
-    <div class="container">
-      <div class="section-head center">
-        <span class="eyebrow">Dolores reales del mostrador</span>
-        <h2>Menos tiempo perdido, más control y más ventas en el mostrador.</h2>
-        <p>PuntoNexo resuelve los dolores del día a día: continuidad de caja, orden fiscal y decisiones comerciales claras.</p>
-      </div>
-      <div class="pain-grid">
-        <article class="pain-card"><span class="tag">Dolor operativo</span><h3>«Si falla internet, la caja se cae.»</h3><p><strong>PuntoNexo sigue operando offline</strong>, guarda la venta localmente y acompaña la continuidad del comercio en hora pico.</p></article>
-        <article class="pain-card"><span class="tag">Dolor fiscal</span><h3>«AFIP me complica cada venta.»</h3><p><strong>La facturación electrónica viaja dentro del flujo de cobro</strong>: CAE, CAEA, QR fiscal y nota de crédito sin salir del sistema.</p></article>
-        <article class="pain-card"><span class="tag">Dolor comercial</span><h3>«No sé qué se vende, qué se repone y quién vuelve.»</h3><p><strong>Stock, fidelización y reportes</strong> se muestran como decisiones accionables para vender mejor, no como paneles fríos.</p></article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="funciones">
-    <div class="container">
-      <div class="section-head">
-        <span class="eyebrow">Producto mostrado como tareas reales</span>
-        <h2>Tareas reales de tu comercio, en escenas que reconocés al instante.</h2>
-        <p>Cobrar, controlar, facturar, fidelizar y decidir ·?" sin saltar entre sistemas.</p>
-      </div>
-      <div class="feature-grid">
-        <article class="feature-card"><div class="feature-screen">KPI</div><div class="feature-body"><h3>Caja con AFIP integrada</h3><p>La venta sucede en una sola secuencia: producto, cliente, cobro y comprobante. El diseño deja claro que el cajero no salta entre pantallas ni procesos externos.</p><ul class="feature-list"><li>Factura A, B y C desde la misma caja</li><li>CAE automático y CAEA de contingencia</li><li>QR fiscal en el ticket impreso</li></ul></div></article>
-        <article class="feature-card"><div class="feature-screen">·Y"·</div><div class="feature-body"><h3>Stock y productos sin fricción</h3><p>Reposición, listas de precios e importación desde Excel para arrancar ordenado y mantener el mostrador al día.</p><ul class="feature-list"><li>Alertas de stock bajo</li><li>Importación inicial desde Excel</li><li>Rentabilidad por artículo y categoría</li></ul></div></article>
-        <article class="feature-card"><div class="feature-screen">·Y'·</div><div class="feature-body"><h3>Clientes que vuelven</h3><p>Puntos visibles, historial y recompensas que traen tráfico de vuelta al local.</p><ul class="feature-list"><li>Puntos y canje en el cobro</li><li>Historial por cliente</li><li>Segmentación comercial simple</li></ul></div></article>
-        <article class="feature-card"><div class="feature-screen">·Y"S</div><div class="feature-body"><h3>Reportes para decidir rápido</h3><p>Ventas por hora, ticket promedio, reposición y margen en señales accionables para el dueño.</p><ul class="feature-list"><li>Dashboard diario</li><li>Ranking de ventas y margen</li><li>Exportación operativa</li></ul></div></article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section alt" id="afip">
-    <div class="container">
-      <div class="section-head center">
-        <span class="eyebrow">Autoridad fiscal y confianza</span>
-        <h2>AFIP integrado en el flujo de cobro, sin procesos paralelos.</h2>
-        <p>CAE, CAEA y respaldo documental dentro de la misma caja ·?" con lenguaje claro para el comerciante.</p>
-      </div>
-      <div class="afip-shell">
-        <div class="afip-copy">
-          <div class="afip-points">
-            <div class="afip-point"><div class="afip-icon">GUIA</div><div><strong>CAE automático en el momento del cobro</strong><span>La facturación acompaña la operación comercial sin obligar al usuario a cambiar de pantalla ni de lógica.</span></div></div>
-            <div class="afip-point"><div class="afip-icon">·Y"·</div><div><strong>CAEA cuando la conectividad no acompaña</strong><span>Modo contingencia CAEA (ARCA 2026): seguís cobrando con comprobantes válidos y luego informás en ARCA con el asistente post-contingencia de PuntoNexo.</span></div></div>
-            <div class="afip-point"><div class="afip-icon">·Y"<</div><div><strong>Notas de crédito y respaldo documental</strong><span>El usuario compra tranquilidad cuando entiende que el sistema cubre ventas, devoluciones y trazabilidad fiscal.</span></div></div>
-            <div class="afip-point"><div class="afip-icon">·Y··</div><div><strong>Lenguaje claro para el comerciante</strong><span>La web no debe explicar AFIP como si hablara a un desarrollador. Debe traducirlo en continuidad, orden y menor riesgo.</span></div></div>
-          </div>
+      <div class="hero-screen-content">
+        <div class="hero-metric">
+          <div class="hero-metric-label">Ventas hoy</div>
+          <div class="hero-metric-value">$182.400</div>
+          <div class="hero-metric-sub">+8% vs ayer</div>
         </div>
-        <div class="afip-ticket">
-          <div class="ticket-paper">
-            <h4>Factura electrónica B</h4>
-            <div class="meta">Mercado del Sur S.R.L. · CUIT 30-71234567-8<br>24/05/2026 · Punto de venta 0001</div>
-            <div class="line"><span>Yerba Mate 500 g x3</span><span>$6.300</span></div>
-            <div class="line"><span>Aceite Girasol 1.5L x1</span><span>$2.890</span></div>
-            <div class="line"><span>Arroz Largo Fino 1kg x2</span><span>$2.700</span></div>
-            <div class="line total"><span>Total</span><span>$11.890</span></div>
-            <div class="meta meta-extra">CAE 72481936542917 · Vto 08/06/2026</div>
-            <div class="ticket-qr"></div>
-            <div class="ticket-foot">Comprobante autorizado por ARCA/AFIP</div>
+        <div class="hero-metric">
+          <div class="hero-metric-label">Transacciones</div>
+          <div class="hero-metric-value">94</div>
+          <div class="hero-metric-sub">Promedio $1.940</div>
+        </div>
+        <div class="hero-metric">
+          <div class="hero-metric-label">Stock bajo</div>
+          <div class="hero-metric-value">3</div>
+          <div class="hero-metric-sub">Productos</div>
+        </div>
+        <div class="hero-metric">
+          <div class="hero-metric-label">Caja abierta</div>
+          <div class="hero-metric-value">9h 12m</div>
+          <div class="hero-metric-sub">Turno activo</div>
+        </div>
+        <div class="hero-metric" style="grid-column:1/-1;background:rgba(149,213,178,.08);border-color:rgba(149,213,178,.2)">
+          <div class="hero-metric-label">Facturas ARCA</div>
+          <div class="hero-metric-value" style="font-size:1.1rem;display:flex;align-items:center;gap:10px">
+            <span>87 emitidas</span>
+            <span style="font-size:.75rem;background:rgba(149,213,178,.2);color:#95D5B2;padding:2px 10px;border-radius:999px">sincronizado</span>
           </div>
         </div>
       </div>
+      <div class="hero-offline-badge">Sin internet · funcionando</div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section" id="demo">
-    <div class="container">
-      <div class="section-head">
-        <span class="eyebrow">Demo, descarga y activación</span>
-        <h2>Dos caminos: ver cómo funciona o activar tu prueba ahora.</h2>
-        <p>La decisión correcta depende del momento del usuario. Quien todavía compara necesita demo. Quien ya decidió necesita un camino limpio hacia plan, pago y activación.</p>
-      </div>
-      <div class="path-grid">
-        <article class="path-card"><h3>Recorrido demo comercial</h3><p>Ideal para quien quiere entender en pocos minutos cómo se ve una caja, cómo interviene AFIP y qué tan rápido puede trabajar un comercio real con PuntoNexo.</p><div class="demo-video-card"><video controls preload="metadata" poster="assets/marketing/demo-puntonexo-90s-thumbnail.png"><source src="assets/marketing/demo-puntonexo-90s.mp4" type="video/mp4"><track src="assets/marketing/demo-puntonexo-90s.srt" kind="subtitles" srclang="es" label="Español" default></video><div class="demo-video-caption"><span>Demo comercial de 90 segundos</span><a href="assets/marketing/demo-puntonexo-90s.mp4" download>Descargar video</a></div></div><ul class="path-list"><li>Flujo de venta completo</li><li>Cliente con puntos y promoción</li><li>Stock bajo y reposición sugerida</li></ul><div class="path-actions"><a href="#contacto" class="btn btn-primary">Solicitar demo guiada</a><a href="checklist-apertura-cierre-caja.html" class="btn btn-secondary">Descargar checklist</a></div></article>
-        <article class="path-card" id="descargar"><h3>Descarga y activación online</h3><p>Descargá PuntoNexo, configurá CUIT y sucursal al abrir la app (el ID se genera ahí) y activá la prueba de 7 días sin tarjeta desde la misma aplicación o el portal.</p><div class="release-card"><strong>v1.0.9 · Windows 10/11 · 64 bits · incluye .NET 8</strong><div class="release-grid"><div><span>Plataforma</span><strong>Windows 10/11</strong></div><div><span>Tamaño</span><strong>~59 MB</strong></div><div><span>Prueba</span><strong>7 días gratis</strong></div></div></div><ul class="path-list"><li>Descargá e instalá el .exe</li><li>Configurá CUIT + sucursal en la app</li><li>Iniciá la prueba o sincronizá tras pagar</li></ul><div class="path-actions"><a href="https://github.com/mellomda3/puntonexo-releases/releases/latest/download/PuntoNexo-Installer.exe" class="btn btn-primary">Descargar PuntoNexo</a><a href="https://licencias.mello.com.ar/?from=landing" class="btn btn-secondary">Portal de licencias</a><a href="https://github.com/mellomda3/puntonexo-releases/releases/latest/download/PuntoNexo-win-x64.zip" class="btn btn-secondary">ZIP portable</a></div></article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="faq">
-    <div class="container">
-      <div class="section-head center">
-        <span class="eyebrow">Objeciones resueltas</span>
-        <h2>Las preguntas frecuentes tienen que vender confianza, no frenar la decisión.</h2>
-        <p>Este bloque responde lo que realmente detiene una compra: AFIP, internet, hardware, migración, datos y activación.</p>
-      </div>
-      <div class="faq-wrap">
-        <aside class="faq-intro"><h3>Antes de elegir, el comercio necesita tranquilidad.</h3><p>Por eso el FAQ resuelve dudas operativas y comerciales con lenguaje simple, evitando tecnicismos innecesarios y dejando siempre una salida clara hacia contacto o activación.</p></aside>
-        <div class="faq-list">
-          <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">¿Qué pasa si se corta internet mientras estoy cobrando?<span class="faq-arrow">+</span></button><div class="faq-a">PuntoNexo está pensado para que la operación no dependa exclusivamente de internet. La base opera localmente y el discurso comercial se apoya en esa ventaja: continuidad de caja, menor estrés y menos riesgo en hora pico.</div></div>
-          <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">¿La facturación AFIP está incluida en todos los planes?<span class="faq-arrow">+</span></button><div class="faq-a">AFIP está incluida desde el plan Standard. Starter cubre ventas y stock con una caja, sin facturación electrónica. Standard y Pro incluyen CAE/CAEA en el flujo de cobro.</div></div>
-          <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">¿Puedo usar lectores, impresoras y balanzas?<span class="faq-arrow">+</span></button><div class="faq-a">La web transmite compatibilidad con hardware común de comercio: impresoras térmicas, lectores USB y balanzas con código pesable. Eso reduce la ansiedad previa a la compra.</div></div>
-          <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">¿Cómo activo la licencia después de pagar?<span class="faq-arrow">+</span></button><div class="faq-a">Instalá PuntoNexo, configurá CUIT y sucursal (el ID se genera en la app), elegí plan en el portal, pagá con Mercado Pago y sincronizá con tu email desde Archivo → Licencia.</div></div>
-          <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">¿Puedo migrar mi lista de precios desde Excel?<span class="faq-arrow">+</span></button><div class="faq-a">Sí. Mostrar importación inicial desde Excel ayuda mucho en conversión porque convierte una implementación incierta en una primera semana más controlada.</div></div>
-          <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">¿Qué pasa con mis datos si dejo de usar el sistema?<span class="faq-arrow">+</span></button><div class="faq-a">La comunicación deja claro que el comercio conserva visibilidad sobre su operación y que no queda atrapado en un sistema opaco. Eso mejora la percepción de honestidad y baja barreras de entrada.</div></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section alt" id="precios">
-    <div class="container">
-      <div class="section-head center">
-        <span class="eyebrow">Conversión sin sorpresas</span>
-        <h2>Planes en pesos, comparación clara y un plan recomendado para acelerar la decisión.</h2>
-        <p>El pricing debe reducir la fatiga de elección. Tres planes, diferencias entendibles y una opción central destacada para la mayoría de los comercios.</p>
-      </div>
-      <div class="pricing-grid">
-        <article class="pricing-card"><div class="plan-top"><h3>Starter</h3><p>Para almacenes y kioscos con una sola caja, sin facturación electrónica.</p><div class="plan-price"><strong>$34.990</strong><span>/ mes</span></div><div class="plan-subline">+IVA · 1 terminal · 7 días gratis</div></div><ul class="plan-list"><li>Ventas y caja</li><li>Productos, stock y clientes</li><li>Importación desde Excel</li><li>Reportes básicos</li></ul><div class="plan-cta"><a href="https://licencias.mello.com.ar/?from=landing&amp;plan=Starter" class="btn btn-secondary">Empezar con Starter</a></div></article>
-        <article class="pricing-card popular"><span class="popular-badge">Plan recomendado</span><div class="plan-top"><h3>Standard</h3><p>Operación completa y AFIP: desde kiosco con 1 caja hasta 3 cajas en supermercado chico.</p><div class="plan-price"><strong>$69.990</strong><span>/ mes</span></div><div class="plan-subline">+IVA · Hasta 3 terminales · 7 días gratis</div></div><ul class="plan-list"><li>Todo lo de Starter</li><li>Facturación AFIP guiada</li><li>Múltiples cajas (hasta 3)</li><li>Compras y proveedores</li><li>Fidelización y catálogo web</li></ul><div class="plan-cta"><a href="https://licencias.mello.com.ar/?from=landing&amp;plan=Standard" class="btn btn-primary">Elegir Standard</a></div></article>
-        <article class="pricing-card"><div class="plan-top"><h3>Pro</h3><p>Locales con muchas cajas, reportes avanzados y soporte prioritario.</p><div class="plan-price"><strong>$119.990</strong><span>/ mes</span></div><div class="plan-subline">+IVA · Hasta 10 terminales · 7 días gratis</div></div><ul class="plan-list"><li>Todo lo de Standard</li><li>Hasta 10 cajas por sucursal</li><li>Reportes avanzados y exportación</li><li>Soporte prioritario</li></ul><div class="plan-cta"><a href="https://licencias.mello.com.ar/?from=landing&amp;plan=Pro" class="btn btn-secondary">Evaluar Pro</a></div></article>
-      </div>
-      <div class="comparison">
-        <table>
-          <thead><tr><th>Capacidad</th><th>Starter</th><th>Standard</th><th>Pro</th></tr></thead>
-          <tbody>
-            <tr><td>Terminales por sucursal</td><td>1</td><td>Hasta 3 (también kiosco + AFIP, 1 caja)</td><td>Hasta 10</td></tr>
-            <tr><td>Facturación AFIP</td><td>No</td><td>Sí</td><td>Sí</td></tr>
-            <tr><td>Fidelización</td><td>Sí</td><td>Sí</td><td>Sí</td></tr>
-            <tr><td>Compras y proveedores</td><td>No</td><td>Sí</td><td>Sí</td></tr>
-            <tr><td>Multi-sucursal</td><td>No</td><td>No</td><td>Sí</td></tr>
-            <tr><td>Soporte prioritario</td><td>No</td><td>No</td><td>Sí</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
-  <!-- SECCI·"N TESTIMONIOS -->
-  <section class="section testimonials-section" id="testimonios">
-    <div class="container">
-      <div class="section-head center">
-        <span class="eyebrow">Programa piloto</span>
-        <h2>Comercios que prueban PuntoNexo en operación real</h2>
-        <p>Estamos sumando pilotos con consentimiento para publicar su experiencia. ¿Querés participar? <a href="#contacto">Escribinos</a>.</p>
-        <p style="font-size:14px;color:#6b7280;margin-top:8px;">Los logos de comercio se publican cuando el piloto entrega autorización y marca.</p>
-      </div>
-      <div class="testimonial-grid">
-        <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
-          <p class="testimonial-copy">"Antes tardaba 10 minutos en cerrar caja. Ahora lo hago en 2. La factura AFIP sale sola y el stock se actualiza en tiempo real. No lo cambiaría por nada."</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar testimonial-avatar-green">R</div>
-            <div><strong class="testimonial-name">Roberto Fernández</strong><span class="testimonial-business">Almacén El Progreso, Córdoba · autorización 03/2026</span></div>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
-          <p class="testimonial-copy">"Tengo 2 cajas y antes usaba dos sistemas distintos. Con PuntoNexo todo está unificado: stock, ventas y clientes en un solo lugar. La activación online fue en menos de 5 minutos."</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar testimonial-avatar-blue">M</div>
-            <div><strong class="testimonial-name">Marcela Torres</strong><span class="testimonial-business">Supermercado La Familia, Rosario</span></div>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
-          <p class="testimonial-copy">"El soporte responde rápido y el sistema nunca me trabó en hora pico. Que funcione offline es clave para mí, porque el internet acá no es estable. Muy recomendable."</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar testimonial-avatar-violet">D</div>
-            <div><strong class="testimonial-name">Diego Ramírez</strong><span class="testimonial-business">Autoservicio Don Diego, Tucumán</span></div>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
-          <p class="testimonial-copy">"Migré desde una hoja Excel hace 3 meses. La importación de productos fue simple y mis empleados aprendieron a usarlo en un día. La verdad, mucho mejor de lo que esperaba."</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar testimonial-avatar-amber">A</div>
-            <div><strong class="testimonial-name">Ana González</strong><span class="testimonial-business">Minimarket Anita, Buenos Aires</span></div>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
-          <p class="testimonial-copy">"Lo que más me convenció fue el precio en pesos y sin dólares. Y que la factura AFIP sale automática sin tener que entrar al portal de AFIP cada vez. Hoy tengo 3 cajas activas."</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar testimonial-avatar-teal">C</div>
-            <div><strong class="testimonial-name">Carlos Méndez</strong><span class="testimonial-business">Supermercado Méndez, Mendoza</span></div>
-          </div>
-        </div>
-        <div class="guarantee-card">
-          <div>
-            <div class="guarantee-icon">🛡️</div>
-            <strong class="guarantee-title">30 días de garantía de devolución</strong>
-            <p class="guarantee-copy">Si en los primeros 30 días PuntoNexo no cumple con lo prometido, te devolvemos el dinero sin preguntas.</p>
-          </div>
-          <a href="https://licencias.mello.com.ar/?from=landing" class="guarantee-cta">Empezar 7 días gratis →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  </section>
-
-  <section class="section" id="requisitos">
-    <div class="container">
-      <div class="section-head center">
-        <span class="eyebrow">Requisitos del sistema</span>
-        <h2>¿Tu PC está lista para PuntoNexo?</h2>
-        <p>Hardware y software típicos de un comercio argentino con una o varias cajas.</p>
-      </div>
-      <div class="pain-grid">
-        <article class="pain-card"><span class="tag">Sistema</span><h3>Windows 10 u 11 (64 bits)</h3><p>Incluye runtime .NET 8 en el instalador. Recomendado SSD y 8 GB RAM.</p></article>
-        <article class="pain-card"><span class="tag">Impresión</span><h3>Impresora térmica o láser</h3><p>Tickets por USB/red. Modo Windows recomendado en el asistente inicial.</p></article>
-        <article class="pain-card"><span class="tag">AFIP</span><h3>CUIT y punto de venta</h3><p>Facturación electrónica CAE/CAEA integrada. Certificados configurables después del wizard.</p></article>
-        <article class="pain-card"><span class="tag">Periféricos</span><h3>Lector, balanza, red local</h3><p>USB estándar. Multicaja con SQL Server para más de una terminal (plan Standard+).</p></article>
-      </div>
-      <p style="text-align:center;margin-top:1.5rem;"><a href="checklist-apertura-cierre-caja.html" class="btn btn-secondary">Checklist de apertura y cierre de caja</a></p>
-    </div>
-  </section>
-
-  <section class="section alt" id="contacto">
-    <div class="container">
-      <div class="section-head center">
-        <span class="eyebrow">Contacto comercial</span>
-        <h2>El cierre visual correcto no es un formulario aislado: es una invitación a seguir la conversación.</h2>
-        <p>Escribinos para una demo guiada, activar tu licencia o resolver dudas de puesta en marcha.</p>
-      </div>
-      <div class="contact-grid">
-        <article class="contact-card">
-          <h3>Hablemos de tu operación</h3>
-          <p>Usá esta sección para consultas comerciales, implementación, demo o activación. El tono es directo, confiable y pensado para responder rápido.</p>
-          <div class="contact-points">
-            <div class="contact-point"><strong>Email comercial</strong><a href="mailto:soporte@mello.com.ar">soporte@mello.com.ar</a></div>
-            <div class="contact-point"><strong>Respuesta esperada</strong><span>Menos de 24 hs hábiles</span></div>
-            <div class="contact-point"><strong>Portal de suscripciones</strong><a href="https://licencias.mello.com.ar/?from=landing">licencias.mello.com.ar</a></div>
-            <div class="contact-point"><strong>Guía gratuita</strong><a href="checklist-apertura-cierre-caja.html">Checklist de apertura y cierre de caja</a></div>
-          </div>
-        </article>
-        <article class="contact-card">
-          <h3>Envianos tu consulta</h3>
-          <div id="cfForm" class="contact-form">
-            <div><label for="cf-name">Tu nombre</label><input id="cf-name" type="text" placeholder="Ej: Juan García" autocomplete="name"></div>
-            <div><label for="cf-email">Email</label><input id="cf-email" type="email" placeholder="tu@email.com" autocomplete="email"></div>
-            <div><label for="cf-subject">Motivo</label><select id="cf-subject"><option value="">Seleccioná un tema...</option><option value="comercial">Consulta comercial</option><option value="demo">Demo o prueba</option><option value="soporte">Soporte / facturación</option></select></div>
-            <div><label for="cf-message">Mensaje</label><textarea id="cf-message" placeholder="Contanos qué necesitás, cuántas cajas tenés o en qué etapa estás."></textarea></div>
-            <button class="btn btn-primary" id="cfSubmitBtn" onclick="submitContact()">Enviar mensaje</button>
-            <p id="cfError" class="cf-error"></p>
-          </div>
-          <div class="cf-success" id="cfSuccess"><h4>¡Mensaje enviado!</h4><p>Tu consulta ya quedó registrada. Vamos a responderte por correo con el próximo paso más conveniente para tu caso.</p></div>
-        </article>
-      </div>
-    </div>
-  </section>
-</main>
-
-<footer class="footer">
+<!-- Cómo funciona -->
+<section class="section" id="como-funciona">
   <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a href="#top" class="brand brand-footer"><span class="brand-mark">PN</span>Punto<strong>Nexo</strong></a>
-        <p>TPV argentino para supermercados, almacenes y autoservicios que necesitan vender, facturar AFIP y sostener la operación sin frenar la caja.</p>
-        <div class="hero-meta"><span>AFIP</span><span>Offline</span><span>Licencias online</span></div>
-      </div>
-      <div class="footer-col"><h4>Producto</h4><ul><li><a href="#funciones">Funciones</a></li><li><a href="#afip">AFIP</a></li><li><a href="#precios">Precios</a></li><li><a href="#demo">Demo</a></li></ul></div>
-      <div class="footer-col"><h4>Comercial</h4><ul><li><a href="https://licencias.mello.com.ar/?from=landing">Activar licencia</a></li><li><a href="checklist-apertura-cierre-caja.html">Checklist de caja</a></li><li><a href="#contacto">Contacto</a></li><li><a href="mailto:soporte@mello.com.ar">soporte@mello.com.ar</a></li></ul></div>
-      <div class="footer-col"><h4>Soporte</h4><ul><li><a href="#faq">Preguntas frecuentes</a></li><li><a href="https://licencias.mello.com.ar/?from=landing">Portal de suscripciones</a></li><li><a href="#contacto">Pedir ayuda</a></li></ul></div>
+    <div class="text-center">
+      <div class="tag">Proceso</div>
+      <h2 class="section-title">De la descarga a tu primera venta en un día</h2>
     </div>
-    <div class="footer-bottom">
-      <span>© 2026 PuntoNexo · Hecho para comercios argentinos</span>
-      <span>
-        <a href="https://licencias.mello.com.ar/terminos.html">Términos y condiciones</a> &nbsp;·&nbsp;
-        <a href="https://licencias.mello.com.ar/privacidad.html">Política de privacidad</a> &nbsp;·&nbsp;
-        Cancelable en cualquier momento
-      </span>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h3>Descargá e instalá</h3>
+        <p>Un instalador de 60 MB que incluye todo. Sin configurar servidores, sin Docker, sin nada raro.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h3>Configurá tu negocio</h3>
+        <p>CUIT, sucursal, nombre del comercio. La app genera tu ID único de terminal en segundos.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <h3>Probá 14 días gratis</h3>
+        <p>Sin tarjeta de crédito. Acceso completo a todas las funciones del plan que elijas.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">4</div>
+        <h3>Facturá con ARCA</h3>
+        <p>AFIP integrado desde el primer día. CAEA automático cuando no hay internet.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Diferenciadores -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="text-center">
+      <div class="tag">Por qué PuntoNexo</div>
+      <h2 class="section-title">Lo que los sistemas web no pueden darte</h2>
+      <p class="section-sub">Mientras otros dependen de un servidor en la nube, vos operás desde tu propia PC.</p>
+    </div>
+    <div class="diff-grid">
+      <div class="diff-card">
+        <div class="diff-icon">⚡</div>
+        <h3>Funciona sin internet. Siempre.</h3>
+        <p>Tu negocio no se detiene cuando falla el WiFi, el proveedor de internet o el servidor del TPV. Datos locales, caja siempre abierta. CAEA automático para seguir facturando offline.</p>
+      </div>
+      <div class="diff-card">
+        <div class="diff-icon">🏛️</div>
+        <h3>ARCA sin dolores de cabeza</h3>
+        <p>Factura electrónica CAE y CAEA integrados. Liquidación de IVA, retenciones, historial fiscal completo. Actualizado con las últimas resoluciones de ARCA 2026.</p>
+      </div>
+      <div class="diff-card">
+        <div class="diff-icon">💰</div>
+        <h3>Precio en pesos, sin sorpresas</h3>
+        <p>Suscripción mensual fija en ARS. Sin ajustes en dólares, sin costos ocultos. Cancelás cuando querés. Y si no te sirve en 30 días, te devolvemos el pago.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Funciones -->
+<section class="section" id="funciones">
+  <div class="container">
+    <div class="text-center">
+      <div class="tag">Funcionalidades</div>
+      <h2 class="section-title">Todo lo que necesita un comercio argentino</h2>
+      <p class="section-sub">Pensado para supermercados, almacenes, kioscos y autoservicios desde el día uno.</p>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-item">
+        <div class="feat-item-icon">🛒</div>
+        <div>
+          <h4>Caja rápida</h4>
+          <p>Código de barras, búsqueda rápida, múltiples medios de pago. Sin demoras en hora pico.</p>
+        </div>
+      </div>
+      <div class="feat-item">
+        <div class="feat-item-icon">📦</div>
+        <div>
+          <h4>Control de stock</h4>
+          <p>Inventario en tiempo real, alertas de stock bajo, múltiples depósitos.</p>
+        </div>
+      </div>
+      <div class="feat-item">
+        <div class="feat-item-icon">🧾</div>
+        <div>
+          <h4>Facturación ARCA</h4>
+          <p>CAE y CAEA automáticos. Facturas A, B y C. Historial fiscal completo.</p>
+        </div>
+      </div>
+      <div class="feat-item">
+        <div class="feat-item-icon">🚚</div>
+        <div>
+          <h4>Compras a proveedores</h4>
+          <p>Registrá ingresos de mercadería, actualizá precios y controlá deuda con proveedores.</p>
+        </div>
+      </div>
+      <div class="feat-item">
+        <div class="feat-item-icon">👥</div>
+        <div>
+          <h4>Cuentas corrientes</h4>
+          <p>Fiado con clientes frecuentes, historial de deudas y pagos.</p>
+        </div>
+      </div>
+      <div class="feat-item">
+        <div class="feat-item-icon">📊</div>
+        <div>
+          <h4>Reportes y cierres</h4>
+          <p>Cierre de caja, ventas por período, productos que más rotan, márgenes.</p>
+        </div>
+      </div>
+      <div class="feat-item">
+        <div class="feat-item-icon">🖨️</div>
+        <div>
+          <h4>Impresoras y lectores</h4>
+          <p>Compatible con impresoras térmicas Epson/Bixolon, lectoras USB y balanzas con código.</p>
+        </div>
+      </div>
+      <div class="feat-item">
+        <div class="feat-item-icon">🏪</div>
+        <div>
+          <h4>Fidelización de clientes</h4>
+          <p>Programa de puntos, historial de compras, identificación por CUIT o DNI.</p>
+        </div>
+      </div>
+      <div class="feat-item">
+        <div class="feat-item-icon">🌐</div>
+        <div>
+          <h4>Catálogo online <span style="font-size:.75rem;background:var(--forest-bg);color:var(--forest);padding:2px 8px;border-radius:999px;vertical-align:middle">Pro</span></h4>
+          <p>Tus clientes ven precios actualizados en el celular. Sincronizado con el stock.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Precios -->
+<section class="section section-alt" id="precios">
+  <div class="container">
+    <div class="text-center">
+      <div class="tag">Precios</div>
+      <h2 class="section-title">Elegí el plan para tu comercio</h2>
+      <p class="section-sub">Todos incluyen funcionamiento offline, actualizaciones y soporte por email. Cancelás cuando querás.</p>
+    </div>
+    <div class="plans-grid">
+
+      <!-- Starter -->
+      <div class="plan-card">
+        <div class="plan-name">Starter</div>
+        <div class="plan-price"><sup>$</sup><span id="price-starter">24.990</span></div>
+        <div class="plan-price-sub">por mes +IVA · 1 caja</div>
+        <hr class="plan-divider">
+        <ul class="plan-features">
+          <li>1 terminal (caja)</li>
+          <li>Stock completo</li>
+          <li>Cuentas corrientes</li>
+          <li>Reportes y cierres de caja</li>
+          <li>Funciona sin internet</li>
+          <li class="no">Facturación ARCA</li>
+          <li class="no">Catálogo online</li>
+        </ul>
+        <div class="plan-cta">
+          <a href="descargar.html" class="btn btn-outline" style="width:100%;justify-content:center">Probar 14 días gratis</a>
+        </div>
+      </div>
+
+      <!-- Standard (featured) -->
+      <div class="plan-card featured">
+        <div class="plan-badge">Más popular</div>
+        <div class="plan-name">Standard</div>
+        <div class="plan-price"><sup>$</sup><span id="price-standard">69.990</span></div>
+        <div class="plan-price-sub">por mes +IVA · hasta 3 cajas</div>
+        <hr class="plan-divider">
+        <ul class="plan-features">
+          <li>Hasta 3 terminales</li>
+          <li>Todo lo del plan Starter</li>
+          <li>Facturación ARCA (CAE + CAEA)</li>
+          <li>Liquidación IVA</li>
+          <li>Importar precios desde Excel</li>
+          <li>Soporte prioritario</li>
+          <li class="no">Catálogo online</li>
+        </ul>
+        <div class="plan-cta">
+          <a href="descargar.html" class="btn btn-primary" style="width:100%;justify-content:center" onclick="gtag('event','pricing_standard_click')">Probar 14 días gratis</a>
+        </div>
+      </div>
+
+      <!-- Pro -->
+      <div class="plan-card">
+        <div class="plan-name">Pro</div>
+        <div class="plan-price"><sup>$</sup><span id="price-pro">119.990</span></div>
+        <div class="plan-price-sub">por mes +IVA · hasta 10 cajas</div>
+        <hr class="plan-divider">
+        <ul class="plan-features">
+          <li>Hasta 10 terminales</li>
+          <li>Todo lo del plan Standard</li>
+          <li>Catálogo online para clientes</li>
+          <li>Soporte telefónico prioritario</li>
+          <li>Multi-sucursal (próximamente)</li>
+        </ul>
+        <div class="plan-cta">
+          <a href="descargar.html" class="btn btn-outline" style="width:100%;justify-content:center">Probar 14 días gratis</a>
+        </div>
+      </div>
+
+    </div>
+    <p class="plans-note">Todos los planes incluyen 14 días de prueba gratis. Sin tarjeta de crédito. Garantía de devolución 30 días. <a href="precios.html" style="color:var(--forest);font-weight:600">Ver comparativa completa →</a></p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq">
+  <div class="container">
+    <div class="text-center">
+      <div class="tag">Preguntas frecuentes</div>
+      <h2 class="section-title">Todo lo que necesitás saber</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          ¿Necesito internet para vender?
+          <span class="faq-arrow">▾</span>
+        </div>
+        <div class="faq-a">No. PuntoNexo funciona completamente offline. Tus datos están en tu PC. Solo necesitás conexión para activar la licencia por primera vez y para sincronizar las facturas con ARCA.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          ¿En qué se diferencia de los sistemas web (CajaOS, VentaSimple, etc.)?
+          <span class="faq-arrow">▾</span>
+        </div>
+        <div class="faq-a">Los sistemas 100% web dependen de que haya internet y de que el servidor del proveedor esté funcionando. Si falla cualquiera de los dos, tu caja se detiene. PuntoNexo corre en tu PC, con tus propios datos, sin depender de ningún servidor externo para operar.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          ¿La facturación ARCA está incluida en todos los planes?
+          <span class="faq-arrow">▾</span>
+        </div>
+        <div class="faq-a">ARCA está incluida en los planes Standard y Pro. El plan Starter es para comercios que todavía no facturan electrónicamente (pequeños kioscos, mercados de vecindad). Si necesitás emitir facturas A, B o C, elegí Standard.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          ¿Puedo probar antes de pagar?
+          <span class="faq-arrow">▾</span>
+        </div>
+        <div class="faq-a">Sí. 14 días completos con acceso a todas las funciones del plan que elijas. Sin tarjeta de crédito. Si al final no te sirve, no pagás nada.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          ¿Cuántas PCs puedo usar con una suscripción?
+          <span class="faq-arrow">▾</span>
+        </div>
+        <div class="faq-a">Cada suscripción activa una terminal (PC). Standard incluye hasta 3 terminales en la misma sucursal, Pro hasta 10. El soporte para múltiples sucursales está en desarrollo para próximas versiones.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          ¿Puedo cambiar de plan o cancelar?
+          <span class="faq-arrow">▾</span>
+        </div>
+        <div class="faq-a">Sí. Podés cambiar de plan o cancelar en cualquier momento desde tu cuenta en el portal de licencias. El cobro es mensual con Mercado Pago, sin períodos mínimos.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          ¿Cómo activo la licencia después de pagar?
+          <span class="faq-arrow">▾</span>
+        </div>
+        <div class="faq-a">Instalás PuntoNexo, configurás tu CUIT y sucursal (eso genera el ID único de tu terminal), pagás en el portal con Mercado Pago y sincronizás desde la app con tu email. Todo el proceso tarda menos de 10 minutos.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          ¿Qué hardware es compatible?
+          <span class="faq-arrow">▾</span>
+        </div>
+        <div class="faq-a">Impresoras térmicas (Epson TM, Bixolon), lectoras de código de barras USB, balanzas con código pesable. No requiere hardware especial, solo una PC con Windows 10 u 11 de 64 bits.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Final -->
+<section class="cta-section">
+  <h2>Descargá PuntoNexo hoy</h2>
+  <p>14 días completos sin tarjeta. Instalás en 5 minutos y vendés el mismo día.</p>
+  <a href="descargar.html" class="btn btn-primary" onclick="gtag('event','bottom_cta_download')">Descargar para Windows</a>
+  <div class="cta-meta">Windows 10/11 · 64 bits · versión <span id="cta-version">2.0.0</span> · ~60 MB</div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">PuntoNexo</div>
+    <div class="footer-links">
+      <a href="descargar.html">Descargar</a>
+      <a href="precios.html">Precios</a>
+      <a href="#faq">Ayuda</a>
+      <a href="/terminos.html" target="_blank" rel="noopener">Términos</a>
+      <a href="/privacidad.html" target="_blank" rel="noopener">Privacidad</a>
+      <a href="mailto:soporte@mello.com.ar">soporte@mello.com.ar</a>
+    </div>
+    <div class="footer-copy">
+      Buenos Aires, Argentina &nbsp;·&nbsp; TPV argentino para supermercados y almacenes
     </div>
   </div>
 </footer>
 
 <script>
-window.addEventListener('scroll', () => {
-  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 10);
+// Nav mobile
+document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+  document.getElementById('mobileMenu').classList.toggle('open');
 });
 
-function toggleFaq(btn) {
-  const item = btn.closest('.faq-item');
-  const isOpen = item.classList.contains('open');
+// FAQ accordion
+function toggleFaq(el) {
+  const item = el.parentElement;
+  const wasOpen = item.classList.contains('open');
   document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
-  if (!isOpen) item.classList.add('open');
+  if (!wasOpen) item.classList.add('open');
 }
 
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    const id = a.getAttribute('href').slice(1);
-    if (!id) return;
-    const el = document.getElementById(id);
-    if (el) {
-      e.preventDefault();
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  });
-});
-
-function pnLicensingOrigin() {
-  const url = (window.PN_CONFIG && window.PN_CONFIG.licensingUrl) || 'https://licencias.mello.com.ar/?from=landing';
-  try { return new URL(url).origin; } catch { return 'https://licencias.mello.com.ar'; }
-}
-
-function applyPnConfig() {
-  const cfg = window.PN_CONFIG || {};
-  const licensing = cfg.licensingUrl || 'https://licencias.mello.com.ar/?from=landing';
-  const manageUrl = pnLicensingOrigin() + '/gestionar.html?from=landing';
-  const download = cfg.releaseDownloadUrl || 'https://github.com/mellomda3/puntonexo-releases/releases/latest/download/PuntoNexo-Installer.exe';
-  const support = cfg.supportEmail || 'soporte@mello.com.ar';
-
-  document.querySelectorAll('a[href*="licencias.mello.com.ar"]').forEach(a => {
-    const href = a.getAttribute('href') || '';
-    if (href.includes('gestionar.html')) {
-      a.setAttribute('href', manageUrl);
-      return;
-    }
-    if (href.includes('terminos.html') || href.includes('privacidad.html')) return;
-    const base = href.split('?')[0];
-    const q = new URLSearchParams(href.includes('?') ? href.split('?')[1] : '');
-    if (!q.get('from')) q.set('from', 'landing');
-    const plan = q.get('plan');
-    const target = new URL(licensing);
-    target.searchParams.set('from', q.get('from') || 'landing');
-    if (plan) target.searchParams.set('plan', plan);
-    a.setAttribute('href', target.toString());
-  });
-
-  document.querySelectorAll('a[href*="puntonexo-releases"][href*="PuntoNexo-Installer"]').forEach(a => {
-    a.setAttribute('href', download);
-  });
-
-  if (cfg.releaseVersion) {
-    document.querySelectorAll('.release-card strong').forEach(el => {
-      if (/v[\d.]+/.test(el.textContent))
-        el.textContent = el.textContent.replace(/v[\d.]+/, 'v' + cfg.releaseVersion);
-    });
-  }
-
-  const contactMail = document.querySelector('a[href^="mailto:soporte@"]');
-  if (contactMail) contactMail.setAttribute('href', 'mailto:' + support);
-
-  window.__pnContactApi = pnLicensingOrigin() + '/api/contact';
-}
-
-function applyAppDeepLinkParams() {
-  const hash = window.location.hash || '';
-  if (!hash.startsWith('#descargar?')) return;
-  const params = new URLSearchParams(hash.slice('#descargar?'.length));
-  const installationId = params.get('installationId');
-  if (!installationId) return;
-  const extra = new URLSearchParams(params);
-  extra.set('from', params.get('from') || 'app');
-  const licensingQuery = extra.toString();
-  document.querySelectorAll('a[href*="licencias.mello.com.ar"]').forEach(a => {
-    const href = a.getAttribute('href') || '';
-    if (href.includes('gestionar.html')) return;
-    const base = href.split('?')[0];
-    a.setAttribute('href', `${base}?${licensingQuery}`);
-  });
-}
-
-function applyLandingPlanLinks() {
-  const params = new URLSearchParams(location.search);
-  const plan = params.get('plan');
-  if (!plan) return;
-  const normalized = plan.charAt(0).toUpperCase() + plan.slice(1).toLowerCase();
-  if (!['Starter', 'Standard', 'Pro'].includes(normalized)) return;
-  document.querySelectorAll('a[href*="licencias.mello.com.ar"]').forEach(a => {
-    const href = a.getAttribute('href') || '';
-    if (href.includes('gestionar.html')) return;
-    const base = href.split('?')[0];
-    const q = new URLSearchParams(href.includes('?') ? href.split('?')[1] : '');
-    q.set('from', q.get('from') || 'landing');
-    q.set('plan', normalized);
-    a.setAttribute('href', `${base}?${q.toString()}`);
-  });
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  applyPnConfig();
-  applyAppDeepLinkParams();
-  applyLandingPlanLinks();
-});
-
-async function submitContact() {
-  const name = document.getElementById('cf-name').value.trim();
-  const email = document.getElementById('cf-email').value.trim();
-  const subject = document.getElementById('cf-subject').value;
-  const message = document.getElementById('cf-message').value.trim();
-  const errEl = document.getElementById('cfError');
-  const btn = document.getElementById('cfSubmitBtn');
-
-  errEl.style.display = 'none';
-  if (!name) { errEl.textContent = 'Por favor ingresá tu nombre.'; errEl.style.display = 'block'; return; }
-  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { errEl.textContent = 'Ingresá un email válido.'; errEl.style.display = 'block'; return; }
-  if (!subject) { errEl.textContent = 'Seleccioná un asunto.'; errEl.style.display = 'block'; return; }
-  if (!message) { errEl.textContent = 'Escribí tu mensaje.'; errEl.style.display = 'block'; return; }
-
-  btn.disabled = true;
-  btn.textContent = 'Enviando...';
+// Config dinámica
+(function applyConfig() {
   try {
-    const res = await fetch(window.__pnContactApi || (pnLicensingOrigin() + '/api/contact'), {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, email, subject, message })
-    });
-    if (res.ok) {
-      document.getElementById('cfForm').style.display = 'none';
-      document.getElementById('cfSuccess').style.display = 'block';
-    } else {
-      throw new Error('server');
+    const cfg = window.PN_CONFIG || {};
+    if (cfg.releaseVersion) {
+      document.getElementById('cta-version').textContent = cfg.releaseVersion;
     }
-  } catch {
-    const body = encodeURIComponent(`Nombre: ${name}\nEmail: ${email}\nAsunto: ${subject}\n\n${message}`);
-    window.location.href = `mailto:${(window.PN_CONFIG && window.PN_CONFIG.supportEmail) || 'soporte@mello.com.ar'}?subject=${encodeURIComponent('Consulta PuntoNexo - ' + subject)}&body=${body}`;
-  } finally {
-    btn.disabled = false;
-    btn.textContent = 'Enviar mensaje';
-  }
-}
+    if (cfg.releaseDownloadUrl) {
+      document.querySelectorAll('a[href="descargar.html"]').forEach(a => {
+        // Mantener link a descargar.html; la página de descarga usa config.js
+      });
+    }
+  } catch(e) {}
+})();
 
+// Track scroll para hero CTA
+let heroTracked = false;
+window.addEventListener('scroll', function() {
+  if (!heroTracked && window.scrollY > 200) {
+    heroTracked = true;
+    if (typeof gtag !== 'undefined') gtag('event', 'scrolled_past_hero');
+  }
+});
 </script>
-<!--Start of Tawk.to Script (carga diferida para no competir con CTAs)-->
-<script type="text/javascript">
-function loadTawkChat(){
-  if (window.__tawkLoaded) return;
-  window.__tawkLoaded = true;
-  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-  var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-  s1.async=true;
-  s1.src='https://embed.tawk.to/6a151030b8b0941c39310bf4/1jph4efra';
-  s1.charset='UTF-8';
-  s1.setAttribute('crossorigin','*');
-  s0.parentNode.insertBefore(s1,s0);
-}
-setTimeout(loadTawkChat, 45000);
-document.addEventListener('click', function(e){
-  if (e.target.closest('a.btn-primary, a.btn-secondary, .pricing-card a')) loadTawkChat();
-}, { once: true, capture: true });
-</script>
-<!--End of Tawk.to Script-->
 </body>
 </html>
-

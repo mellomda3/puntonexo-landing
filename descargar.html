@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Descargar PuntoNexo — TPV para Windows</title>
+  <meta name="description" content="Descargá PuntoNexo para Windows 10/11. Sistema de punto de venta con facturación ARCA, funciona offline. Versión 2.0.0.">
+  <link rel="canonical" href="https://puntonexo.mello.com.ar/descargar.html">
+  <link rel="icon" href="/favicon.ico">
+  <script>if(location.protocol!=='https:'&&location.hostname!=='localhost')location.replace('https:'+location.href.slice(location.protocol.length));</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="config.js"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-B0GLCDBLD8"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-B0GLCDBLD8');</script>
+<style>
+:root {
+  --forest:    #1B4332; --forest-dk: #0d2b1f; --forest-lt: #2D6A4F;
+  --forest-bg: #f0f7f3; --mint: #95D5B2; --mint-lt: #d8f3e8;
+  --cream:     #FAF9F6; --cream-dk: #F0EDE5; --ink: #1A1A1A;
+  --muted:     #6B7280; --border: #E5E0D8; --success: #059669;
+  --font-d: 'DM Sans', system-ui, sans-serif;
+  --font-b: 'Inter', system-ui, sans-serif;
+  --font-m: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+  --radius: 10px; --radius-lg: 16px; --shadow: 0 4px 16px rgba(27,67,50,.10);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-b); color: var(--ink); background: var(--cream); -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+.container { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+
+/* Nav */
+nav { position: sticky; top: 0; z-index: 100; background: rgba(250,249,246,.93); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); }
+.nav-inner { display: flex; align-items: center; gap: 8px; height: 64px; max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+.nav-logo { font-family: var(--font-d); font-weight: 800; font-size: 1.2rem; color: var(--forest); margin-right: auto; letter-spacing: -.02em; }
+.nav-logo span { color: var(--mint); }
+.nav-links { display: flex; align-items: center; gap: 4px; }
+.nav-links a { font-size: .9rem; font-weight: 500; padding: 8px 12px; border-radius: 8px; transition: all 150ms; }
+.nav-links a:hover { background: var(--cream-dk); color: var(--forest); }
+.btn { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-d); font-weight: 700; font-size: .95rem; padding: 14px 28px; border-radius: var(--radius); border: 2px solid transparent; cursor: pointer; transition: all 150ms; text-decoration: none; }
+.btn-primary { background: var(--forest); color: #fff; border-color: var(--forest); }
+.btn-primary:hover { background: var(--forest-lt); border-color: var(--forest-lt); }
+.btn-outline { background: transparent; color: var(--forest); border-color: var(--forest); }
+.btn-outline:hover { background: var(--forest-bg); }
+.btn-sm { padding: 9px 18px; font-size: .85rem; }
+.btn-lg { padding: 18px 40px; font-size: 1.1rem; }
+@media (max-width: 640px) { .nav-links { display: none; } }
+
+/* Page */
+.page-hero { padding: 64px 0 48px; text-align: center; }
+.page-hero .tag { display: inline-block; background: var(--mint-lt); color: var(--forest); font-family: var(--font-d); font-size: .75rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 4px 12px; border-radius: 999px; margin-bottom: 14px; }
+.page-hero h1 { font-family: var(--font-d); font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; letter-spacing: -.03em; line-height: 1.15; color: var(--forest-dk); margin-bottom: 14px; }
+.page-hero p { color: var(--muted); font-size: 1.05rem; max-width: 500px; margin: 0 auto; }
+
+/* Download card */
+.download-card {
+  max-width: 640px; margin: 40px auto; background: #fff;
+  border: 2px solid var(--forest); border-radius: 24px;
+  overflow: hidden; box-shadow: var(--shadow);
+}
+.download-card-header {
+  background: var(--forest); color: #fff;
+  padding: 28px 36px; display: flex; align-items: center; gap: 16px;
+}
+.download-icon { font-size: 2.4rem; }
+.download-card-header h2 { font-family: var(--font-d); font-size: 1.3rem; font-weight: 800; }
+.download-card-header p { font-size: .9rem; color: rgba(255,255,255,.65); margin-top: 2px; }
+.download-card-body { padding: 32px 36px; }
+.download-meta { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 28px; }
+.meta-chip { background: var(--forest-bg); color: var(--forest); border: 1px solid var(--mint); border-radius: 999px; padding: 6px 14px; font-size: .82rem; font-weight: 600; display: flex; align-items: center; gap: 6px; }
+.meta-chip::before { content: '✓'; }
+.download-btn-wrap { margin-bottom: 16px; }
+.download-btn-wrap .btn { width: 100%; justify-content: center; font-size: 1.1rem; padding: 18px; }
+.download-note { text-align: center; font-size: .82rem; color: var(--muted); }
+.sha-toggle { background: none; border: none; cursor: pointer; font-size: .8rem; color: var(--muted); text-decoration: underline; margin-top: 8px; display: block; margin-left: auto; margin-right: auto; }
+.sha-box { display: none; background: var(--cream-dk); border-radius: var(--radius); padding: 12px 16px; margin-top: 10px; font-family: var(--font-m); font-size: .78rem; color: var(--muted); word-break: break-all; }
+.sha-box.visible { display: block; }
+
+/* Steps after install */
+.after-section { max-width: 640px; margin: 0 auto 64px; }
+.after-section h3 { font-family: var(--font-d); font-size: 1.2rem; font-weight: 800; margin-bottom: 20px; color: var(--forest-dk); }
+.after-steps { display: flex; flex-direction: column; gap: 0; }
+.after-step { display: flex; gap: 16px; padding: 20px 0; border-bottom: 1px solid var(--border); position: relative; }
+.after-step:last-child { border-bottom: none; }
+.after-step-num {
+  width: 36px; height: 36px; background: var(--forest); color: #fff;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-d); font-weight: 700; font-size: .9rem; flex-shrink: 0;
+}
+.after-step h4 { font-family: var(--font-d); font-weight: 700; font-size: .97rem; margin-bottom: 4px; }
+.after-step p { font-size: .88rem; color: var(--muted); line-height: 1.5; }
+.after-step .step-cta { margin-top: 8px; font-size: .85rem; color: var(--forest); font-weight: 600; }
+.after-step .step-cta:hover { text-decoration: underline; }
+
+/* Requisitos */
+.reqs-section { max-width: 640px; margin: 0 auto 64px; background: var(--cream-dk); border-radius: var(--radius-lg); padding: 24px 32px; }
+.reqs-section h3 { font-family: var(--font-d); font-size: 1rem; font-weight: 700; margin-bottom: 14px; }
+.reqs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.req-item { font-size: .88rem; display: flex; align-items: flex-start; gap: 6px; }
+.req-item::before { content: '•'; color: var(--forest); font-weight: 700; flex-shrink: 0; }
+@media (max-width: 480px) {
+  .download-card-header { padding: 20px 20px; }
+  .download-card-body { padding: 20px 20px; }
+  .after-section, .reqs-section { padding: 20px; }
+  .reqs-grid { grid-template-columns: 1fr; }
+}
+
+footer { background: var(--forest-dk); border-top: 1px solid rgba(255,255,255,.06); padding: 40px 24px; color: rgba(255,255,255,.5); }
+.footer-inner { max-width: 1160px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 20px; align-items: center; justify-content: space-between; }
+.footer-logo { font-family: var(--font-d); font-weight: 800; font-size: 1rem; color: rgba(255,255,255,.8); }
+.footer-links { display: flex; flex-wrap: wrap; gap: 20px; }
+.footer-links a { font-size: .85rem; transition: color 150ms; }
+.footer-links a:hover { color: rgba(255,255,255,.85); }
+.footer-copy { font-size: .82rem; width: 100%; text-align: center; margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.06); }
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Punto<span>Nexo</span></a>
+    <div class="nav-links">
+      <a href="/#funciones">Funciones</a>
+      <a href="precios.html">Precios</a>
+      <a href="/#faq">Ayuda</a>
+    </div>
+    <a href="descargar.html" class="btn btn-primary btn-sm" style="margin-left:8px">Descargar</a>
+  </div>
+</nav>
+
+<main>
+  <div class="page-hero">
+    <div class="container">
+      <div class="tag">Descarga</div>
+      <h1>PuntoNexo para Windows</h1>
+      <p>Instalador oficial. Incluye .NET 8, sin dependencias externas.</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="download-card">
+      <div class="download-card-header">
+        <div class="download-icon">💾</div>
+        <div>
+          <h2 id="dl-title">PuntoNexo Installer 2.0.0</h2>
+          <p>Windows 10/11 · 64 bits · ~60 MB · incluye .NET 8</p>
+        </div>
+      </div>
+      <div class="download-card-body">
+        <div class="download-meta">
+          <span class="meta-chip">Funciona offline</span>
+          <span class="meta-chip">ARCA integrado</span>
+          <span class="meta-chip">14 días gratis</span>
+          <span class="meta-chip">Sin tarjeta</span>
+        </div>
+        <div class="download-btn-wrap">
+          <a href="#" id="dl-btn" class="btn btn-primary btn-lg"
+             onclick="trackDownload(event)">
+            ⬇ Descargar PuntoNexo-Installer-2.0.0.exe
+          </a>
+        </div>
+        <p class="download-note">Al descargar aceptás los <a href="/terminos.html" target="_blank" style="color:var(--forest);font-weight:600">términos de uso</a>.</p>
+        <button class="sha-toggle" onclick="toggleSha()">Ver checksum SHA-256</button>
+        <div class="sha-box" id="sha-box">
+          SHA-256 del instalador se publica en las <a href="https://github.com/mellomda3/puntonexo-releases/releases/latest" target="_blank" rel="noopener" style="color:var(--forest)">release notes de GitHub</a>.
+        </div>
+      </div>
+    </div>
+
+    <div class="after-section">
+      <h3>Después de instalar, hacé esto</h3>
+      <div class="after-steps">
+        <div class="after-step">
+          <div class="after-step-num">1</div>
+          <div>
+            <h4>Abrí PuntoNexo desde el escritorio</h4>
+            <p>La app te va a mostrar un asistente de configuración la primera vez.</p>
+          </div>
+        </div>
+        <div class="after-step">
+          <div class="after-step-num">2</div>
+          <div>
+            <h4>Ingresá el CUIT de tu comercio y el nombre</h4>
+            <p>Esto genera el <strong>ID de instalación</strong> único de tu terminal — un código de 16 caracteres que vincula la licencia a esta PC.</p>
+          </div>
+        </div>
+        <div class="after-step">
+          <div class="after-step-num">3</div>
+          <div>
+            <h4>Copiá el ID y elegí cómo activar</h4>
+            <p>Tenés tres opciones:</p>
+            <ul style="margin-top:8px;padding-left:20px;font-size:.88rem;color:var(--muted);display:flex;flex-direction:column;gap:4px">
+              <li><strong>Probar 14 días gratis</strong> — sin tarjeta, directamente desde la app.</li>
+              <li><strong>Contratar ahora</strong> — abre el portal de licencias con tu ID ya cargado.</li>
+              <li><strong>Ya pagué</strong> — ingresá tu email de Mercado Pago y sincronizá.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="after-step">
+          <div class="after-step-num">4</div>
+          <div>
+            <h4>¡Listo! Empezá a vender</h4>
+            <p>La app se abre directo a la caja. Podés importar productos desde Excel o cargarlos manualmente.</p>
+            <a href="https://licencias.mello.com.ar" class="step-cta" target="_blank">Ir al portal de licencias →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reqs-section">
+      <h3>Requisitos del sistema</h3>
+      <div class="reqs-grid">
+        <div class="req-item">Windows 10 / 11 (64 bits)</div>
+        <div class="req-item">4 GB de RAM mínimo</div>
+        <div class="req-item">500 MB de espacio libre</div>
+        <div class="req-item">Resolución 1280×720 o mayor</div>
+        <div class="req-item">.NET 8 incluido en el instalador</div>
+        <div class="req-item">Conexión a internet para activar</div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">PuntoNexo</div>
+    <div class="footer-links">
+      <a href="/">Inicio</a>
+      <a href="precios.html">Precios</a>
+      <a href="/terminos.html" target="_blank">Términos</a>
+      <a href="/privacidad.html" target="_blank">Privacidad</a>
+      <a href="mailto:soporte@mello.com.ar">soporte@mello.com.ar</a>
+    </div>
+    <div class="footer-copy">Buenos Aires, Argentina · TPV argentino</div>
+  </div>
+</footer>
+
+<script>
+function applyConfig() {
+  try {
+    const cfg = window.PN_CONFIG || {};
+    const version = cfg.releaseVersion || '2.0.0';
+    const url = cfg.releaseDownloadUrl || 'https://github.com/mellomda3/puntonexo-releases/releases/download/v2.0.0/PuntoNexo-Installer-2.0.0.exe';
+    document.getElementById('dl-btn').href = url;
+    document.getElementById('dl-btn').textContent = `⬇ Descargar PuntoNexo-Installer-${version}.exe`;
+    document.getElementById('dl-title').textContent = `PuntoNexo Installer ${version}`;
+  } catch(e) {}
+}
+applyConfig();
+
+function trackDownload(e) {
+  if (typeof gtag !== 'undefined') {
+    gtag('event', 'file_download', {
+      file_name: document.getElementById('dl-btn').href.split('/').pop()
+    });
+  }
+}
+
+function toggleSha() {
+  document.getElementById('sha-box').classList.toggle('visible');
+}
+</script>
+</body>
+</html>
