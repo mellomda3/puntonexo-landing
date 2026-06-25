@@ -358,7 +358,7 @@ footer {
 
 <!-- Topbar -->
 <div class="topbar">
-  PuntoNexo 2.0.0 disponible — 14 días de prueba gratis, sin tarjeta.
+  PuntoNexo <span id="topbar-version">2.2.2</span> disponible — 14 días de prueba gratis, sin tarjeta.
   <a href="/descargar.html">Descargar ahora</a>
 </div>
 
@@ -404,7 +404,7 @@ footer {
       </div>
       <div class="hero-meta">
         <span>Windows 10/11 · 64 bits</span>
-        <span>Versión 2.0.0 · ~60 MB</span>
+        <span>Versión <span id="hero-version">2.2.2</span> · ~60 MB</span>
         <span>14 días gratis</span>
         <span>Sin tarjeta</span>
       </div>
@@ -732,7 +732,7 @@ footer {
   <h2>Descargá PuntoNexo hoy</h2>
   <p>14 días completos sin tarjeta. Instalás en 5 minutos y vendés el mismo día.</p>
   <a href="descargar.html" class="btn btn-primary" onclick="gtag('event','bottom_cta_download')">Descargar para Windows</a>
-  <div class="cta-meta">Windows 10/11 · 64 bits · versión <span id="cta-version">2.0.0</span> · ~60 MB</div>
+  <div class="cta-meta">Windows 10/11 · 64 bits · versión <span id="cta-version">2.2.2</span> · ~60 MB</div>
 </section>
 
 <!-- Footer -->
@@ -773,6 +773,10 @@ function toggleFaq(el) {
     const cfg = window.PN_CONFIG || {};
     if (cfg.releaseVersion) {
       document.getElementById('cta-version').textContent = cfg.releaseVersion;
+      const topbarVer = document.getElementById('topbar-version');
+      if (topbarVer) topbarVer.textContent = cfg.releaseVersion;
+      const heroVer = document.getElementById('hero-version');
+      if (heroVer) heroVer.textContent = cfg.releaseVersion;
     }
     if (cfg.releaseDownloadUrl) {
       document.querySelectorAll('a[href="descargar.html"]').forEach(a => {

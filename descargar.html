@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Descargar PuntoNexo — TPV para Windows</title>
-  <meta name="description" content="Descargá PuntoNexo para Windows 10/11. Sistema de punto de venta con facturación ARCA, funciona offline. Versión 2.0.0.">
+  <meta name="description" content="Descargá PuntoNexo para Windows 10/11. Sistema de punto de venta con facturación ARCA, funciona offline. Versión 2.2.2.">
   <link rel="canonical" href="https://puntonexo.mello.com.ar/descargar.html">
   <link rel="icon" href="/favicon.ico">
   <script>if(location.protocol!=='https:'&&location.hostname!=='localhost')location.replace('https:'+location.href.slice(location.protocol.length));</script>
@@ -143,7 +143,7 @@ footer { background: var(--forest-dk); border-top: 1px solid rgba(255,255,255,.0
       <div class="download-card-header">
         <div class="download-icon">💾</div>
         <div>
-          <h2 id="dl-title">PuntoNexo Installer 2.0.0</h2>
+          <h2 id="dl-title">PuntoNexo Installer 2.2.2</h2>
           <p>Windows 10/11 · 64 bits · ~60 MB · incluye .NET 8</p>
         </div>
       </div>
@@ -157,7 +157,7 @@ footer { background: var(--forest-dk); border-top: 1px solid rgba(255,255,255,.0
         <div class="download-btn-wrap">
           <a href="#" id="dl-btn" class="btn btn-primary btn-lg"
              onclick="trackDownload(event)">
-            ⬇ Descargar PuntoNexo-Installer-2.0.0.exe
+            ⬇ Descargar PuntoNexo-Installer-2.2.2.exe
           </a>
         </div>
         <p class="download-note">Al descargar aceptás los <a href="/terminos.html" target="_blank" style="color:var(--forest);font-weight:600">términos de uso</a>.</p>
@@ -240,8 +240,8 @@ footer { background: var(--forest-dk); border-top: 1px solid rgba(255,255,255,.0
 function applyConfig() {
   try {
     const cfg = window.PN_CONFIG || {};
-    const version = cfg.releaseVersion || '2.0.0';
-    const url = cfg.releaseDownloadUrl || 'https://github.com/mellomda3/puntonexo-releases/releases/download/v2.0.0/PuntoNexo-Installer-2.0.0.exe';
+    const version = cfg.releaseVersion || '2.2.2';
+    const url = cfg.releaseDownloadUrl || 'https://github.com/mellomda3/puntonexo-releases/releases/download/v2.2.2/PuntoNexo-Installer-2.2.2.exe';
     document.getElementById('dl-btn').href = url;
     document.getElementById('dl-btn').textContent = `⬇ Descargar PuntoNexo-Installer-${version}.exe`;
     document.getElementById('dl-title').textContent = `PuntoNexo Installer ${version}`;
