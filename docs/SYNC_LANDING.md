@@ -21,3 +21,5 @@ El script: `dev/cursor` → `C:\Projects` → merge `main` → push GitHub → d
 
 - `origin` → `C:\Projects\puntonexo-landing` (push de trabajo)
 - `github` → fetch de `mellomda3/puntonexo-landing`
+
+El hook `.git/hooks/pre-push` debe estar **desactivado** (`pre-push.disabled`) para permitir push a `C:\Projects` (igual que TPV).
