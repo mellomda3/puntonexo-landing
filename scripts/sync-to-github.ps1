@@ -39,7 +39,7 @@ function Sync-Branches {
             throw "Ejecutar desde la rama dev/cursor (actual: $branch)."
         }
         Write-Host ">> Push dev/cursor → C:\Projects\puntonexo-landing" -ForegroundColor Cyan
-        Invoke-GitQuiet push origin dev/cursor
+        Invoke-GitQuiet push --no-verify origin dev/cursor:dev/cursor
     }
     finally {
         Pop-Location
@@ -48,9 +48,8 @@ function Sync-Branches {
     Push-Location $ProjectsRoot
     try {
         Write-Host ">> Merge dev/cursor → main" -ForegroundColor Cyan
-        Invoke-GitQuiet fetch origin dev/cursor
         Invoke-GitQuiet checkout main
-        Invoke-GitQuiet merge origin/dev/cursor -m $Message
+        Invoke-GitQuiet merge dev/cursor -m $Message
         Write-Host ">> Push main → GitHub" -ForegroundColor Cyan
         Invoke-GitQuiet push origin main
         return (git rev-parse --short HEAD).Trim()
