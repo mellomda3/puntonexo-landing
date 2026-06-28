@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Descargar PuntoNexo â€” TPV para Windows</title>
-  <meta name="description" content="DescargÃ¡ PuntoNexo para Windows 10/11. Sistema de punto de venta con facturaciÃ³n ARCA, funciona offline. VersiÃ³n 2.2.6.">
+  <meta name="description" content="DescargÃ¡ PuntoNexo para Windows 10/11. Sistema de punto de venta con facturaciÃ³n ARCA, funciona offline. VersiÃ³n 2.2.7.">
   <link rel="canonical" href="https://puntonexo.mello.com.ar/descargar.html">
   <link rel="icon" href="/favicon.ico">
   <script>if(location.protocol!=='https:'&&location.hostname!=='localhost')location.replace('https:'+location.href.slice(location.protocol.length));</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script src="config.js?v=2.2.6"></script>
+  <script src="config.js?v=2.2.7"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-B0GLCDBLD8"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-B0GLCDBLD8');</script>
 <style>
@@ -143,7 +143,7 @@ footer { background: var(--forest-dk); border-top: 1px solid rgba(255,255,255,.0
       <div class="download-card-header">
         <div class="download-icon">ðŸ’¾</div>
         <div>
-          <h2 id="dl-title">PuntoNexo Installer 2.2.6</h2>
+          <h2 id="dl-title">PuntoNexo Installer 2.2.7</h2>
           <p>Windows 10/11 Â· 64 bits Â· ~60 MB Â· incluye .NET 8</p>
         </div>
       </div>
@@ -157,7 +157,7 @@ footer { background: var(--forest-dk); border-top: 1px solid rgba(255,255,255,.0
         <div class="download-btn-wrap">
           <a href="#" id="dl-btn" class="btn btn-primary btn-lg"
              onclick="trackDownload(event)">
-            â¬‡ Descargar PuntoNexo-Installer-2.2.6.exe
+            â¬‡ Descargar PuntoNexo-Installer-2.2.7.exe
           </a>
         </div>
         <p class="download-note">Al descargar aceptÃ¡s los <a href="/terminos.html" target="_blank" style="color:var(--forest);font-weight:600">tÃ©rminos de uso</a>.</p>
@@ -240,8 +240,8 @@ footer { background: var(--forest-dk); border-top: 1px solid rgba(255,255,255,.0
 function applyConfig() {
   try {
     const cfg = window.PN_CONFIG || {};
-    const version = cfg.releaseVersion || '2.2.6';
-    const url = cfg.releaseDownloadUrl || 'https://github.com/mellomda3/puntonexo-releases/releases/download/v2.2.6/PuntoNexo-Installer-2.2.6.exe';
+    const version = cfg.releaseVersion || '2.2.7';
+    const url = cfg.releaseDownloadUrl || 'https://github.com/mellomda3/puntonexo-releases/releases/download/v2.2.7/PuntoNexo-Installer-2.2.7.exe';
     document.getElementById('dl-btn').href = url;
     document.getElementById('dl-btn').textContent = `â¬‡ Descargar PuntoNexo-Installer-${version}.exe`;
     document.getElementById('dl-title').textContent = `PuntoNexo Installer ${version}`;
