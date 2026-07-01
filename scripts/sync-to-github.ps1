@@ -2,7 +2,7 @@
 # Mismo patrón que SuperMarketTPV/scripts/sync-to-github.ps1
 #
 # Uso:
-#   cd C:\Users\Christian\Projects\PuntoNexo-Dev\puntonexo-landing
+#   cd C:\Users\mello\Projects\PuntoNexo-Dev\puntonexo-landing
 #   .\scripts\sync-to-github.ps1
 #   .\scripts\sync-to-github.ps1 -MergeMessage "chore: landing v2.2.6"
 
@@ -11,7 +11,7 @@ param(
 )
 
 $ErrorActionPreference = "Stop"
-$DevRoot = "C:\Users\Christian\Projects\PuntoNexo-Dev\puntonexo-landing"
+$DevRoot = if ($env:PUNTONEXO_DEV_ROOT) { Join-Path $env:PUNTONEXO_DEV_ROOT "puntonexo-landing" } else { (Resolve-Path (Join-Path $PSScriptRoot "..")).Path }
 $ProjectsRoot = "C:\Projects\puntonexo-landing"
 
 function Invoke-GitQuiet {
