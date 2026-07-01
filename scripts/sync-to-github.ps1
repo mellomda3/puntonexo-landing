@@ -11,7 +11,15 @@ param(
 )
 
 $ErrorActionPreference = "Stop"
-$DevRoot = if ($env:PUNTONEXO_DEV_ROOT) { Join-Path $env:PUNTONEXO_DEV_ROOT "puntonexo-landing" } else { (Resolve-Path (Join-Path $PSScriptRoot "..")).Path }
+$DevRoot = (Resolve-Path (Join-Path $PSScriptRoot "..")).Path
+if ($env:PUNTONEXO_DEV_ROOT) {
+    $envRoot = Join-Path $env:PUNTONEXO_DEV_ROOT "puntonexo-landing"
+    if ((Test-Path $envRoot) -and (Test-Path (Join-Path $envRoot ".git"))) {
+        $DevRoot = (Resolve-Path $envRoot).Path
+    } else {
+        Write-Warning "PUNTONEXO_DEV_ROOT no apunta a puntonexo-landing valido; usando repo del script."
+    }
+}
 $ProjectsRoot = "C:\Projects\puntonexo-landing"
 
 function Invoke-GitQuiet {
