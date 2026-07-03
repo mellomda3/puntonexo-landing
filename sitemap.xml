@@ -27,10 +27,25 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://puntonexo.mello.com.ar/#contacto</loc>
+    <loc>https://puntonexo.mello.com.ar/precios.html</loc>
+    <lastmod>2026-07-03</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.85</priority>
   </url>
+  <url>
+    <loc>https://puntonexo.mello.com.ar/terminos.html</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://puntonexo.mello.com.ar/privacidad.html</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://puntonexo.mello.com.ar/#descargar</loc>
   <url>
     <loc>https://puntonexo.mello.com.ar/checklist-apertura-cierre-caja.html</loc>
     <lastmod>2026-05-26</lastmod>

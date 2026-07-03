@@ -69,6 +69,7 @@
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
+[id] { scroll-margin-top: 88px; }
 body { font-family: var(--font-b); color: var(--ink); background: var(--cream); line-height: 1.6; -webkit-font-smoothing: antialiased; }
 img { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
@@ -122,6 +123,7 @@ a { color: inherit; text-decoration: none; }
 .nav-links { display: flex; align-items: center; gap: 4px; }
 .nav-links a { font-size: .9rem; font-weight: 500; padding: 8px 12px; border-radius: 8px; color: var(--ink); transition: all 150ms; }
 .nav-links a:hover { background: var(--cream-dk); color: var(--forest); }
+.nav-links a.is-active, .nav-mobile-menu a.is-active { color: var(--forest); font-weight: 700; background: var(--forest-bg); }
 .nav-cta { margin-left: 8px; }
 .nav-mobile-btn { display: none; flex-direction: column; gap: 5px; padding: 8px; border-radius: 8px; cursor: pointer; }
 .nav-mobile-btn span { display: block; width: 22px; height: 2px; background: var(--ink); border-radius: 2px; transition: all 200ms; }
@@ -351,15 +353,51 @@ footer {
   padding: 10px 24px; font-size: .85rem; font-weight: 500;
 }
 .topbar a { color: var(--mint); font-weight: 700; margin-left: 8px; }
+
+/* ── Descarga (sección en home) ── */
+.download-card {
+  max-width: 640px; margin: 40px auto 0; background: #fff;
+  border: 2px solid var(--forest); border-radius: var(--radius-xl);
+  overflow: hidden; box-shadow: var(--shadow-lg);
+}
+.download-card-header {
+  background: var(--forest); color: #fff;
+  padding: 28px 36px; display: flex; align-items: center; gap: 16px;
+}
+.download-icon { font-size: 2.4rem; }
+.download-card-header h2 { font-family: var(--font-d); font-size: 1.3rem; font-weight: 800; }
+.download-card-header p { font-size: .9rem; color: rgba(255,255,255,.65); margin-top: 2px; }
+.download-card-body { padding: 32px 36px; }
+.download-meta { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; justify-content: center; }
+.meta-chip { background: var(--forest-bg); color: var(--forest); border: 1px solid var(--mint); border-radius: 999px; padding: 6px 14px; font-size: .82rem; font-weight: 600; }
+.download-btn-wrap .btn { width: 100%; justify-content: center; }
+.download-note { text-align: center; font-size: .82rem; color: var(--muted); margin-top: 12px; }
+.sha-toggle { background: none; border: none; cursor: pointer; font-size: .8rem; color: var(--muted); text-decoration: underline; margin-top: 8px; display: block; margin-left: auto; margin-right: auto; }
+.sha-box { display: none; background: var(--cream-dk); border-radius: var(--radius); padding: 12px 16px; margin-top: 10px; font-size: .78rem; color: var(--muted); text-align: center; }
+.sha-box.visible { display: block; }
+.after-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 48px; max-width: 960px; margin-left: auto; margin-right: auto; }
+.after-steps { display: flex; flex-direction: column; gap: 0; }
+.after-step { display: flex; gap: 14px; padding: 16px 0; border-bottom: 1px solid var(--border); }
+.after-step:last-child { border-bottom: none; }
+.after-step-num { width: 32px; height: 32px; background: var(--forest); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-d); font-weight: 700; font-size: .85rem; flex-shrink: 0; }
+.after-step h4 { font-family: var(--font-d); font-weight: 700; font-size: .92rem; margin-bottom: 4px; }
+.after-step p { font-size: .85rem; color: var(--muted); line-height: 1.5; }
+.reqs-box { background: var(--cream-dk); border-radius: var(--radius-lg); padding: 24px; }
+.reqs-box h3 { font-family: var(--font-d); font-size: 1rem; font-weight: 700; margin-bottom: 12px; }
+.reqs-grid { display: grid; grid-template-columns: 1fr; gap: 8px; }
+.req-item { font-size: .88rem; padding-left: 14px; position: relative; }
+.req-item::before { content: '•'; position: absolute; left: 0; color: var(--forest); font-weight: 700; }
+@media (max-width: 768px) { .after-grid { grid-template-columns: 1fr; } }
 </style>
+  <script src="scripts/site.js" defer></script>
 </head>
 
-<body>
+<body data-page="home">
 
 <!-- Topbar -->
 <div class="topbar">
-  PuntoNexo <span id="topbar-version">2.4.1</span> disponible — 14 días de prueba gratis, sin tarjeta.
-  <a href="/descargar.html">Descargar ahora</a>
+  PuntoNexo v<span data-version>2.5.1</span> — 14 días de prueba gratis, sin tarjeta.
+  <a href="#descargar" onclick="gtag('event','topbar_download_click')">Descargar gratis</a>
 </div>
 
 <!-- Nav -->
@@ -367,22 +405,22 @@ footer {
   <div class="nav-inner">
     <a href="/" class="nav-logo">Punto<span>Nexo</span></a>
     <div class="nav-links">
-      <a href="#funciones">Funciones</a>
-      <a href="precios.html">Precios</a>
-      <a href="descargar.html">Descargar</a>
-      <a href="#faq">Ayuda</a>
+      <a href="#como-funciona" data-nav="como-funciona">Cómo funciona</a>
+      <a href="#funciones" data-nav="funciones">Funciones</a>
+      <a href="#precios" data-nav="precios">Precios</a>
+      <a href="#faq" data-nav="faq">Ayuda</a>
     </div>
-    <a href="descargar.html" class="btn btn-primary btn-sm nav-cta" onclick="gtag('event','nav_download_click')">Descargar gratis</a>
-    <button class="nav-mobile-btn" id="mobileMenuBtn" aria-label="Menú">
+    <a href="#descargar" class="btn btn-primary btn-sm nav-cta" onclick="gtag('event','nav_download_click')">Descargar gratis</a>
+    <button class="nav-mobile-btn" id="mobileMenuBtn" aria-label="Menú" type="button">
       <span></span><span></span><span></span>
     </button>
   </div>
   <div class="nav-mobile-menu" id="mobileMenu">
-    <a href="#funciones">Funciones</a>
-    <a href="precios.html">Precios</a>
-    <a href="descargar.html">Descargar</a>
-    <a href="#faq">Ayuda</a>
-    <a href="descargar.html" class="btn btn-primary" onclick="gtag('event','mobile_nav_download_click')">Descargar gratis</a>
+    <a href="#como-funciona" data-nav="como-funciona">Cómo funciona</a>
+    <a href="#funciones" data-nav="funciones">Funciones</a>
+    <a href="#precios" data-nav="precios">Precios</a>
+    <a href="#faq" data-nav="faq">Ayuda</a>
+    <a href="#descargar" class="btn btn-primary" onclick="gtag('event','mobile_nav_download_click')">Descargar gratis</a>
   </div>
 </nav>
 
@@ -397,14 +435,14 @@ footer {
         Sin servidores en la nube que fallen a las 18hs del viernes.
       </p>
       <div class="hero-actions">
-        <a href="descargar.html" class="btn btn-primary btn-lg" onclick="gtag('event','hero_download_click')">
-          Descargar para Windows
+        <a href="#descargar" class="btn btn-primary btn-lg" onclick="gtag('event','hero_download_click')">
+          Descargar gratis
         </a>
         <a href="#como-funciona" class="btn btn-outline">Ver cómo funciona</a>
       </div>
       <div class="hero-meta">
         <span>Windows 10/11 · 64 bits</span>
-        <span>Versión <span id="hero-version">2.4.1</span> · ~60 MB</span>
+        <span>Versión <span data-version>2.5.1</span> · ~60 MB</span>
         <span>14 días gratis</span>
         <span>Sin tarjeta</span>
       </div>
@@ -611,7 +649,7 @@ footer {
           <li class="no">Catálogo online</li>
         </ul>
         <div class="plan-cta">
-          <a href="descargar.html" class="btn btn-outline" style="width:100%;justify-content:center">Probar 14 días gratis</a>
+          <a href="#descargar" class="btn btn-outline" style="width:100%;justify-content:center">Probar 14 días gratis</a>
         </div>
       </div>
 
@@ -632,7 +670,7 @@ footer {
           <li class="no">Catálogo online</li>
         </ul>
         <div class="plan-cta">
-          <a href="descargar.html" class="btn btn-primary" style="width:100%;justify-content:center" onclick="gtag('event','pricing_standard_click')">Probar 14 días gratis</a>
+          <a href="#descargar" class="btn btn-primary" style="width:100%;justify-content:center" onclick="gtag('event','pricing_standard_click')">Probar 14 días gratis</a>
         </div>
       </div>
 
@@ -650,7 +688,7 @@ footer {
           <li>Multi-sucursal (próximamente)</li>
         </ul>
         <div class="plan-cta">
-          <a href="descargar.html" class="btn btn-outline" style="width:100%;justify-content:center">Probar 14 días gratis</a>
+          <a href="#descargar" class="btn btn-outline" style="width:100%;justify-content:center">Probar 14 días gratis</a>
         </div>
       </div>
 
@@ -727,12 +765,64 @@ footer {
   </div>
 </section>
 
-<!-- CTA Final -->
-<section class="cta-section">
-  <h2>Descargá PuntoNexo hoy</h2>
-  <p>14 días completos sin tarjeta. Instalás en 5 minutos y vendés el mismo día.</p>
-  <a href="descargar.html" class="btn btn-primary" onclick="gtag('event','bottom_cta_download')">Descargar para Windows</a>
-  <div class="cta-meta">Windows 10/11 · 64 bits · versión <span id="cta-version">2.4.1</span> · ~60 MB</div>
+<!-- Descarga -->
+<section class="section section-dark" id="descargar">
+  <div class="container text-center">
+    <div class="tag" style="background:rgba(149,213,178,.15);color:var(--mint)">Descarga</div>
+    <h2 class="section-title" style="color:#fff">Instalá PuntoNexo en tu PC</h2>
+    <p class="section-sub" style="color:rgba(255,255,255,.65);margin:0 auto 8px">14 días completos sin tarjeta. Windows 10/11 · versión <span data-version>2.5.1</span> · ~60 MB</p>
+
+    <div class="download-card">
+      <div class="download-card-header">
+        <div class="download-icon">💾</div>
+        <div>
+          <h2 id="dl-title">PuntoNexo Installer</h2>
+          <p>Incluye .NET 8 · funciona offline · ARCA integrado</p>
+        </div>
+      </div>
+      <div class="download-card-body">
+        <div class="download-meta">
+          <span class="meta-chip">14 días gratis</span>
+          <span class="meta-chip">Sin tarjeta</span>
+          <span class="meta-chip">Offline</span>
+        </div>
+        <div class="download-btn-wrap">
+          <a href="https://github.com/mellomda3/puntonexo-releases/releases/latest" id="dl-btn" class="btn btn-primary btn-lg" onclick="trackDownload(event);gtag('event','bottom_cta_download')">Descargar gratis</a>
+        </div>
+        <p class="download-note">Al descargar aceptás los <a href="terminos.html" style="color:var(--forest);font-weight:600">términos de uso</a>.</p>
+        <button type="button" class="sha-toggle" onclick="toggleSha()">Ver checksum SHA-256</button>
+        <div class="sha-box" id="sha-box">SHA-256 del instalador en las <a href="https://github.com/mellomda3/puntonexo-releases/releases/latest" target="_blank" rel="noopener">release notes de GitHub</a>.</div>
+      </div>
+    </div>
+
+    <div class="after-grid">
+      <div>
+        <h3 class="section-title" style="font-size:1.15rem;color:#fff;text-align:left">Después de instalar</h3>
+        <div class="after-steps" style="margin-top:16px">
+          <div class="after-step" style="border-color:rgba(255,255,255,.12)">
+            <div class="after-step-num">1</div>
+            <div><h4 style="color:#fff">Abrí PuntoNexo</h4><p style="color:rgba(255,255,255,.55)">El asistente te guía la primera vez.</p></div>
+          </div>
+          <div class="after-step" style="border-color:rgba(255,255,255,.12)">
+            <div class="after-step-num">2</div>
+            <div><h4 style="color:#fff">CUIT y nombre del comercio</h4><p style="color:rgba(255,255,255,.55)">Se genera el ID único de tu terminal.</p></div>
+          </div>
+          <div class="after-step" style="border-color:rgba(255,255,255,.12)">
+            <div class="after-step-num">3</div>
+            <div><h4 style="color:#fff">Probá o contratá en el portal</h4><p style="color:rgba(255,255,255,.55)">La app se activa sola al abrirla. <a href="https://licencias.mello.com.ar" style="color:var(--mint)">Portal de licencias →</a></p></div>
+          </div>
+        </div>
+      </div>
+      <div class="reqs-box" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1)">
+        <h3 style="color:#fff">Requisitos</h3>
+        <div class="reqs-grid">
+          <div class="req-item" style="color:rgba(255,255,255,.7)">Windows 10/11 (64 bits)</div>
+          <div class="req-item" style="color:rgba(255,255,255,.7)">4 GB RAM · 500 MB disco</div>
+          <div class="req-item" style="color:rgba(255,255,255,.7)">Internet solo para activar licencia</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- Footer -->
@@ -740,11 +830,12 @@ footer {
   <div class="footer-inner">
     <div class="footer-logo">PuntoNexo</div>
     <div class="footer-links">
-      <a href="descargar.html">Descargar</a>
-      <a href="precios.html">Precios</a>
+      <a href="#precios">Precios</a>
+      <a href="precios.html">Comparativa de planes</a>
       <a href="#faq">Ayuda</a>
-      <a href="/terminos.html" target="_blank" rel="noopener">Términos</a>
-      <a href="/privacidad.html" target="_blank" rel="noopener">Privacidad</a>
+      <a href="#descargar">Descargar</a>
+      <a href="terminos.html">Términos</a>
+      <a href="privacidad.html">Privacidad</a>
       <a href="mailto:soporte@mello.com.ar">soporte@mello.com.ar</a>
     </div>
     <div class="footer-copy">
@@ -754,46 +845,13 @@ footer {
 </footer>
 
 <script>
-// Nav mobile
-document.getElementById('mobileMenuBtn').addEventListener('click', function() {
-  document.getElementById('mobileMenu').classList.toggle('open');
-});
-
-// FAQ accordion
-function toggleFaq(el) {
-  const item = el.parentElement;
-  const wasOpen = item.classList.contains('open');
-  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
-  if (!wasOpen) item.classList.add('open');
-}
-
-// Config dinámica
-(function applyConfig() {
-  try {
-    const cfg = window.PN_CONFIG || {};
-    if (cfg.releaseVersion) {
-      document.getElementById('cta-version').textContent = cfg.releaseVersion;
-      const topbarVer = document.getElementById('topbar-version');
-      if (topbarVer) topbarVer.textContent = cfg.releaseVersion;
-      const heroVer = document.getElementById('hero-version');
-      if (heroVer) heroVer.textContent = cfg.releaseVersion;
-    }
-    if (cfg.releaseDownloadUrl) {
-      document.querySelectorAll('a[href="descargar.html"]').forEach(a => {
-        // Mantener link a descargar.html; la página de descarga usa config.js
-      });
-    }
-  } catch(e) {}
-})();
-
-// Track scroll para hero CTA
 let heroTracked = false;
 window.addEventListener('scroll', function() {
   if (!heroTracked && window.scrollY > 200) {
     heroTracked = true;
     if (typeof gtag !== 'undefined') gtag('event', 'scrolled_past_hero');
   }
-});
+}, { passive: true });
 </script>
 </body>
 </html>
