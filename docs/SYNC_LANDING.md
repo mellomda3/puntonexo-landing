@@ -17,6 +17,17 @@ git commit -m "..."
 
 El script: `dev/cursor` → `C:\Projects` → merge `main` → push GitHub → deploy automático (Actions + Pages).
 
+## Si falla «pages build and deployment»
+
+El workflow automático de GitHub a veces marca error en **deploy** aunque el **build** esté OK (*Deployment failed, try again later*). El sitio puede quedar en la versión anterior.
+
+1. **Automático:** el workflow `Pages recovery` se dispara solo si falla el deploy.
+2. **Manual:**
+   ```powershell
+   .\scripts\rebuild-pages.ps1
+   ```
+3. O en GitHub: **Actions** → `Pages recovery` → **Run workflow**.
+
 ## Remotes en Dev (no tocar a mano)
 
 - `origin` → `C:\Projects\puntonexo-landing` (push de trabajo)
