@@ -1,0 +1,26 @@
+name: Pages recovery
+
+# Si el deploy automático de GitHub Pages falla, este workflow reencola el build.
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: [pages-build-deployment]
+    types: [completed]
+    branches: [main]
+
+permissions:
+  pages: write
+  contents: read
+
+jobs:
+  recover:
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'failure'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Pages rebuild
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api -X POST "repos/${{ github.repository }}/pages/builds"
+          sleep 10
+          gh api "repos/${{ github.repository }}/pages/builds/latest" --jq '{status, commit}'
