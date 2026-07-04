@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es-AR">
 <head>
   <meta charset="UTF-8">
@@ -35,7 +35,7 @@
   {
     "@context":"https://schema.org",
     "@graph":[
-      {"@type":"Organization","@id":"https://puntonexo.mello.com.ar/#org","name":"PuntoNexo","url":"https://puntonexo.mello.com.ar","email":"soporte@mello.com.ar"},
+      {"@type":"Organization","@id":"https://puntonexo.mello.com.ar/#org","name":"PuntoNexo","url":"https://puntonexo.mello.com.ar","email":"soporte@mello.com.ar","sameAs":["https://www.instagram.com/puntonexo.ar","https://www.facebook.com/puntonexo.ar","https://www.linkedin.com/company/puntonexo","https://www.youtube.com/@PuntoNexo"]},
       {"@type":"SoftwareApplication","@id":"https://puntonexo.mello.com.ar/#app","name":"PuntoNexo","applicationCategory":"BusinessApplication","operatingSystem":"Windows 10, Windows 11","offers":[{"@type":"Offer","name":"Starter","price":"24990","priceCurrency":"ARS"},{"@type":"Offer","name":"Standard","price":"69990","priceCurrency":"ARS"},{"@type":"Offer","name":"Pro","price":"119990","priceCurrency":"ARS"}],"description":"TPV argentino para supermercados y almacenes. Funciona sin internet, con facturación ARCA integrada.","url":"https://puntonexo.mello.com.ar"},
       {"@type":"FAQPage","@id":"https://puntonexo.mello.com.ar/#faq","mainEntity":[{"@type":"Question","name":"¿Necesito internet para vender?","acceptedAnswer":{"@type":"Answer","text":"No. PuntoNexo funciona en tu PC aunque no haya conexión. Solo necesitás internet para activar la licencia y sincronizar ARCA."}},{"@type":"Question","name":"¿La facturación ARCA está incluida?","acceptedAnswer":{"@type":"Answer","text":"ARCA está incluida en Standard y Pro. Starter es para comercios que aún no facturan electrónicamente."}},{"@type":"Question","name":"¿Puedo probar antes de pagar?","acceptedAnswer":{"@type":"Answer","text":"Sí, 14 días completos sin tarjeta de crédito. Acceso a todas las funciones del plan elegido."}}]}
     ]
@@ -334,7 +334,10 @@ footer {
   display: flex; flex-wrap: wrap; gap: 20px; align-items: center; justify-content: space-between;
 }
 .footer-logo { font-family: var(--font-d); font-weight: 800; font-size: 1rem; color: rgba(255,255,255,.8); }
-.footer-links { display: flex; flex-wrap: wrap; gap: 20px; }
+.footer-links { display: flex; flex-wrap: wrap; gap: 20px; align-items: center; }
+.footer-social { display: flex; gap: 14px; width: 100%; margin-top: 4px; }
+.footer-social a { font-size: .85rem; color: rgba(255,255,255,.55); transition: color 150ms; }
+.footer-social a:hover { color: rgba(255,255,255,.9); }
 .footer-links a { font-size: .85rem; transition: color 150ms; }
 .footer-links a:hover { color: rgba(255,255,255,.85); }
 .footer-copy { font-size: .82rem; width: 100%; text-align: center; margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.06); }
@@ -396,7 +399,7 @@ footer {
 
 <!-- Topbar -->
 <div class="topbar">
-  PuntoNexo v<span data-version>2.6.1</span> — 14 días de prueba gratis, sin tarjeta.
+  PuntoNexo v<span data-version>2.6.2</span> — 14 días de prueba gratis, sin tarjeta.
   <a href="#descargar" onclick="gtag('event','topbar_download_click')">Descargar gratis</a>
 </div>
 
@@ -442,7 +445,7 @@ footer {
       </div>
       <div class="hero-meta">
         <span>Windows 10/11 · 64 bits</span>
-        <span>Versión <span data-version>2.6.1</span> · ~60 MB</span>
+        <span>Versión <span data-version>2.6.2</span> · ~60 MB</span>
         <span>14 días gratis</span>
         <span>Sin tarjeta</span>
       </div>
@@ -770,7 +773,7 @@ footer {
   <div class="container text-center">
     <div class="tag" style="background:rgba(149,213,178,.15);color:var(--mint)">Descarga</div>
     <h2 class="section-title" style="color:#fff">Instalá PuntoNexo en tu PC</h2>
-    <p class="section-sub" style="color:rgba(255,255,255,.65);margin:0 auto 8px">14 días completos sin tarjeta. Windows 10/11 · versión <span data-version>2.6.1</span> · ~60 MB</p>
+    <p class="section-sub" style="color:rgba(255,255,255,.65);margin:0 auto 8px">14 días completos sin tarjeta. Windows 10/11 · versión <span data-version>2.6.2</span> · ~60 MB</p>
 
     <div class="download-card">
       <div class="download-card-header">
@@ -837,6 +840,12 @@ footer {
       <a href="terminos.html">Términos</a>
       <a href="privacidad.html">Privacidad</a>
       <a href="mailto:soporte@mello.com.ar">soporte@mello.com.ar</a>
+    </div>
+    <div class="footer-social" aria-label="Redes sociales">
+      <a href="https://www.instagram.com/puntonexo.ar" rel="noopener noreferrer" target="_blank">Instagram</a>
+      <a href="https://www.facebook.com/puntonexo.ar" rel="noopener noreferrer" target="_blank">Facebook</a>
+      <a href="https://www.linkedin.com/company/puntonexo" rel="noopener noreferrer" target="_blank">LinkedIn</a>
+      <a href="https://www.youtube.com/@PuntoNexo" rel="noopener noreferrer" target="_blank">YouTube</a>
     </div>
     <div class="footer-copy">
       Buenos Aires, Argentina &nbsp;·&nbsp; TPV argentino para supermercados y almacenes
