@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PuntoNexo — El TPV que no te falla. Aunque caiga internet.</title>
-  <meta name="description" content="Sistema de punto de venta para supermercados y almacenes argentinos. Facturación ARCA, operación offline, stock y fidelización. Probalo 14 días sin tarjeta.">
+  <meta name="description" content="TPV offline para almacenes argentinos. ARCA, fidelización con puntos y caja que funciona sin internet. Probá 14 días sin tarjeta.">
   <meta property="og:title" content="PuntoNexo — TPV argentino que funciona sin internet">
   <meta property="og:description" content="Facturá con ARCA, controlá el stock y cerrá caja aunque caiga internet. Probá 14 días gratis.">
   <meta property="og:type" content="website">
@@ -35,7 +35,7 @@
   {
     "@context":"https://schema.org",
     "@graph":[
-      {"@type":"Organization","@id":"https://puntonexo.mello.com.ar/#org","name":"PuntoNexo","url":"https://puntonexo.mello.com.ar","email":"soporte@mello.com.ar","sameAs":["https://www.instagram.com/puntonexo.ar","https://www.facebook.com/puntonexo.ar","https://www.linkedin.com/company/puntonexo","https://www.youtube.com/@PuntoNexo"]},
+      {"@type":"Organization","@id":"https://puntonexo.mello.com.ar/#org","name":"PuntoNexo","url":"https://puntonexo.mello.com.ar","email":"soporte@mello.com.ar"},
       {"@type":"SoftwareApplication","@id":"https://puntonexo.mello.com.ar/#app","name":"PuntoNexo","applicationCategory":"BusinessApplication","operatingSystem":"Windows 10, Windows 11","offers":[{"@type":"Offer","name":"Starter","price":"24990","priceCurrency":"ARS"},{"@type":"Offer","name":"Standard","price":"69990","priceCurrency":"ARS"},{"@type":"Offer","name":"Pro","price":"119990","priceCurrency":"ARS"}],"description":"TPV argentino para supermercados y almacenes. Funciona sin internet, con facturación ARCA integrada.","url":"https://puntonexo.mello.com.ar"},
       {"@type":"FAQPage","@id":"https://puntonexo.mello.com.ar/#faq","mainEntity":[{"@type":"Question","name":"¿Necesito internet para vender?","acceptedAnswer":{"@type":"Answer","text":"No. PuntoNexo funciona en tu PC aunque no haya conexión. Solo necesitás internet para activar la licencia y sincronizar ARCA."}},{"@type":"Question","name":"¿La facturación ARCA está incluida?","acceptedAnswer":{"@type":"Answer","text":"ARCA está incluida en Standard y Pro. Starter es para comercios que aún no facturan electrónicamente."}},{"@type":"Question","name":"¿Puedo probar antes de pagar?","acceptedAnswer":{"@type":"Answer","text":"Sí, 14 días completos sin tarjeta de crédito. Acceso a todas las funciones del plan elegido."}}]}
     ]
@@ -413,6 +413,7 @@ footer {
       <a href="#precios" data-nav="precios">Precios</a>
       <a href="#faq" data-nav="faq">Ayuda</a>
     </div>
+    <a href="mailto:soporte@mello.com.ar?subject=Consulta%20comercial%20PuntoNexo" class="btn btn-outline btn-sm" style="margin-left:auto">Consultas</a>
     <a href="#descargar" class="btn btn-primary btn-sm nav-cta" onclick="gtag('event','nav_download_click')">Descargar gratis</a>
     <button class="nav-mobile-btn" id="mobileMenuBtn" aria-label="Menú" type="button">
       <span></span><span></span><span></span>
@@ -431,11 +432,11 @@ footer {
 <section class="hero">
   <div class="container hero-inner">
     <div class="hero-text">
-      <div class="hero-badge">Funciona sin internet · ARCA integrado</div>
+      <div class="hero-badge">Offline real · ARCA · Fidelización</div>
       <h1>El TPV que no te falla.<br><em>Aunque caiga internet.</em></h1>
       <p class="hero-lead">
-        Facturá con ARCA, controlá el stock y cerrá caja desde tu PC.
-        Sin servidores en la nube que fallen a las 18hs del viernes.
+        Cobrá, facturá con ARCA y fidelizá clientes de barrio desde tu PC.
+        Sin servidores en la nube que frenen la caja un viernes a las 18.
       </p>
       <div class="hero-actions">
         <a href="#descargar" class="btn btn-primary btn-lg" onclick="gtag('event','hero_download_click')">
@@ -574,6 +575,13 @@ footer {
         </div>
       </div>
       <div class="feat-item">
+        <div class="feat-item-icon">🏪</div>
+        <div>
+          <h4>Fidelización de clientes <span style="font-size:.75rem;background:var(--forest-bg);color:var(--forest);padding:2px 8px;border-radius:999px;vertical-align:middle">Standard</span></h4>
+          <p>Programa de puntos en caja, historial de compras e identificación por DNI o CUIT.</p>
+        </div>
+      </div>
+      <div class="feat-item">
         <div class="feat-item-icon">🧾</div>
         <div>
           <h4>Facturación ARCA</h4>
@@ -583,7 +591,7 @@ footer {
       <div class="feat-item">
         <div class="feat-item-icon">🚚</div>
         <div>
-          <h4>Compras a proveedores</h4>
+          <h4>Compras a proveedores <span style="font-size:.75rem;background:var(--forest-bg);color:var(--forest);padding:2px 8px;border-radius:999px;vertical-align:middle">Standard</span></h4>
           <p>Registrá ingresos de mercadería, actualizá precios y controlá deuda con proveedores.</p>
         </div>
       </div>
@@ -609,13 +617,6 @@ footer {
         </div>
       </div>
       <div class="feat-item">
-        <div class="feat-item-icon">🏪</div>
-        <div>
-          <h4>Fidelización de clientes</h4>
-          <p>Programa de puntos, historial de compras, identificación por CUIT o DNI.</p>
-        </div>
-      </div>
-      <div class="feat-item">
         <div class="feat-item-icon">🌐</div>
         <div>
           <h4>Catálogo online <span style="font-size:.75rem;background:var(--forest-bg);color:var(--forest);padding:2px 8px;border-radius:999px;vertical-align:middle">Pro</span></h4>
@@ -632,7 +633,7 @@ footer {
     <div class="text-center">
       <div class="tag">Precios</div>
       <h2 class="section-title">Elegí el plan para tu comercio</h2>
-      <p class="section-sub">Todos incluyen funcionamiento offline, actualizaciones y soporte por email. Cancelás cuando querás.</p>
+      <p class="section-sub">Todos incluyen funcionamiento offline, actualizaciones y soporte por email. Cancelás cuando querás.<br><span style="font-size:.9rem;color:var(--muted)">La mayoría de almacenes eligen <strong>Standard</strong> (ARCA + fidelización). Starter solo si no facturás electrónicamente.</span></p>
     </div>
     <div class="plans-grid">
 
@@ -640,7 +641,7 @@ footer {
       <div class="plan-card">
         <div class="plan-name">Starter</div>
         <div class="plan-price"><sup>$</sup><span id="price-starter">24.990</span></div>
-        <div class="plan-price-sub">por mes +IVA · 1 caja</div>
+        <div class="plan-price-sub">por mes +IVA · 1 caja · sin ARCA</div>
         <hr class="plan-divider">
         <ul class="plan-features">
           <li>1 terminal (caja)</li>
@@ -667,9 +668,9 @@ footer {
           <li>Hasta 3 terminales</li>
           <li>Todo lo del plan Starter</li>
           <li>Facturación ARCA (CAE + CAEA)</li>
-          <li>Liquidación IVA</li>
+          <li>Fidelización con puntos</li>
           <li>Importar precios desde Excel</li>
-          <li>Soporte prioritario</li>
+          <li>Soporte por email</li>
           <li class="no">Catálogo online</li>
         </ul>
         <div class="plan-cta">
@@ -681,14 +682,14 @@ footer {
       <div class="plan-card">
         <div class="plan-name">Pro</div>
         <div class="plan-price"><sup>$</sup><span id="price-pro">119.990</span></div>
-        <div class="plan-price-sub">por mes +IVA · hasta 10 cajas</div>
+        <div class="plan-price-sub">por mes +IVA · 4 a 10 cajas</div>
         <hr class="plan-divider">
         <ul class="plan-features">
-          <li>Hasta 10 terminales</li>
+          <li>4 a 10 terminales (mismo local)</li>
           <li>Todo lo del plan Standard</li>
           <li>Catálogo online para clientes</li>
+          <li>Reportes avanzados y exportación</li>
           <li>Soporte telefónico prioritario</li>
-          <li>Multi-sucursal (próximamente)</li>
         </ul>
         <div class="plan-cta">
           <a href="#descargar" class="btn btn-outline" style="width:100%;justify-content:center">Probar 14 días gratis</a>
@@ -696,7 +697,18 @@ footer {
       </div>
 
     </div>
-    <p class="plans-note">Todos los planes incluyen 14 días de prueba gratis. Sin tarjeta de crédito. Garantía de devolución 30 días. <a href="precios.html" style="color:var(--forest);font-weight:600">Ver comparativa completa →</a></p>
+    <p class="plans-note">14 días de prueba gratis · sin tarjeta · garantía 30 días. Varios locales: una suscripción por sucursal (consultar descuento cadena). <a href="precios.html" style="color:var(--forest);font-weight:600">Ver comparativa completa →</a></p>
+  </div>
+</section>
+
+<!-- Comercio real -->
+<section class="section">
+  <div class="container">
+    <div class="text-center" style="max-width:640px;margin:0 auto">
+      <div class="tag">Comercio real</div>
+      <h2 class="section-title">Lo desarrollamos en nuestro almacén</h2>
+      <p class="section-sub" style="margin:0 auto">PuntoNexo no nació en un laboratorio: se usa y se prueba en <strong>Mercado Mello</strong> (GBA), con cajeros, hora pico y operación diaria. Si funciona ahí, funciona en tu negocio.</p>
+    </div>
   </div>
 </section>
 
@@ -708,6 +720,20 @@ footer {
       <h2 class="section-title">Todo lo que necesitás saber</h2>
     </div>
     <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          ¿Qué plan elijo para mi almacén?
+          <span class="faq-arrow">▾</span>
+        </div>
+        <div class="faq-a">Si facturás con ARCA (casi todos los almacenes y autoservicios), elegí <strong>Standard</strong>: incluye facturación electrónica, hasta 3 cajas y fidelización con puntos. Elegí <strong>Starter</strong> solo si tu comercio no emite factura electrónica. Elegí <strong>Pro</strong> si tenés 4 o más cajas en el mismo local o querés catálogo online.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          ¿Puedo pasar de Starter a Standard?
+          <span class="faq-arrow">▾</span>
+        </div>
+        <div class="faq-a">Sí. Desde <a href="https://licencias.mello.com.ar/gestionar.html">Gestionar mi plan</a> podés contratar el plan superior. El nuevo precio aplica en el próximo ciclo de facturación con Mercado Pago.</div>
+      </div>
       <div class="faq-item">
         <div class="faq-q" onclick="toggleFaq(this)">
           ¿Necesito internet para vender?
@@ -741,7 +767,7 @@ footer {
           ¿Cuántas PCs puedo usar con una suscripción?
           <span class="faq-arrow">▾</span>
         </div>
-        <div class="faq-a">Cada suscripción activa una terminal (PC). Standard incluye hasta 3 terminales en la misma sucursal, Pro hasta 10. El soporte para múltiples sucursales está en desarrollo para próximas versiones.</div>
+        <div class="faq-a">Cada suscripción cubre una sucursal. Standard incluye hasta 3 terminales en la misma sucursal; Pro hasta 10. Si tenés varios locales, cada uno requiere su suscripción (consultá descuento por cadena de 3 o más sucursales).</div>
       </div>
       <div class="faq-item">
         <div class="faq-q" onclick="toggleFaq(this)">
@@ -841,11 +867,8 @@ footer {
       <a href="privacidad.html">Privacidad</a>
       <a href="mailto:soporte@mello.com.ar">soporte@mello.com.ar</a>
     </div>
-    <div class="footer-social" aria-label="Redes sociales">
-      <a href="https://www.instagram.com/puntonexo.ar" rel="noopener noreferrer" target="_blank">Instagram</a>
-      <a href="https://www.facebook.com/puntonexo.ar" rel="noopener noreferrer" target="_blank">Facebook</a>
-      <a href="https://www.linkedin.com/company/puntonexo" rel="noopener noreferrer" target="_blank">LinkedIn</a>
-      <a href="https://www.youtube.com/@PuntoNexo" rel="noopener noreferrer" target="_blank">YouTube</a>
+    <div class="footer-contact" style="width:100%;margin-top:4px;font-size:.85rem;color:rgba(255,255,255,.55)">
+      Consultas comerciales: <a href="mailto:soporte@mello.com.ar" style="color:rgba(255,255,255,.75)">soporte@mello.com.ar</a> · Lun–Sáb 9–18 hs
     </div>
     <div class="footer-copy">
       Buenos Aires, Argentina &nbsp;·&nbsp; TPV argentino para supermercados y almacenes

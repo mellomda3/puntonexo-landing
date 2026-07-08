@@ -1,5 +1,7 @@
 # PuntoNexo — Redes sociales (kit de marca)
 
+> **Estado jul 2026:** las cuentas **no están creadas**. Los enlaces fueron **quitados de puntonexo.mello.com.ar** hasta tener perfiles activos. No volver a publicar URLs en la web hasta completar el checklist de este doc.
+
 **Objetivo:** crear perfiles oficiales en ~20 minutos con copy listo para pegar.
 
 **Imágenes:** `assets/branding/avatar.png` (perfil) · `assets/branding/cover.png` (portada FB/LinkedIn)
