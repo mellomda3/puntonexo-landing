@@ -1,6 +1,6 @@
 ﻿window.PN_CONFIG = {
   licensingUrl: 'https://licencias.mello.com.ar/?from=landing',
-  releaseVersion: '2.4.0',
-  releaseDownloadUrl: 'https://github.com/mellomda3/puntonexo-releases/releases/download/v2.4.0/PuntoNexo-Installer-2.4.0.exe',
+  releaseVersion: '2.7.0',
+  releaseDownloadUrl: 'https://github.com/mellomda3/puntonexo-releases/releases/download/v2.7.0/PuntoNexo-Installer-2.7.0.exe',
   supportEmail: 'soporte@mello.com.ar'
 };
