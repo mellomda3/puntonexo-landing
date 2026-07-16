@@ -300,6 +300,7 @@ a { color: inherit; text-decoration: none; }
 .faq-item { border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
 .faq-q {
   display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  width: 100%; border: 0; text-align: left; font: inherit; color: inherit;
   padding: 20px 24px; font-family: var(--font-d); font-weight: 600; font-size: .97rem;
   cursor: pointer; transition: background 150ms; background: var(--cream);
 }
@@ -399,7 +400,7 @@ footer {
 
 <!-- Topbar -->
 <div class="topbar">
-  PuntoNexo v<span data-version>2.6.2</span> — 14 días de prueba gratis, sin tarjeta.
+  PuntoNexo v<span data-version>2.7.0</span> — 14 días de prueba gratis, sin tarjeta.
   <a href="#descargar" onclick="gtag('event','topbar_download_click')">Descargar gratis</a>
 </div>
 
@@ -415,7 +416,7 @@ footer {
     </div>
     <a href="mailto:soporte@mello.com.ar?subject=Consulta%20comercial%20PuntoNexo" class="btn btn-outline btn-sm" style="margin-left:auto">Consultas</a>
     <a href="#descargar" class="btn btn-primary btn-sm nav-cta" onclick="gtag('event','nav_download_click')">Descargar gratis</a>
-    <button class="nav-mobile-btn" id="mobileMenuBtn" aria-label="Menú" type="button">
+    <button class="nav-mobile-btn" id="mobileMenuBtn" aria-label="Menú" aria-expanded="false" type="button">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -446,7 +447,7 @@ footer {
       </div>
       <div class="hero-meta">
         <span>Windows 10/11 · 64 bits</span>
-        <span>Versión <span data-version>2.6.2</span> · ~60 MB</span>
+        <span>Versión <span data-version>2.7.0</span> · ~60 MB</span>
         <span>14 días gratis</span>
         <span>Sin tarjeta</span>
       </div>
@@ -721,73 +722,73 @@ footer {
     </div>
     <div class="faq-list">
       <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
+        <button type="button" class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
           ¿Qué plan elijo para mi almacén?
           <span class="faq-arrow">▾</span>
-        </div>
+        </button>
         <div class="faq-a">Si facturás con ARCA (casi todos los almacenes y autoservicios), elegí <strong>Standard</strong>: incluye facturación electrónica, hasta 3 cajas y fidelización con puntos. Elegí <strong>Starter</strong> solo si tu comercio no emite factura electrónica. Elegí <strong>Pro</strong> si tenés 4 o más cajas en el mismo local o querés catálogo online.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
+        <button type="button" class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
           ¿Puedo pasar de Starter a Standard?
           <span class="faq-arrow">▾</span>
-        </div>
+        </button>
         <div class="faq-a">Sí. Desde <a href="https://licencias.mello.com.ar/gestionar.html">Gestionar mi plan</a> podés contratar el plan superior. El nuevo precio aplica en el próximo ciclo de facturación con Mercado Pago.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
+        <button type="button" class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
           ¿Necesito internet para vender?
           <span class="faq-arrow">▾</span>
-        </div>
+        </button>
         <div class="faq-a">No. PuntoNexo funciona completamente offline. Tus datos están en tu PC. Solo necesitás conexión para activar la licencia por primera vez y para sincronizar las facturas con ARCA.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
+        <button type="button" class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
           ¿En qué se diferencia de los sistemas web (CajaOS, VentaSimple, etc.)?
           <span class="faq-arrow">▾</span>
-        </div>
+        </button>
         <div class="faq-a">Los sistemas 100% web dependen de que haya internet y de que el servidor del proveedor esté funcionando. Si falla cualquiera de los dos, tu caja se detiene. PuntoNexo corre en tu PC, con tus propios datos, sin depender de ningún servidor externo para operar.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
+        <button type="button" class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
           ¿La facturación ARCA está incluida en todos los planes?
           <span class="faq-arrow">▾</span>
-        </div>
+        </button>
         <div class="faq-a">ARCA está incluida en los planes Standard y Pro. El plan Starter es para comercios que todavía no facturan electrónicamente (pequeños kioscos, mercados de vecindad). Si necesitás emitir facturas A, B o C, elegí Standard.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
+        <button type="button" class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
           ¿Puedo probar antes de pagar?
           <span class="faq-arrow">▾</span>
-        </div>
+        </button>
         <div class="faq-a">Sí. 14 días completos con acceso a todas las funciones del plan que elijas. Sin tarjeta de crédito. Si al final no te sirve, no pagás nada.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
+        <button type="button" class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
           ¿Cuántas PCs puedo usar con una suscripción?
           <span class="faq-arrow">▾</span>
-        </div>
+        </button>
         <div class="faq-a">Cada suscripción cubre una sucursal. Standard incluye hasta 3 terminales en la misma sucursal; Pro hasta 10. Si tenés varios locales, cada uno requiere su suscripción (consultá descuento por cadena de 3 o más sucursales).</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
+        <button type="button" class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
           ¿Puedo cambiar de plan o cancelar?
           <span class="faq-arrow">▾</span>
-        </div>
+        </button>
         <div class="faq-a">Sí. Podés cambiar de plan o cancelar en cualquier momento desde tu cuenta en el portal de licencias. El cobro es mensual con Mercado Pago, sin períodos mínimos.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
+        <button type="button" class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
           ¿Cómo activo la licencia después de pagar?
           <span class="faq-arrow">▾</span>
-        </div>
+        </button>
         <div class="faq-a">Instalás PuntoNexo, configurás tu CUIT y sucursal (eso genera el ID único de tu terminal), pagás en el portal con Mercado Pago y sincronizás desde la app con tu email. Todo el proceso tarda menos de 10 minutos.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
+        <button type="button" class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
           ¿Qué hardware es compatible?
           <span class="faq-arrow">▾</span>
-        </div>
+        </button>
         <div class="faq-a">Impresoras térmicas (Epson TM, Bixolon), lectoras de código de barras USB, balanzas con código pesable. No requiere hardware especial, solo una PC con Windows 10 u 11 de 64 bits.</div>
       </div>
     </div>
@@ -799,7 +800,7 @@ footer {
   <div class="container text-center">
     <div class="tag" style="background:rgba(149,213,178,.15);color:var(--mint)">Descarga</div>
     <h2 class="section-title" style="color:#fff">Instalá PuntoNexo en tu PC</h2>
-    <p class="section-sub" style="color:rgba(255,255,255,.65);margin:0 auto 8px">14 días completos sin tarjeta. Windows 10/11 · versión <span data-version>2.6.2</span> · ~60 MB</p>
+    <p class="section-sub" style="color:rgba(255,255,255,.65);margin:0 auto 8px">14 días completos sin tarjeta. Windows 10/11 · versión <span data-version>2.7.0</span> · ~60 MB</p>
 
     <div class="download-card">
       <div class="download-card-header">
@@ -859,6 +860,7 @@ footer {
   <div class="footer-inner">
     <div class="footer-logo">PuntoNexo</div>
     <div class="footer-links">
+      <a href="checklist-apertura-cierre-caja.html">Checklist de caja</a>
       <a href="#precios">Precios</a>
       <a href="precios.html">Comparativa de planes</a>
       <a href="#faq">Ayuda</a>

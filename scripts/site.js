@@ -6,13 +6,15 @@
   const mobileMenu = document.getElementById('mobileMenu');
   if (menuBtn && mobileMenu) {
     menuBtn.addEventListener('click', function () {
-      mobileMenu.classList.toggle('open');
-      menuBtn.classList.toggle('open');
+      const open = mobileMenu.classList.toggle('open');
+      menuBtn.classList.toggle('open', open);
+      menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
     mobileMenu.querySelectorAll('a').forEach(function (a) {
       a.addEventListener('click', function () {
         mobileMenu.classList.remove('open');
         menuBtn.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
       });
     });
   }
@@ -23,15 +25,22 @@
     const wasOpen = item.classList.contains('open');
     document.querySelectorAll('.faq-item.open').forEach(function (i) {
       i.classList.remove('open');
+      const q = i.querySelector('.faq-q');
+      if (q) q.setAttribute('aria-expanded', 'false');
     });
-    if (!wasOpen) item.classList.add('open');
+    if (!wasOpen) {
+      item.classList.add('open');
+      el.setAttribute('aria-expanded', 'true');
+    } else {
+      el.setAttribute('aria-expanded', 'false');
+    }
   };
 
   // ── Config / versión / botón de descarga ──
   function applyConfig() {
     try {
       const cfg = window.PN_CONFIG || {};
-      const version = cfg.releaseVersion || '2.6.2';
+      const version = cfg.releaseVersion || '2.7.0';
       const url =
         cfg.releaseDownloadUrl ||
         'https://github.com/mellomda3/puntonexo-releases/releases/latest';
