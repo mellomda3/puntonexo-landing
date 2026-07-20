@@ -6,12 +6,12 @@
   <title>Precios PuntoNexo — Planes para supermercados y almacenes</title>
   <meta name="description" content="Planes PuntoNexo desde $24.990/mes. Starter, Standard y Pro. Facturación ARCA incluida en Standard y Pro. 14 días de prueba gratis.">
   <link rel="canonical" href="https://puntonexo.mello.com.ar/precios.html">
-  <link rel="icon" href="/favicon.ico">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <script>if(location.protocol!=='https:'&&location.hostname!=='localhost')location.replace('https:'+location.href.slice(location.protocol.length));</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script src="config.js?v=2.4.1"></script>
+  <script src="config.js?v=2.8.0"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-B0GLCDBLD8"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-B0GLCDBLD8');</script>
 <style>
@@ -99,7 +99,13 @@ nav{position:sticky;top:0;z-index:100;background:rgba(250,249,246,.93);backdrop-
   .mobile-plan-price{font-family:var(--font-d);font-size:2rem;font-weight:800;margin:6px 0 2px}
   .mobile-plan-sub{font-size:.82rem;opacity:.65}
   .compare-table tbody,.compare-table tfoot{display:none}
+  #mobilePlans{display:block}
+  .compare-mobile-plan{display:none;margin-top:16px}
+  .compare-mobile-plan.active{display:block}
+  .compare-mobile-cta{padding:16px}
+  .compare-mobile-cta .btn{width:100%;justify-content:center}
 }
+#mobilePlans{display:none}
 
 /* FAQ / notas */
 .notes{padding:0 0 80px;max-width:640px;margin:0 auto}
@@ -226,6 +232,9 @@ footer{background:var(--forest-dk);border-top:1px solid rgba(255,255,255,.06);pa
       </tbody>
     </table>
 
+    <!-- Paneles mobile (generados desde la tabla, misma fuente de verdad) -->
+    <div id="mobilePlans" aria-live="polite"></div>
+
     <div class="notes" style="margin-top:32px">
       <p>Los montos son netos + IVA según tu categoría impositiva. Mercado Pago puede mostrar el total final al pagar.</p>
       <p>Pagos con Mercado Pago. Suscripción mensual sin período mínimo. Cancelás cuando querás.</p>
@@ -270,15 +279,60 @@ function calcPlan(n) {
   else r.innerHTML = '→ Recomendamos <strong>Pro</strong> (hasta 10 cajas)';
 }
 
-// Mobile
+// Mobile: construye los paneles por plan a partir de la tabla comparativa,
+// evitando duplicar datos y que la comparativa quede invisible en celulares.
+const PLAN_KEYS = ['starter', 'standard', 'pro'];
+
+function buildMobilePlans() {
+  const table = document.getElementById('compareTable');
+  const container = document.getElementById('mobilePlans');
+  if (!table || !container || container.dataset.built === '1') return;
+
+  const headers = table.querySelectorAll('thead th');
+  container.innerHTML = PLAN_KEYS.map((key, i) => {
+    const col = i + 1; // 0 = etiqueta de fila
+    const th = headers[col];
+    const name = th.querySelector('.plan-th-name')?.textContent ?? '';
+    const price = th.querySelector('.plan-th-price')?.innerHTML ?? '';
+    const sub = th.querySelector('.plan-th-sub')?.textContent ?? '';
+
+    let rows = '';
+    table.querySelectorAll('tbody tr').forEach(tr => {
+      if (tr.classList.contains('cat-row')) {
+        rows += `<div class="compare-mobile-row cat">${tr.querySelector('td').textContent}</div>`;
+        return;
+      }
+      if (tr.classList.contains('compare-cta')) return;
+      const cells = tr.querySelectorAll('td');
+      if (cells.length <= col) return;
+      rows += `<div class="compare-mobile-row"><span>${cells[0].textContent}</span><span>${cells[col].innerHTML}</span></div>`;
+    });
+
+    return `<div class="compare-mobile-plan${i === 0 ? ' active' : ''}" data-plan="${key}">
+        <div class="mobile-plan-header">
+          <h2>${name}</h2>
+          <div class="mobile-plan-price">${price}</div>
+          <div class="mobile-plan-sub">${sub}</div>
+        </div>
+        ${rows}
+        <div class="compare-mobile-cta"><a href="/#descargar" class="btn btn-primary">Probar gratis</a></div>
+      </div>`;
+  }).join('');
+  container.dataset.built = '1';
+}
+
 function showMobilePlan(plan, el) {
   document.querySelectorAll('.mobile-plan-tab').forEach(t => t.classList.remove('active'));
   el.classList.add('active');
+  document.querySelectorAll('.compare-mobile-plan').forEach(p => {
+    p.classList.toggle('active', p.dataset.plan === plan);
+  });
 }
 
 // Responsive
 function checkMobile() {
   const isMobile = window.innerWidth <= 768;
+  if (isMobile) buildMobilePlans();
   document.getElementById('mobileTabs').style.display = isMobile ? 'flex' : 'none';
 }
 checkMobile();
