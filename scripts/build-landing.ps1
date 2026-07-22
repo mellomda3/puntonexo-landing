@@ -7,8 +7,8 @@
 
 $root = Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)
 if (-not $LicensingUrl) { $LicensingUrl = 'https://licencias.mello.com.ar/?from=landing' }
-if (-not $ReleaseVersion) { $ReleaseVersion = '2.8.1' }
-if (-not $ReleaseDownloadUrl) { $ReleaseDownloadUrl = 'https://github.com/mellomda3/puntonexo-releases/releases/download/v2.8.1/PuntoNexo-Installer-2.8.1.exe' }
+if (-not $ReleaseVersion) { $ReleaseVersion = '2.8.2' }
+if (-not $ReleaseDownloadUrl) { $ReleaseDownloadUrl = 'https://github.com/mellomda3/puntonexo-releases/releases/download/v2.8.2/PuntoNexo-Installer-2.8.2.exe' }
 if (-not $SupportEmail) { $SupportEmail = 'soporte@mello.com.ar' }
 
 $content = @"
