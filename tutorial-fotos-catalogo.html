@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tutorial: fotos y publicación del catálogo | PuntoNexo</title>
-  <meta name="description" content="Guía corta para comerciantes: cómo poner foto a un producto, marcarlo como oferta y publicarlo en el catálogo online de PuntoNexo.">
+  <title>Tutorial: fotos de productos y catálogo online | PuntoNexo</title>
+  <meta name="description" content="Guía para comerciantes: cómo poner foto a un producto, marcarlo como oferta y publicarlo en el catálogo online de PuntoNexo, con capturas reales del sistema.">
   <link rel="canonical" href="https://puntonexo.mello.com.ar/tutorial-fotos-catalogo.html">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,151 +12,43 @@
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --ink: #13211d;
-      --muted: #647067;
-      --line: #dce8df;
-      --paper: #fffdf8;
-      --wash: #f3faf4;
-      --forest: #12715b;
-      --mint: #1dc48c;
-      --amber: #d97706;
+      --ink: #13211d; --muted: #647067; --line: #dce8df; --paper: #fffdf8;
+      --wash: #f3faf4; --forest: #12715b; --mint: #1dc48c; --amber: #d97706;
       --font-head: 'Archivo', system-ui, sans-serif;
       --font-body: 'Source Sans 3', system-ui, sans-serif;
     }
     * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      background: #eef6ef;
-      color: var(--ink);
-      font-family: var(--font-body);
-      font-size: 17px;
-      line-height: 1.55;
-    }
+    body { margin: 0; background: #eef6ef; color: var(--ink); font-family: var(--font-body); font-size: 17px; line-height: 1.55; }
     a { color: var(--forest); }
-    .topbar {
-      position: sticky; top: 0; z-index: 3;
-      background: rgba(255,253,248,.94);
-      border-bottom: 1px solid var(--line);
-      backdrop-filter: blur(14px);
-    }
-    .topbar-inner, .wrap {
-      width: min(100% - 32px, 900px);
-      margin: 0 auto;
-    }
-    .topbar-inner {
-      min-height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-    }
-    .brand {
-      font-family: var(--font-head);
-      font-weight: 900;
-      letter-spacing: -.02em;
-      text-decoration: none;
-      color: var(--ink);
-      font-size: 1.1rem;
-    }
-    .btn {
-      display: inline-flex; align-items: center; justify-content: center;
-      min-height: 42px; padding: 10px 15px; border-radius: 9px;
-      border: 1px solid var(--line); background: #fff; color: var(--ink);
-      font-weight: 800; text-decoration: none;
-    }
+    .topbar { position: sticky; top: 0; z-index: 3; background: rgba(255,253,248,.94); border-bottom: 1px solid var(--line); backdrop-filter: blur(14px); }
+    .topbar-inner, .wrap { width: min(100% - 32px, 920px); margin: 0 auto; }
+    .topbar-inner { min-height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 18px; }
+    .brand { font-family: var(--font-head); font-weight: 900; letter-spacing: -.02em; text-decoration: none; color: var(--ink); font-size: 1.1rem; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 42px; padding: 10px 15px; border-radius: 9px; border: 1px solid var(--line); background: #fff; color: var(--ink); font-weight: 800; text-decoration: none; }
     .btn.primary { background: var(--forest); border-color: var(--forest); color: #fff; }
     .wrap { margin: 30px auto 60px; }
-    .sheet {
-      background: var(--paper);
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: clamp(22px, 4vw, 42px);
-      margin-bottom: 18px;
-      box-shadow: 0 18px 55px rgba(25,55,40,.08);
-    }
-    .cover {
-      background:
-        linear-gradient(135deg, rgba(18,113,91,.94), rgba(29,196,140,.78)),
-        var(--forest);
-      color: #fff;
-    }
-    .eyebrow {
-      display: inline-flex; width: max-content;
-      padding: 7px 11px; border-radius: 999px;
-      background: rgba(255,255,255,.14);
-      border: 1px solid rgba(255,255,255,.2);
-      font-weight: 900; letter-spacing: .04em;
-      text-transform: uppercase; font-size: .78rem;
-      margin-bottom: 16px;
-    }
+    .sheet { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: clamp(22px, 4vw, 42px); margin-bottom: 18px; box-shadow: 0 18px 55px rgba(25,55,40,.08); }
+    .cover { background: linear-gradient(135deg, rgba(18,113,91,.94), rgba(29,196,140,.78)), var(--forest); color: #fff; }
+    .eyebrow { display: inline-flex; width: max-content; padding: 7px 11px; border-radius: 999px; background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.2); font-weight: 900; letter-spacing: .04em; text-transform: uppercase; font-size: .78rem; margin-bottom: 16px; }
     h1, h2, h3 { font-family: var(--font-head); line-height: 1.1; letter-spacing: -.03em; margin: 0; }
-    h1 { font-size: clamp(2rem, 6vw, 3.4rem); max-width: 760px; }
-    h2 { font-size: clamp(1.35rem, 3vw, 1.9rem); margin-bottom: 10px; }
-    .lead { font-size: 1.15rem; max-width: 680px; color: rgba(255,255,255,.88); margin: 14px 0 0; }
-    .note {
-      background: var(--wash);
-      border-left: 5px solid var(--mint);
-      padding: 14px 16px;
-      border-radius: 10px;
-      color: var(--muted);
-      margin: 0 0 8px;
-    }
-    .note.warn {
-      border-left-color: var(--amber);
-      background: #fff8ed;
-    }
-    .step-num {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 34px; height: 34px;
-      border-radius: 999px;
-      background: var(--forest);
-      color: #fff;
-      font-family: var(--font-head);
-      font-weight: 900;
-      margin-right: 10px;
-      vertical-align: middle;
-    }
-    .shot {
-      display: block;
-      width: 100%;
-      border-radius: 12px;
-      border: 1px solid var(--line);
-      margin: 16px 0 8px;
-      background: #e8f0ea;
-    }
-    .caption {
-      color: var(--muted);
-      font-size: .92rem;
-      margin: 0 0 14px;
-    }
-    ol.steps { margin: 0; padding-left: 1.2rem; }
-    ol.steps li { margin: 8px 0; }
+    h1 { font-size: clamp(2rem, 6vw, 3.2rem); max-width: 780px; }
+    h2 { font-size: clamp(1.35rem, 3vw, 1.85rem); margin: 0 0 12px; }
+    h3 { font-size: 1.1rem; margin: 18px 0 8px; }
+    .lead { font-size: 1.15rem; max-width: 700px; color: rgba(255,255,255,.9); margin: 14px 0 0; }
+    .note { background: var(--wash); border-left: 5px solid var(--mint); padding: 14px 16px; border-radius: 10px; color: var(--muted); margin: 14px 0; }
+    .note.warn { border-left-color: var(--amber); background: #fff8ed; }
+    .step-num { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 999px; background: var(--forest); color: #fff; font-family: var(--font-head); font-weight: 900; margin-right: 10px; vertical-align: middle; }
+    .shot { display: block; width: 100%; border-radius: 12px; border: 1px solid var(--line); margin: 16px 0 6px; background: #e8f0ea; }
+    .caption { color: var(--muted); font-size: .92rem; margin: 0 0 14px; }
+    ol.steps, ul.bullets { margin: 0 0 12px; padding-left: 1.25rem; }
+    ol.steps li, ul.bullets li { margin: 8px 0; }
+    .toc a { display: block; padding: 6px 0; text-decoration: none; font-weight: 600; }
     .checklist { list-style: none; margin: 12px 0 0; padding: 0; }
-    .checklist li {
-      display: grid;
-      grid-template-columns: 22px 1fr;
-      gap: 10px;
-      padding: 8px 0;
-      border-top: 1px solid #eef4f0;
-    }
+    .checklist li { display: grid; grid-template-columns: 22px 1fr; gap: 10px; padding: 8px 0; border-top: 1px solid #eef4f0; }
     .checklist li:first-child { border-top: 0; }
-    .box {
-      width: 17px; height: 17px; margin-top: 4px;
-      border: 2px solid var(--forest); border-radius: 4px;
-    }
-    footer {
-      text-align: center;
-      color: var(--muted);
-      padding: 10px 16px 40px;
-      font-size: .95rem;
-    }
-    @media print {
-      .topbar { display: none; }
-      body { background: #fff; }
-      .sheet { box-shadow: none; break-inside: avoid; }
-    }
+    .box { width: 17px; height: 17px; margin-top: 4px; border: 2px solid var(--forest); border-radius: 4px; }
+    footer { text-align: center; color: var(--muted); padding: 10px 16px 40px; font-size: .95rem; }
+    @media print { .topbar { display: none; } body { background: #fff; } .sheet { box-shadow: none; break-inside: avoid; } }
   </style>
 </head>
 <body>
@@ -172,76 +64,132 @@
 
   <div class="wrap">
     <section class="sheet cover">
-      <div class="eyebrow">Tutorial para el comercio</div>
+      <div class="eyebrow">Tutorial para el comercio · capturas reales</div>
       <h1>Fotos de productos y catálogo online</h1>
-      <p class="lead">En 4 pasos: cargás la foto del artículo, lo marcás como oferta, publicás el catálogo y lo compartís con tus clientes.</p>
+      <p class="lead">Cómo cargar la foto de un artículo, marcarlo como oferta y publicarlo en internet para que tus clientes lo vean desde el celular.</p>
     </section>
 
     <section class="sheet">
+      <h2>Antes de empezar</h2>
+      <ul class="bullets">
+        <li>Tenés <strong>PuntoNexo</strong> instalado y una <strong>licencia activa</strong>.</li>
+        <li>La PC tiene <strong>internet</strong> al momento de publicar (para subir fotos y actualizar la web).</li>
+        <li>No hace falta configurar servidores, R2 ni claves técnicas: se usa el token de tu licencia.</li>
+      </ul>
       <div class="note">
-        <strong>Importante:</strong> al catálogo en internet se publican las <strong>ofertas vigentes</strong>
-        (productos con “Publicar como oferta” y precio promocional). No se publica todo el stock de golpe.
+        <strong>Qué se publica:</strong> el catálogo en internet muestra las <strong>ofertas vigentes</strong>
+        (artículos con “Publicar como oferta” y precio promocional). No publica todo el stock de golpe.
       </div>
       <div class="note warn">
-        Necesitás licencia activa e internet. No configurás servidores ni storage: PuntoNexo lo hace con tu licencia.
+        Si cambiás precios u ofertas, tenés que volver a tocar <strong>Publicar catálogo en internet</strong>
+        para que la web se actualice.
+      </div>
+      <h3>Índice</h3>
+      <div class="toc">
+        <a href="#paso1">1. Abrir Artículos y elegir la foto</a>
+        <a href="#paso2">2. Marcar el producto como oferta</a>
+        <a href="#paso3">3. Publicar el catálogo</a>
+        <a href="#paso4">4. Abrir, verificar y compartir</a>
+        <a href="#tips">Consejos y problemas frecuentes</a>
       </div>
     </section>
 
-    <section class="sheet">
-      <h2><span class="step-num">1</span> Poner foto al producto</h2>
+    <section class="sheet" id="paso1">
+      <h2><span class="step-num">1</span> Abrir Artículos y elegir la foto</h2>
       <ol class="steps">
-        <li>Abrí <strong>Artículos</strong> (menú del TPV).</li>
-        <li>Seleccioná el producto (o crealo nuevo).</li>
-        <li>En <strong>Foto (catálogo)</strong> tocá <strong>Elegir foto…</strong> y elegí una imagen del celular/PC.</li>
+        <li>En el menú lateral entrá a <strong>ARTÍCULOS → Artículos</strong>.</li>
+        <li>En la grilla, seleccioná el producto que querés mostrar en la web (o crealo con <strong>Alta rápida</strong>).</li>
+        <li>A la derecha, en el panel <strong>Artículo seleccionado</strong>, buscá la sección <strong>Foto (catálogo)</strong>.</li>
+        <li>Tocá <strong>Elegir foto…</strong> y seleccioná una imagen de tu PC o del celular (si la tenés copiada).</li>
+        <li>Guardá los cambios del artículo.</li>
+      </ol>
+      <img class="shot" src="assets/tutoriales/paso1-articulos.jpg" width="1280" height="800" alt="Pantalla Artículos de PuntoNexo con lista de productos y panel de foto">
+      <p class="caption">Pantalla real de Artículos: a la izquierda el listado; a la derecha el alta rápida y el detalle del artículo seleccionado.</p>
+
+      <img class="shot" src="assets/tutoriales/paso1b-foto-articulo.jpg" width="640" height="800" alt="Detalle: botones Elegir foto y Quitar foto">
+      <p class="caption">En alta rápida la foto es opcional. En el artículo seleccionado aparece como <strong>Foto (catálogo)</strong>.</p>
+
+      <h3>Formatos y tamaño</h3>
+      <ul class="bullets">
+        <li>Sirven JPG, PNG o BMP.</li>
+        <li>El archivo original puede pesar hasta ~12 MB; PuntoNexo lo achica solo (máx. ~1200 px y un JPG liviano).</li>
+        <li>Conviene una foto clara del frente del producto, con buena luz. No hace falta diseño profesional.</li>
+      </ul>
+    </section>
+
+    <section class="sheet" id="paso2">
+      <h2><span class="step-num">2</span> Marcar el producto como oferta</h2>
+      <p>La foto sola no alcanza: para que salga en la web tenés que publicarlo como oferta.</p>
+      <ol class="steps">
+        <li>Con el artículo seleccionado, bajá hasta el bloque <strong>Oferta en catálogo web</strong> (fondo naranja claro).</li>
+        <li>Tildá <strong>Publicar como oferta</strong>.</li>
+        <li>Completá el <strong>precio promocional</strong> (tiene que ser menor al precio de venta).</li>
+        <li>Opcional: poné <strong>Vigencia desde / hasta</strong>. Si no ponés fechas, vale mientras esté tildado.</li>
         <li>Guardá el artículo.</li>
       </ol>
-      <img class="shot" src="assets/tutoriales/tutorial-foto-paso1-articulos.jpg" width="1280" height="720" alt="Pantalla Artículos: sección Foto (catálogo) con botón Elegir foto">
-      <p class="caption">Tip: una foto clara del frente del producto alcanza. Si es muy pesada, PuntoNexo la achica sola (JPG).</p>
+      <img class="shot" src="assets/tutoriales/paso2-oferta.jpg" width="640" height="500" alt="Panel derecho de Artículos con foto de catálogo">
+      <p class="caption">El panel derecho concentra nombre, foto de catálogo, precios y (más abajo) la oferta web.</p>
+      <div class="note warn">
+        Sin “Publicar como oferta”, el producto <strong>no aparece</strong> en la página de ofertas aunque tenga foto.
+      </div>
     </section>
 
-    <section class="sheet">
-      <h2><span class="step-num">2</span> Marcarlo como oferta</h2>
-      <ol class="steps">
-        <li>En el mismo artículo, abrí el bloque <strong>Oferta en catálogo web</strong>.</li>
-        <li>Tildá <strong>Publicar como oferta</strong>.</li>
-        <li>Completá el <strong>precio promocional</strong> y, si querés, las fechas de vigencia.</li>
-        <li>Guardá.</li>
-      </ol>
-      <img class="shot" src="assets/tutoriales/tutorial-foto-paso2-oferta.jpg" width="1280" height="720" alt="Bloque Oferta en catálogo web con precio promocional">
-      <p class="caption">Sin esta marca, el producto no aparece en la página de ofertas aunque tenga foto.</p>
-    </section>
-
-    <section class="sheet">
+    <section class="sheet" id="paso3">
       <h2><span class="step-num">3</span> Publicar el catálogo</h2>
       <ol class="steps">
-        <li>Andá a <strong>Configuración → Portal / Catálogo</strong> (sección <strong>Catálogo en internet</strong>).</li>
-        <li>Revisá el <strong>nombre corto</strong> de tu comercio (es tu URL única).</li>
+        <li>Andá a <strong>Configuración</strong> (menú SISTEMA).</li>
+        <li>Buscá la sección <strong>Catálogo en internet</strong>.</li>
+        <li>Revisá el <strong>nombre corto</strong> de tu comercio: es la parte final de tu URL
+          (ejemplo: <code>mello</code> → <code>https://catalogo.mello.com.ar/catalogo/mello/ofertas</code>).</li>
         <li>Tocá <strong>Publicar catálogo en internet</strong>.</li>
-        <li>Esperá el mensaje: te dice cuántas ofertas salieron <em>con foto</em> y <em>sin foto</em>.</li>
+        <li>Esperá el mensaje de confirmación. Te indica cuántas ofertas salieron
+          <em>con foto</em> y <em>sin foto</em>. Si alguna foto no pudo subirse, vas a ver un aviso (toast), pero la publicación no se cancela.</li>
       </ol>
-      <img class="shot" src="assets/tutoriales/tutorial-foto-paso3-publicar.jpg" width="1280" height="720" alt="Configuración: botón Publicar catálogo en internet">
-      <p class="caption">Si alguna oferta quedó sin foto, podés cargar la imagen y publicar de nuevo. La publicación no se bloquea.</p>
+      <img class="shot" src="assets/tutoriales/paso3-publicar.jpg" width="1100" height="820" alt="Configuración del sistema con sección Catálogo en internet">
+      <p class="caption">Configuración real: arriba el estado “Listo para operar”; abajo el bloque de catálogo online.</p>
+      <img class="shot" src="assets/tutoriales/paso3b-catalogo-internet.jpg" width="1100" height="500" alt="Detalle del bloque Publicar catálogo en internet">
+      <p class="caption">Botones: <strong>Publicar</strong>, <strong>Abrir catálogo</strong> y <strong>Copiar URL</strong>.</p>
+      <div class="note">
+        La primera vez, si el sistema te pide sincronizar la licencia, andá a
+        <strong>Sistema → Licencia → Sincronizar</strong> y volvé a publicar.
+      </div>
     </section>
 
-    <section class="sheet">
-      <h2><span class="step-num">4</span> Abrir y compartir</h2>
+    <section class="sheet" id="paso4">
+      <h2><span class="step-num">4</span> Abrir, verificar y compartir</h2>
       <ol class="steps">
-        <li>Tocá <strong>Abrir catálogo</strong> o <strong>Copiar URL</strong>.</li>
-        <li>Compartí el link por WhatsApp, Instagram o un cartel con QR.</li>
-        <li>Tus clientes ven las ofertas con foto (si no hay foto, se muestra un placeholder).</li>
+        <li>Tocá <strong>Abrir catálogo</strong> (o pegá la URL en el navegador del celular).</li>
+        <li>Verificá que se vean las ofertas y las fotos. Si un artículo no tiene foto, la web muestra un placeholder gris.</li>
+        <li>Usá <strong>Copiar URL</strong> y mandala por WhatsApp, Instagram o un cartel.</li>
+        <li>Opcional: en Configuración podés <strong>Guardar QR del portal (PNG)</strong> para imprimirlo.</li>
       </ol>
-      <img class="shot" src="assets/tutoriales/tutorial-foto-paso4-catalogo-web.jpg" width="1280" height="720" alt="Catálogo web con ofertas y fotos de productos">
-      <p class="caption">Cada vez que cambies precios u ofertas, volvé a tocar Publicar para actualizar la web.</p>
+      <img class="shot" src="assets/tutoriales/paso4-catalogo-web.jpg" width="1100" height="900" alt="Catálogo público Mercado Mello con ofertas reales">
+      <p class="caption">Ejemplo real: catálogo público de Mercado Mello con ofertas vigentes (una con foto y otra sin foto / placeholder).</p>
     </section>
 
-    <section class="sheet">
-      <h2>Checklist rápido</h2>
+    <section class="sheet" id="tips">
+      <h2>Consejos y problemas frecuentes</h2>
+      <h3>Buenas prácticas</h3>
+      <ul class="bullets">
+        <li>Publicá primero las ofertas que más querés mostrar (2–10 alcanzan para arrancar).</li>
+        <li>Si una oferta vence, destildá “Publicar como oferta” o poné fecha hasta, y volvé a publicar.</li>
+        <li>Hacé un respaldo de la app de vez en cuando: también genera un ZIP de fotos.</li>
+      </ul>
+      <h3>Si algo falla</h3>
+      <ul class="bullets">
+        <li><strong>No publica (401):</strong> sincronizá la licencia e intentá de nuevo.</li>
+        <li><strong>“X sin foto”:</strong> abrí el artículo, elegí la foto otra vez, guardá y publicá.</li>
+        <li><strong>La web vieja:</strong> faltó volver a tocar Publicar después del cambio.</li>
+        <li><strong>Sin internet:</strong> podés cargar fotos offline; la subida ocurre al publicar o al guardar con conexión.</li>
+      </ul>
+
+      <h3>Checklist</h3>
       <ul class="checklist">
-        <li><span class="box"></span><span>Producto con foto cargada</span></li>
-        <li><span class="box"></span><span>“Publicar como oferta” tildado + precio promo</span></li>
-        <li><span class="box"></span><span>Licencia activa e internet</span></li>
+        <li><span class="box"></span><span>Producto con foto en Artículos</span></li>
+        <li><span class="box"></span><span>“Publicar como oferta” + precio promo</span></li>
+        <li><span class="box"></span><span>Licencia activa + internet</span></li>
         <li><span class="box"></span><span>Botón Publicar tocado</span></li>
-        <li><span class="box"></span><span>URL copiada / abierta para verificar</span></li>
+        <li><span class="box"></span><span>URL abierta y verificada en el celular</span></li>
       </ul>
     </section>
   </div>
