@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tutorial: fotos y publicación del catálogo | PuntoNexo</title>
+  <meta name="description" content="Guía corta para comerciantes: cómo poner foto a un producto, marcarlo como oferta y publicarlo en el catálogo online de PuntoNexo.">
+  <link rel="canonical" href="https://puntonexo.mello.com.ar/tutorial-fotos-catalogo.html">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #13211d;
+      --muted: #647067;
+      --line: #dce8df;
+      --paper: #fffdf8;
+      --wash: #f3faf4;
+      --forest: #12715b;
+      --mint: #1dc48c;
+      --amber: #d97706;
+      --font-head: 'Archivo', system-ui, sans-serif;
+      --font-body: 'Source Sans 3', system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #eef6ef;
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: 17px;
+      line-height: 1.55;
+    }
+    a { color: var(--forest); }
+    .topbar {
+      position: sticky; top: 0; z-index: 3;
+      background: rgba(255,253,248,.94);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(14px);
+    }
+    .topbar-inner, .wrap {
+      width: min(100% - 32px, 900px);
+      margin: 0 auto;
+    }
+    .topbar-inner {
+      min-height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+    .brand {
+      font-family: var(--font-head);
+      font-weight: 900;
+      letter-spacing: -.02em;
+      text-decoration: none;
+      color: var(--ink);
+      font-size: 1.1rem;
+    }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 42px; padding: 10px 15px; border-radius: 9px;
+      border: 1px solid var(--line); background: #fff; color: var(--ink);
+      font-weight: 800; text-decoration: none;
+    }
+    .btn.primary { background: var(--forest); border-color: var(--forest); color: #fff; }
+    .wrap { margin: 30px auto 60px; }
+    .sheet {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: clamp(22px, 4vw, 42px);
+      margin-bottom: 18px;
+      box-shadow: 0 18px 55px rgba(25,55,40,.08);
+    }
+    .cover {
+      background:
+        linear-gradient(135deg, rgba(18,113,91,.94), rgba(29,196,140,.78)),
+        var(--forest);
+      color: #fff;
+    }
+    .eyebrow {
+      display: inline-flex; width: max-content;
+      padding: 7px 11px; border-radius: 999px;
+      background: rgba(255,255,255,.14);
+      border: 1px solid rgba(255,255,255,.2);
+      font-weight: 900; letter-spacing: .04em;
+      text-transform: uppercase; font-size: .78rem;
+      margin-bottom: 16px;
+    }
+    h1, h2, h3 { font-family: var(--font-head); line-height: 1.1; letter-spacing: -.03em; margin: 0; }
+    h1 { font-size: clamp(2rem, 6vw, 3.4rem); max-width: 760px; }
+    h2 { font-size: clamp(1.35rem, 3vw, 1.9rem); margin-bottom: 10px; }
+    .lead { font-size: 1.15rem; max-width: 680px; color: rgba(255,255,255,.88); margin: 14px 0 0; }
+    .note {
+      background: var(--wash);
+      border-left: 5px solid var(--mint);
+      padding: 14px 16px;
+      border-radius: 10px;
+      color: var(--muted);
+      margin: 0 0 8px;
+    }
+    .note.warn {
+      border-left-color: var(--amber);
+      background: #fff8ed;
+    }
+    .step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px; height: 34px;
+      border-radius: 999px;
+      background: var(--forest);
+      color: #fff;
+      font-family: var(--font-head);
+      font-weight: 900;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+    .shot {
+      display: block;
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      margin: 16px 0 8px;
+      background: #e8f0ea;
+    }
+    .caption {
+      color: var(--muted);
+      font-size: .92rem;
+      margin: 0 0 14px;
+    }
+    ol.steps { margin: 0; padding-left: 1.2rem; }
+    ol.steps li { margin: 8px 0; }
+    .checklist { list-style: none; margin: 12px 0 0; padding: 0; }
+    .checklist li {
+      display: grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      padding: 8px 0;
+      border-top: 1px solid #eef4f0;
+    }
+    .checklist li:first-child { border-top: 0; }
+    .box {
+      width: 17px; height: 17px; margin-top: 4px;
+      border: 2px solid var(--forest); border-radius: 4px;
+    }
+    footer {
+      text-align: center;
+      color: var(--muted);
+      padding: 10px 16px 40px;
+      font-size: .95rem;
+    }
+    @media print {
+      .topbar { display: none; }
+      body { background: #fff; }
+      .sheet { box-shadow: none; break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html">PuntoNexo</a>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <a class="btn" href="javascript:window.print()">Imprimir / PDF</a>
+        <a class="btn primary" href="index.html#descargar">Descargar app</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <section class="sheet cover">
+      <div class="eyebrow">Tutorial para el comercio</div>
+      <h1>Fotos de productos y catálogo online</h1>
+      <p class="lead">En 4 pasos: cargás la foto del artículo, lo marcás como oferta, publicás el catálogo y lo compartís con tus clientes.</p>
+    </section>
+
+    <section class="sheet">
+      <div class="note">
+        <strong>Importante:</strong> al catálogo en internet se publican las <strong>ofertas vigentes</strong>
+        (productos con “Publicar como oferta” y precio promocional). No se publica todo el stock de golpe.
+      </div>
+      <div class="note warn">
+        Necesitás licencia activa e internet. No configurás servidores ni storage: PuntoNexo lo hace con tu licencia.
+      </div>
+    </section>
+
+    <section class="sheet">
+      <h2><span class="step-num">1</span> Poner foto al producto</h2>
+      <ol class="steps">
+        <li>Abrí <strong>Artículos</strong> (menú del TPV).</li>
+        <li>Seleccioná el producto (o crealo nuevo).</li>
+        <li>En <strong>Foto (catálogo)</strong> tocá <strong>Elegir foto…</strong> y elegí una imagen del celular/PC.</li>
+        <li>Guardá el artículo.</li>
+      </ol>
+      <img class="shot" src="assets/tutoriales/tutorial-foto-paso1-articulos.jpg" width="1280" height="720" alt="Pantalla Artículos: sección Foto (catálogo) con botón Elegir foto">
+      <p class="caption">Tip: una foto clara del frente del producto alcanza. Si es muy pesada, PuntoNexo la achica sola (JPG).</p>
+    </section>
+
+    <section class="sheet">
+      <h2><span class="step-num">2</span> Marcarlo como oferta</h2>
+      <ol class="steps">
+        <li>En el mismo artículo, abrí el bloque <strong>Oferta en catálogo web</strong>.</li>
+        <li>Tildá <strong>Publicar como oferta</strong>.</li>
+        <li>Completá el <strong>precio promocional</strong> y, si querés, las fechas de vigencia.</li>
+        <li>Guardá.</li>
+      </ol>
+      <img class="shot" src="assets/tutoriales/tutorial-foto-paso2-oferta.jpg" width="1280" height="720" alt="Bloque Oferta en catálogo web con precio promocional">
+      <p class="caption">Sin esta marca, el producto no aparece en la página de ofertas aunque tenga foto.</p>
+    </section>
+
+    <section class="sheet">
+      <h2><span class="step-num">3</span> Publicar el catálogo</h2>
+      <ol class="steps">
+        <li>Andá a <strong>Configuración → Portal / Catálogo</strong> (sección <strong>Catálogo en internet</strong>).</li>
+        <li>Revisá el <strong>nombre corto</strong> de tu comercio (es tu URL única).</li>
+        <li>Tocá <strong>Publicar catálogo en internet</strong>.</li>
+        <li>Esperá el mensaje: te dice cuántas ofertas salieron <em>con foto</em> y <em>sin foto</em>.</li>
+      </ol>
+      <img class="shot" src="assets/tutoriales/tutorial-foto-paso3-publicar.jpg" width="1280" height="720" alt="Configuración: botón Publicar catálogo en internet">
+      <p class="caption">Si alguna oferta quedó sin foto, podés cargar la imagen y publicar de nuevo. La publicación no se bloquea.</p>
+    </section>
+
+    <section class="sheet">
+      <h2><span class="step-num">4</span> Abrir y compartir</h2>
+      <ol class="steps">
+        <li>Tocá <strong>Abrir catálogo</strong> o <strong>Copiar URL</strong>.</li>
+        <li>Compartí el link por WhatsApp, Instagram o un cartel con QR.</li>
+        <li>Tus clientes ven las ofertas con foto (si no hay foto, se muestra un placeholder).</li>
+      </ol>
+      <img class="shot" src="assets/tutoriales/tutorial-foto-paso4-catalogo-web.jpg" width="1280" height="720" alt="Catálogo web con ofertas y fotos de productos">
+      <p class="caption">Cada vez que cambies precios u ofertas, volvé a tocar Publicar para actualizar la web.</p>
+    </section>
+
+    <section class="sheet">
+      <h2>Checklist rápido</h2>
+      <ul class="checklist">
+        <li><span class="box"></span><span>Producto con foto cargada</span></li>
+        <li><span class="box"></span><span>“Publicar como oferta” tildado + precio promo</span></li>
+        <li><span class="box"></span><span>Licencia activa e internet</span></li>
+        <li><span class="box"></span><span>Botón Publicar tocado</span></li>
+        <li><span class="box"></span><span>URL copiada / abierta para verificar</span></li>
+      </ul>
+    </section>
+  </div>
+
+  <footer>
+    PuntoNexo · Tutorial comerciantes ·
+    <a href="mailto:soporte@mello.com.ar">soporte@mello.com.ar</a>
+  </footer>
+</body>
+</html>
