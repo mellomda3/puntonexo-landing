@@ -1,4 +1,4 @@
-(function () {
+﻿(function () {
   'use strict';
 
   // ── Mobile nav ──
@@ -40,7 +40,7 @@
   function applyConfig() {
     try {
       const cfg = window.PN_CONFIG || {};
-      const version = cfg.releaseVersion || '2.8.8';
+      const version = cfg.releaseVersion || '2.8.9';
       const url =
         cfg.releaseDownloadUrl ||
         'https://github.com/mellomda3/puntonexo-releases/releases/latest';
