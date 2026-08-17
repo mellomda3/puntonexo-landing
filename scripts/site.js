@@ -40,7 +40,7 @@
   function applyConfig() {
     try {
       const cfg = window.PN_CONFIG || {};
-      const version = cfg.releaseVersion || '2.8.9';
+      const version = cfg.releaseVersion || '2.8.10';
       const url =
         cfg.releaseDownloadUrl ||
         'https://github.com/mellomda3/puntonexo-releases/releases/latest';
